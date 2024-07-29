@@ -1,0 +1,10 @@
+iṣe add(int a, int b) -> {
+    pada a+b;
+}
+
+iṣẹ pataki() -> int {
+    
+    sọpe(add(5, 8));
+
+    pada 0;
+}

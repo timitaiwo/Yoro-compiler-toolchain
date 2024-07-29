@@ -1,0 +1,15 @@
+iṣẹ pataki() -> int {
+    
+    jẹki ookan : int = 1;
+    jẹki eeji : int = 2;
+
+    jẹki ropọ : int = ookan + eeji;
+    jẹki yọkuro : int = ookan - eeji;
+    jẹki sọdipupọ : int = ookan * eeji;
+    jẹki pin : int = ookan / eeji;
+    jẹki iyoku : int = ookan % eeji;
+
+    sọpe(ropọ);
+
+    pada 0;
+}

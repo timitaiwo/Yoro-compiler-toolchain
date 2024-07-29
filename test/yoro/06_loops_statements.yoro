@@ -1,0 +1,36 @@
+iṣẹ pataki() -> int {
+    
+    fun (jẹki i : int  = 0; i < 10 ; i = i+1) {
+        
+        ṣe (i == 3) {
+            tẹsiwaju;
+        }
+
+        ṣe (i == 8) {
+            kuro;
+        }
+        
+        sọpe(i);
+    }
+
+    sọpe("Again using a while loop");
+
+    jẹki ka : int = 0
+
+    nigbati (ka < 10) {
+
+        ṣe (ka == 8){
+            kuro;
+        }
+
+        tabi ṣe (ka == 3) {
+            tẹsiwaju;
+        }
+
+        ka = ka + 1
+
+        sọpe(ka)
+    }
+
+    pada 0;
+}

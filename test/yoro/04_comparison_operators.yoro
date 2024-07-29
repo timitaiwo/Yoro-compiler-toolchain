@@ -1,0 +1,16 @@
+iṣẹ pataki() -> int {
+    
+    jẹki ookan : int = 20;
+    jẹki eeji : int = 27;
+
+    jẹki kere_ju : bool = ookan < eeji;
+    jẹki kere_ju : bool = ookan <= eeji;
+
+    jẹki tobi_ju : bool = ookan > eeji;
+    jẹki tobi_ju : bool = ookan >= eeji;
+
+    jẹki kere_ju : bool = ookan == eeji;
+    jẹki kere_ju : bool = ookan != eeji;
+
+    pada 0;
+}

@@ -1,0 +1,5 @@
+iṣẹ pataki() -> int {
+    sọpe("");
+
+    pada 0;
+}

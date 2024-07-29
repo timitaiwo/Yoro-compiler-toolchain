@@ -1,0 +1,17 @@
+
+iṣẹ pataki() -> int {
+
+    // Use Not / !, ati and tabi
+
+    jẹki temprature : int = 15;
+    
+    ṣe (temprature < 12 ){
+        sọpe()
+    } tabi ṣe () {
+        sọpe()
+    } tabi {
+        sọpe()
+    }
+
+    return 0;
+}
