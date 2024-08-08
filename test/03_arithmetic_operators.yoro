@@ -2,14 +2,24 @@ iṣẹ pataki() -> int {
     
     jẹki ookan : int = 1;
     jẹki eeji : int = 2;
+    jẹki ẹẹta : int = 3;
+    jẹki ẹẹfa : int = 6;
 
     jẹki ropọ : int = ookan + eeji;
     jẹki yọkuro : int = ookan - eeji;
     jẹki sọdipupọ : int = ookan * eeji;
     jẹki pin : int = ookan / eeji;
     jẹki iyoku : int = ookan % eeji;
+    jẹki eeje : int = ookan + eeji * ẹẹta;
+    jẹki ere_ookan : int = ẹẹfa / ẹẹta - ookan;
 
     sọpe(ropọ);
+    sọpe(yọkuro);
+    sọpe(sọdipupọ);
+    sọpe(pin);
+    sọpe(iyoku);
+    sọpe(eeje);
+    sọpe(ere_ookan);
 
     pada 0;
 }

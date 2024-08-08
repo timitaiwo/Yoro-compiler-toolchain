@@ -1,7 +1,7 @@
-iṣẹ pataki() -> int{
+iṣẹ pataki() -> int {
     
-    jẹki orukọ : str = "Damilọla"
-    sọpe(orukọ)
+    jẹki orukọ : str = "Damilọla";
+    sọpe(orukọ);
 
     pada 0;
 }

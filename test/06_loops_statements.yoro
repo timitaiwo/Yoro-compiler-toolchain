@@ -15,7 +15,7 @@ iṣẹ pataki() -> int {
 
     sọpe("Again using a while loop");
 
-    jẹki ka : int = 0
+    jẹki ka : int = 0;
 
     nigbati (ka < 10) {
 
@@ -27,9 +27,9 @@ iṣẹ pataki() -> int {
             tẹsiwaju;
         }
 
-        ka = ka + 1
+        ka = ka + 1;
 
-        sọpe(ka)
+        sọpe(ka);
     }
 
     pada 0;
