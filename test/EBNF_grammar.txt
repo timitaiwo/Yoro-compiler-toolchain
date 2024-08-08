@@ -1,0 +1,53 @@
+<assignment_expression> :: = <variable_declaration_keyword> <identifier> : <datatype> = <expression>
+
+<function_declaration> ::= <function_keyword> <identifier> '(' { <parameter_declaration> [,] }* ')' -> <datatype> '{' { <statement> }* <return_keyword> <expression> '}'
+<function_call> ::= <identifier> '('{ <identifier> [,] }* ')'
+
+<parameter_declaration> ::= <datatype> <identifier>
+
+<identifier> ::= 
+<datatype> ::= 
+<expression> ::= 
+<statement> ::= 
+
+
+<variable_declaration_keyword> ::= iṣẹ
+<function_keyword> ::= iṣẹ
+<return_keyword> ::= pada
+
+
+<operator> ::= <binary_operator>
+
+
+<binary_operator> ::= <arithmetic_operator>
+                    | <comparison_operator>
+
+
+<arithmetic_operator> ::= <addition_operator> 
+                | <subtraction_operator> 
+                | <multiplication_operator>
+                | <division_operator>
+                | <modulus_operator>
+
+
+<comparison_operator> ::= <less_than_operator> 
+                | <less_than_equal_operator> 
+                | <greater_than_operator>
+                | <greater_than_equal_operator>
+                | <equals_operator>
+                | <not_equals_operator>   
+
+
+<addition_operator> ::= +
+<subtraction_operator> ::= -
+<multiplication_operator> ::= *
+<division_operator> ::= /
+<modulus_operator> ::= %
+
+
+<less_than_operator> ::= <
+<greater_than_operator> ::= >
+<less_than_equal_operator> ::= <=
+<greater_than_equal_operator> ::= >=
+<equals_operator> ::= ==
+<not_equals_operator> ::= !=
