@@ -1,5 +1,4 @@
 iṣẹ pataki() -> int {
-    sọpe("");
-
+    sọpe("Mo ki yin gbogbo agbaye");
     pada 0;
 }
