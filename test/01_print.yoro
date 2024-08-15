@@ -1,4 +1,4 @@
-iṣẹ pataki() -> int {
+iṣẹ pataki() -> int {     // Entry point into the program
     sọpe("Mo ki yin gbogbo agbaye");
-    pada 0;
+    pada 0;               // returning 0 indicates a sucessfull running of the program
 }
