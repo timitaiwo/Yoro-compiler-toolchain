@@ -13,7 +13,7 @@
 <datatype> ::= <primitive>
 
 <statement> ::=  ( ( <expression> | <function_call> ) ";" ) | <if_statement> | <while_loop> | <for_loop>
-<expression> ::= <identifier> | <binary_expression>  
+<expression> ::= <primitive> | <binary_expression>  
 
 <function_declaration> ::= <function_declaration_keyword> <identifier> "(" [ [ { <parameter_declaration> "," }* ] <parameter_declaration> ] ")" [ -> <datatype> ] "{" { <statement> }* [ <return_keyword> <expression> ] "}"
 <parameter_declaration> ::= <datatype> <identifier>
