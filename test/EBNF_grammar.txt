@@ -1,43 +1,46 @@
-<single_line_comment> ::= <single_line_comment_symbol> ( { <unicode_grapheme> }* | <whitespace> )
+<comment> ::= <single_line_comment> | <multi_line_symbol>
+
+<single_line_comment> ::= <single_line_comment_symbol> { ( { <unicode_grapheme> }* | <whitespace> ) }*
 <single_line_comment_symbol> ::= ( "#" | "//" )
 
 <multi_line_symbol> ::= <start_multi_line_comment_symbol> ( { <unicode_grapheme> }* | <whitespace> | <new_line> ) <end_multi_line_comment_symbol>
 <start_multi_line_comment_symbol> ::= "/*"
 <end_multi_line_comment_symbol> ::= "*/"
 
-<assignment_expression> :: = <variable_declaration_keyword> <identifier> [ : <datatype> ] = <primitive> | <expression>
+<assignment_statement> :: = <variable_declaration_keyword> <identifier> [ : <datatype> ] = <primitive> | <expression> | <function_call>
+
+<identifier> ::= { <unicode_grapheme> }+ | <decimal_integer> | <underscore>
+<datatype> ::= <primitive>
 
 <statement> ::=  ( ( <expression> | <function_call> ) ";" ) | <if_statement> | <while_loop> | <for_loop>
-<expression> ::= { ( <binary_expression> ) }* 
+<expression> ::= <identifier> | <binary_expression>  
 
-
-<function_declaration> ::= <function_declaration_keyword> <identifier> "(" { <parameter_declaration> [,] }* ")" [ -> <datatype> ] "{" { <statement> }* [ <return_keyword> <expression> ] "}"
+<function_declaration> ::= <function_declaration_keyword> <identifier> "(" [ [ { <parameter_declaration> "," }* ] <parameter_declaration> ] ")" [ -> <datatype> ] "{" { <statement> }* [ <return_keyword> <expression> ] "}"
 <parameter_declaration> ::= <datatype> <identifier>
-<function_call> ::= <identifier> "("{ <identifier> [,] }* ")"
+<function_call> ::= <identifier> "("[ [ { <identifier> "," }* ] <identifier> ] ")"
 
 <if_statement> ::= <if_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" { <statement> }* "}" [ [ <else_keyword> <if_keyword> "{" { <statement> }* "}"] <else_keyword> "{" { statement }* "}" ]
 <while_loop> ::= <while_loop_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" { <statement> }* "}"
 <for_loop> ::= <for_loop_keyword> "(" <assignment_expression> ";" <conditional_expression> ";" <statement> ")" "{" { <statement> }* "}"
 
-<binary_expression> ::= <primitive> <binary_operator> <primitive> | <conditional_expression>
+<binary_expression> ::= <primitive> <binary_operator> <primitive>
 <conditional_expression> ::= <primitive> <comparison_operator> <primitive> 
 
-<identifier> ::= { <unicode_grapheme> }+
-
-<unicode_grapheme> ::= 
+<unicode_grapheme> ::= // coherent letter of an alphabet
+<decimal_digit> ::= ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" )
 <whitespace>
 <new_line>
 
-<datatype> ::= <primitive>
 <primitive> ::= <integer> | <floating_point> | <boolean_primitive> | <character> | <string>
 
 <boolean_primitive> ::= "ootọ" | "irọ"
-<integer> ::= <octal_digit> | <decimal_digit> | <hexadecial_digit>
-<floating_point> ::= <decimal_digit> "." <decimal_digit>
+<integer> ::= <binary_integer> | <decimal_integer> | <hexadecimal_integer>
+<floating_point> ::= <decimal_integer> "." <decimal_integer>
 
-<octal_digit> ::= "0o" { ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" ) }+
-<decimal_digit> ::= { ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ) }+
-<hexadecial_digit> ::= "0x" { ( <decimal_digit> | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F" ) }+
+
+<binary_integer> ::= "0b" | "0B"
+<decimal_integer> ::= ("+" | "-" ) { <decimal_digit> }+
+<hexadecimal_integer> ::= ("+" | "-" ) ("0x" | "OX" ) { ( <decimal_integer> | "a" | "b" | "c" | "d" | "e" | "f" | "A" | "B" | "C" | "D" | "E" | "F" ) }+
 <character> - <unicode_grapheme>
 <string> - { <character> }+
 
@@ -51,9 +54,14 @@
 <while_loop_keyword> ::= nigbati
 <for_loop_keyword> ::= fun
 
+<break_keyword> ::= kuro
+<continue_keyword> ::= tẹsiwaju
+
+// express break and continue in EBNF
+
 
 // Operators
-<operator> ::= <binary_operator> | // Add other operator types
+<operator> ::= <binary_operator>
 
 
 <binary_operator> ::= <arithmetic_operator>
@@ -88,6 +96,8 @@
 <greater_than_equal_operator> ::= >=
 <equals_operator> ::= ==
 <not_equals_operator> ::= !=
+<logical_and_operator> ::= &&
+<logical_or_operator> ::= ||
 
 
 // Class future updates
@@ -98,3 +108,12 @@
 <class_declaration_keyword> ::= 
 <binary_expression> ::= <object> <binary_operator> <object> | <conditional_expression>
 <conditional_expression> ::= <object> <comparison_operator> <object> 
+<operator> ::= <binary_operator> | // Add other operator types
+
+// Alterntive logical and and logical or operators
+<logical_and_operator> ::= && or ati 
+<logical_or_operator> ::= || or tabi
+
+// add support for binary integer
+<integer> ::= <octal_integer> | <decimal_integer> | <hexadecimal_integer> | <binary_integer>
+<octal_integer> ::= ("+" | "-" ) "0o" { ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" ) }+
