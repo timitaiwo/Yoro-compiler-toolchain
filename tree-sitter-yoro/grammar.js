@@ -2,51 +2,72 @@
 module.exports = grammar({
   name: 'yoro',
 
+
   rules: {
 
     source_file: $ => repeat(choice($._primitive, $.identifier)),
 
-    _grapheme: $ => token(/[a-zA-ZẹọṣẸỌṢ_]/), 
-    identifier: $ => token(/[a-zA-zẹọṣẸỌṢ_][a-zA-zẹọṣẸỌṢ_0-9]+/),
+    identifier: $ => /(\p{Letter}|_)(\p{Letter}|\p{Number}|_)+/,
     
-    /* Update to represent 
-    
-    - any unicode character
-    - escaped characters e.g \n, \t etc.
-    - special characters ? e.g. $
+    // Integer literals
+    binary_literal: $ => /[+|-]?0[b|B][0|1]+/,
+    octal_literal: $ => /[+|-]?0[o|O][0-7]+/,
+    decimal_literal: $ => /[+|-]?[0-9]+/,
+    hexadecimal_literal: $ => /[+|-]?0[x|X][0-9A-Fa-f]+/,
+    floating_point_literal: _ => /[+|-]?[0-9]+\.[0-9]+/,
 
+    // Character literal
+    _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
+    _string_literal: _ => /"(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*""/,
+    /* Update to represent 
+    - escaped characters e.g \n, \t etc.
     */
 
-    _binary_digit: $ => token(/[0-1]/),
-    _octal_digit: $ => token(/[0-7]/),
-    _decimal_digit: $ => token(/[0-9]/),
-    _hexadecimal_digit: $ => /[0-9a-fA-F]/,
-
-    // _primitive: $ => choice( $.integer, $.floating_point, 
-    //                     $.boolean, $.character, $.string),
-
-    _primitive: $ => choice( $.boolean, $.character, $.integer),
+    // _primitive: $ => choice( $.boolean, $.character, $.integer, $.floating_point, $.string),
+    _primitive: $ => choice( $.boolean, $.character, $.integer, $.floating_point),
 
     // Boolean primitives
     boolean: $ => choice($.true, $.false),
     true: _ => 'ootọ',
     false: _ => 'irọ',
 
-    // Integer characters
-    _positive_or_negative: $ => choice('+', '-'),
+    // Integers
+    integer: $ => choice($.binary_literal, $.octal_literal,$.decimal_literal, $.hexadecimal_literal),
+    floating_point: $ => $.floating_point_literal,
+    
+    // Characters and letters
+    character: $ => $._character_literal,
+    string: $ => $._string_literal,
 
-    integer: $ => choice($.binary_integer, $.octal_integer, $.decimal_integer, $.hexadecimal_integer),
-    floating_point: $ => seq($._decimal_digit, '.', $._decimal_digit),
+    // _datatype: $ => choice($.int, $.single_precision_floating_point, $.double_precision_floating_point, $.boolean, $.character, $.string),
 
-    binary_integer: $ => seq(optional($._positive_or_negative), choice('0b', '0B'), repeat1($._binary_digit)),
-    octal_integer: $ => seq(optional($._positive_or_negative), choice('0o', '0O'), repeat1($._octal_digit)),
-    decimal_integer: $ => seq(optional($._positive_or_negative), repeat1($._decimal_digit)),
-    hexadecimal_integer: $ => seq(optional($._positive_or_negative), choice('0x', '0X'), repeat1($._hexadecimal_digit)),
+    // int: _ => 'int',
+    // single_precision_floating_point: _ => 'f32',
+    // double_precision_floating_point: _ => 'f64',
+    // boolean: _ => 'bool',
+    // character: _ => 'char',
+    // string: _ => 'str',
+
+    // $binary_operator: $ => ,
+    // $arithmetic_operator: $ => ,
+    // $comparison_operator: $ => ,
 
 
-    character: $ => seq('\'', $._grapheme, '\''),
-    // string: $ => seq('\"', repeat(choice($._grapheme, $.integer)), '\"'),
-    string: $ => seq('\"', repeat($._grapheme), '\"'),
+    // binary_expression: $ => seq($._primitive, $.binary_operator, $._primitive),
+    // conditional_expression: $ => seq($._primitive, $.conditional_operator, $._primitive),
 
+
+    // if_keyword: _ => 'ṣe',  //Update to use unicode regex when adding diacritcs
+    // else_keyword: _ => 'tabi',
+    // if_statement: $ => seq($.if_keyword, '(', choice($.conditional_expression, $.boolean), ')', '{', repeat($.statement), '}' , optional(optional($._else_if_block), $._else_block)),
+    // _else_if_block: _ => seq($.else_keyword, $.if_keyword, '{', repeat($.statement), '}'),
+    // _else_block: _ => seq($.else_keyword, '{', repeat($.statement), '}'), 
+
+    // expression: choice($._primitive, $.binary_expression),
+
+    // statement: $ => choice($.assignment, $.expression),
+    // assignment: $ => seq('jẹki', $.identifier, $._datatype, '=', choice($._primitive, $.expression, $.function_call)),
+
+    
   }
 });
