@@ -13,15 +13,17 @@
 <datatype> ::= <primitive>
 
 <statement> ::=  ( ( <expression> | <function_call> ) ";" ) | <if_statement> | <while_loop> | <for_loop>
-<expression> ::= <primitive> | <binary_expression>  
+<expression> ::= <primitive> | <binary_expression> 
 
-<function_declaration> ::= <function_declaration_keyword> <identifier> "(" [ [ { <parameter_declaration> "," }* ] <parameter_declaration> ] ")" [ -> <datatype> ] "{" { <statement> }* [ <return_keyword> <expression> ] "}"
+<codeblock> ::= { <statement> }*
+
+<function_declaration> ::= <function_declaration_keyword> <identifier> "(" [ [ { <parameter_declaration> "," }* ] <parameter_declaration> ] ")" [ -> <datatype> ] "{" <codeblock> [ <return_keyword> <expression> ] "}"
 <parameter_declaration> ::= <datatype> <identifier>
 <function_call> ::= <identifier> "("[ [ { <identifier> "," }* ] <identifier> ] ")"
 
-<if_statement> ::= <if_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" { <statement> }* "}" [ [ <else_keyword> <if_keyword> "{" { <statement> }* "}"] <else_keyword> "{" { statement }* "}" ]
-<while_loop> ::= <while_loop_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" { <statement> }* "}"
-<for_loop> ::= <for_loop_keyword> "(" <assignment_expression> ";" <conditional_expression> ";" <statement> ")" "{" { <statement> }* "}"
+<if_statement> ::= <if_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" <codeblock> "}" [ [ <else_keyword> <if_keyword> "{" <codeblock> "}"] <else_keyword> "{" { statement }* "}" ]
+<while_loop> ::= <while_loop_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" <codeblock> "}"
+<for_loop> ::= <for_loop_keyword> "(" <assignment_expression> ";" <conditional_expression> ";" <statement> ")" "{" <codeblock> "}"
 
 <binary_expression> ::= <primitive> <binary_operator> <primitive>
 <conditional_expression> ::= <primitive> <comparison_operator> <primitive> 
@@ -57,12 +59,11 @@
 <break_keyword> ::= kuro
 <continue_keyword> ::= tẹsiwaju
 
-// express break and continue in EBNF
-
 
 // Operators
-<operator> ::= <binary_operator>
+<operator> ::= <binary_operator> | <assignment_operator>
 
+<assignment_operator> ::= =
 
 <binary_operator> ::= <arithmetic_operator>
                     | <comparison_operator>
@@ -79,6 +80,7 @@
                 | <less_than_equal_operator> 
                 | <greater_than_operator>
                 | <greater_than_equal_operator>
+                | <not_operator>
                 | <equals_operator>
                 | <not_equals_operator>   
 
@@ -94,6 +96,7 @@
 <greater_than_operator> ::= >
 <less_than_equal_operator> ::= <=
 <greater_than_equal_operator> ::= >=
+<not_operator> ::= !
 <equals_operator> ::= ==
 <not_equals_operator> ::= !=
 <logical_and_operator> ::= &&
@@ -117,3 +120,8 @@
 // add support for binary integer
 <integer> ::= <octal_integer> | <decimal_integer> | <hexadecimal_integer> | <binary_integer>
 <octal_integer> ::= ("+" | "-" ) "0o" { ( "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" ) }+
+
+// Extend for loop
+<for_loop> ::= <manual_for_loop> | <auto_for_loop>
+<manual_for_loop> ::= <for_loop_keyword> "(" <assignment_expression> ";" <conditional_expression> ";" <statement> ")" "{" <codeblock> "}"
+<auto_for_loop> ::= 
