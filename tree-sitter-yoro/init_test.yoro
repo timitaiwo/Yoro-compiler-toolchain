@@ -1,9 +1,9 @@
-// boolean
+
 ootọ
 irọ
 
 
-# identifiers
+
 iṣe
 pataki
 Damilọla
@@ -11,7 +11,7 @@ lọ_soke
 _jẹun
 
 
-// character primitives
+
 'p'
 'Ọ'
 '?'
@@ -27,9 +27,7 @@ _jẹun
 '👽'
 
 
-/*
-string primitives
-*/
+
 ""
 " "
 "  "
@@ -44,21 +42,21 @@ string primitives
 "Temidun, ọrọ rẹ ko fe ye mi mo. bawo ni eleduwa se fikan gbakan lọwọ re?"
 
 
-# Boolean numbers
+
 0b0100
 0B0100
 -0b0100
 -0B0100
 
 
-// Octal numbers
+
 0o0732
 0O4253
 -0o0732
 -0O4253
 
 
-# Hexadecimal numbers
+
 0xBEEF
 0XBEEF
 -0xBEEF
@@ -69,14 +67,14 @@ string primitives
 -0X32BA
 
 
-// Decimal numbers
+
 2024
 895153226484852623
 -2024
 -895153226484852623
 
 
-# Floating Point numbers
+
 0.5
 -0.5
 9.745
@@ -85,7 +83,7 @@ string primitives
 -8951532264.852623
 
 
-// primitive declerations
+
 int
 f32
 f64
@@ -94,14 +92,9 @@ char
 str
 
 
-/*
-    Operators
-*/
-
-// Starting with Assignment operator
 =
 
-# Arithmetic Operators
+
 +
 -
 *
@@ -118,7 +111,7 @@ str
 &&
 ||
 
-// Datatypes
+
 int
 f32
 f64
