@@ -1,3 +1,12 @@
+const precedences = {
+  comment: 0,
+  addition_subtraction: 1,
+  multiply_divide: 2,
+  exponent:3,
+  parenthesis:4,
+  primitive:5,
+};
+
 
 module.exports = grammar({
   name: 'yoro',
@@ -5,12 +14,13 @@ module.exports = grammar({
 
   rules: {
 
-    source_file: $ => repeat(choice($._primitive, $._comment)),
-    // source_file: $ => repeat(choice($._primitive, $._comment, $.statement)),
+    // source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier)),
+    // source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.string_concatenation)),
+    source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.number_arithmetic)),
 
     // Character literal
     _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
-    _string_literal: _ => /"(\p{Letter}*|\p{Number}*|\p{Mark}*|\p{Punctuation}*|\p{Symbol}*|\p{Separator}*|\p{Emoji}*)*"/,
+    _string_literal: _ => /"(\p{Letter}*|\p{Number}*|\p{Mark}*|\p{Symbol}*|\p{Separator}*|\p{Emoji}*|\p{Punctuation}*)*"/,
     /* Update to represent 
     - escaped characters e.g \n, \t etc.
     */
@@ -47,14 +57,20 @@ module.exports = grammar({
       
       return token(floating_point_literal);
     },
-    _number_primitive: $ => choice($.integer_primitive, $.floating_point_primitive),
+    _arithmetic_primitive: $ => prec(precedences["primitive"],
+                                    choice($.integer_primitive, 
+                                          $.floating_point_primitive,
+                                          $.boolean_primitive)),
     
     // Characters and string primitives
     character_primitive: $ => $._character_literal,
     string_primitive: $ => $._string_literal,
+    _concatenation_primitive: $ => prec(precedences["primitive"],
+                                        choice($.character_primitive, 
+                                                $.string_primitive)),
 
     // Comments
-    single_line_comment: $ => /(\/\/|#)(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})+/,
+    single_line_comment: $ => /(\/\/|#)(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*/,
     multi_line_comment: $ => /\/\*(\r|\n|\r\n)?(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*(\r|\n|\r\n)?\*\//,
     _comment: $ => choice($.single_line_comment, $.multi_line_comment),
 
@@ -90,8 +106,10 @@ module.exports = grammar({
                                       $.division_operator,
                                       $.modulus_operator),
 
-    // Boolean Operators
+    // Uniary Operators
     not_operator: _ => '!',
+    exponent_operator: _ => '**',
+    _unary_operator: $ => choice($.not_operator, $.exponent_operator),
 
     // Conditional Operators
     less_than_operator: _ => '<',
@@ -107,7 +125,6 @@ module.exports = grammar({
                                       $.less_than_equal_operator,
                                       $.greater_than_operator,
                                       $.greater_than_equal_operator,
-                                      $.not_operator,
                                       $.equals_operator,
                                       $.not_equals_operator,
                                       $.logical_and_operator,
@@ -116,7 +133,73 @@ module.exports = grammar({
     _binary_operator: $ => choice($._arithmetic_operator,
                                   $._comparison_operator),
 
-    _operator: $ => choice($._binary_operator, $.assignment_operator),
+    _operator: $ => choice($._binary_operator, $.assignment_operator, $._unary_operator),
+
+
+    number_arithmetic: $ => {
+      
+      const addition = prec.left(precedences["addition_subtraction"],
+                      seq(
+                        field("left", $._arithmetic_primitive),
+                        $.addition_operator,
+                        field("right", $._arithmetic_primitive)
+                      )
+                    );
+      
+      const subtraction = prec.left(precedences["addition_subtraction"],
+                      seq(
+                        field("left", $._arithmetic_primitive),
+                        $.subtraction_operator,
+                        field("right", $._arithmetic_primitive)
+                      )
+                    );
+
+      const division = prec.left(precedences["addition_subtraction"],
+                      seq(
+                        field("left", $._arithmetic_primitive),
+                        $.division_operator,
+                        field("right", $._arithmetic_primitive)
+                      )
+                    );
+                
+      const multiplication = prec.left(precedences["addition_subtraction"],
+                      seq(
+                        field("left", $._arithmetic_primitive),
+                        $.multiplication_operator,
+                        field("right", $._arithmetic_primitive)
+                      )
+                    );
+
+      const modulus = prec.left(precedences["addition_subtraction"],
+                      seq(
+                        field("left", $._arithmetic_primitive),
+                        $.modulus_operator,
+                        field("right", $._arithmetic_primitive)
+                      )
+                    );
+
+      return choice(addition, subtraction, multiplication, division, modulus)
+    },
+
+
+    string_concatenation: $ => prec.left(
+                                  seq(
+                                    field("left", $._concatenation_primitive),
+                                    $.addition_operator,
+                                    field("right", $._concatenation_primitive)
+                                  )
+                                ),
+
+
+    binary_expression: choice($.number_arithmetic, $.string_concatenation),
+
+    // Add to expression -> power expression, not expression
+
+    expression: token($.binary_expression),
+    statement: token($.expression),
+
+
+    // Capture expressions written in 
 
 
     // Expressions

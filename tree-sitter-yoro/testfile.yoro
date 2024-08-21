@@ -36,6 +36,7 @@ string primitives
 "🙇💖✅⭐"
 "🫡✅ 🙇"
 "M"
+"ẹ"
 "Lekan"
 "Ọlabamiji32324"
 "Mo mọ pe"
@@ -121,6 +122,15 @@ str
 ||
 
 
+# Concatenation
+'a' + 'ẹ'
+"test" + 'ọ'
+"Ọlabamiji32324" + "Mo mọ pe"
+"Apani" + "lẹkun Jaye?" + "on"
+"(48d-sf5" + "Ẹọ45"
+"Dindinri" + 'n' + "ọwọọrẹ"
+
+
 # Arithmetic Expression
 3 + 5
 343 - 32324
@@ -141,17 +151,18 @@ str
 7865.434 % 7865
 
 
-+
--
-*
-/
-%
+ootọ + ootọ
+ootọ - irọ
+ootọ * ootọ
+irọ / ootọ
+ootọ % irọ
 
-+
--
-*
-/
-%
+
+ootọ + 5
+964859.434 - ootọ
+ootọ * ootọ
+irọ / 7865
+ootọ % irọ
 
 
 // Conditional Expression
