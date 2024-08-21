@@ -25,7 +25,7 @@
 <while_loop> ::= <while_loop_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" <codeblock> "}"
 <for_loop> ::= <for_loop_keyword> "(" <assignment_expression> ";" <conditional_expression> ";" <statement> ")" "{" <codeblock> "}"
 
-<binary_expression> ::= <primitive> <binary_operator> <primitive>
+<binary_expression> ::= <conditional_expression>
 <conditional_expression> ::= <primitive> <comparison_operator> <primitive> 
 
 <unicode_grapheme> ::= // coherent letter of an alphabet

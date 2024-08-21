@@ -5,16 +5,8 @@ module.exports = grammar({
 
   rules: {
 
-    source_file: $ => repeat(choice($._primitive, $.identifier, $._operator, $._datatype)),
-    // source_file: $ => repeat(choice($._primitive, $.comment)),
-    // source_file: $ => repeat($._primitive),
-
-    // Integer literals
-    binary_literal: $ => /[+|-]?0[b|B][0|1]+/,
-    octal_literal: $ => /[+|-]?0[o|O][0-7]+/,
-    decimal_literal: $ => /[+|-]?[0-9]+/,
-    hexadecimal_literal: $ => /[+|-]?0[x|X][0-9A-Fa-f]+/,
-    floating_point_literal: _ => /[+|-]?[0-9]+\.[0-9]+/,
+    source_file: $ => repeat(choice($._primitive, $._comment)),
+    // source_file: $ => repeat(choice($._primitive, $._comment, $.statement)),
 
     // Character literal
     _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
@@ -30,23 +22,41 @@ module.exports = grammar({
                             $.string_primitive),
 
     // Boolean primitives
-    boolean_primitive: $ => choice($.true, $.false),
-    true: _ => 'ootọ',
-    false: _ => 'irọ',
+    boolean_primitive: $ => {
 
-    // Number primitives
-    integer_primitive: $ => choice($.binary_literal, $.octal_literal, 
-                          $.decimal_literal, $.hexadecimal_literal),
-    floating_point_primitive: $ => $.floating_point_literal,
+      const truth_primitive = 'ootọ';
+      const false_primitive ='irọ';
+
+      return token(choice(truth_primitive, false_primitive));
+    },
+
+    integer_primitive: $ => {
+
+      const binary_literal = /[+|-]?0[b|B][0|1]+/
+      const octal_literal = /[+|-]?0[o|O][0-7]+/
+      const decimal_literal = /[+|-]?[0-9]+/
+      const hexadecimal_literal= /[+|-]?0[x|X][0-9A-Fa-f]+/
+
+      return token(choice(binary_literal, octal_literal, 
+        decimal_literal, hexadecimal_literal));
+    },
+
+    floating_point_primitive: $ => {
+      
+      const floating_point_literal = /[+|-]?[0-9]+\.[0-9]+/
+      
+      return token(floating_point_literal);
+    },
+    _number_primitive: $ => choice($.integer_primitive, $.floating_point_primitive),
     
     // Characters and string primitives
     character_primitive: $ => $._character_literal,
     string_primitive: $ => $._string_literal,
 
     // Comments
-    // single_line_comment: $ => seq(choice('//', '#'), repeat($._character_literal)),
-    // multi_line_comment: $ => seq('/*', repeat($._character_literal), '*/'),
-    // comment: $ => seq($.single_line_comment, $.multi_line_comment),
+    single_line_comment: $ => /(\/\/|#)(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})+/,
+    multi_line_comment: $ => /\/\*(\r|\n|\r\n)?(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*(\r|\n|\r\n)?\*\//,
+    _comment: $ => choice($.single_line_comment, $.multi_line_comment),
 
     // Datatype definitions
     _datatype: $ => choice($.int_primitive_keyword, 
@@ -80,12 +90,14 @@ module.exports = grammar({
                                       $.division_operator,
                                       $.modulus_operator),
 
-    // Comparison Operators
+    // Boolean Operators
+    not_operator: _ => '!',
+
+    // Conditional Operators
     less_than_operator: _ => '<',
     greater_than_operator: _ => '>',
     less_than_equal_operator: _ => '<=',
     greater_than_equal_operator: _ => '>=',
-    not_operator: _ => '!',
     equals_operator: _ => '==',
     not_equals_operator: _ => '!=',
     logical_and_operator: _ => '&&',
@@ -107,8 +119,18 @@ module.exports = grammar({
     _operator: $ => choice($._binary_operator, $.assignment_operator),
 
 
-    // binary_expression: $ => prec.left(seq($._primitive, $._binary_operator, $._primitive)),
-    // conditional_expression: $ => seq($._primitive, $._comparison_operator, $._primitive),
+    // Expressions
+
+    // Use the feild function when writing the expressions
+    
+
+    // _conditional_expression: $ => seq($._primitive, $._comparison_operator, $._primitive),
+    // _boolean_not_expression: $ => seq($.not_operator, ),
+    // arithmetic_expression: $ => seq($._primitive, $._arithmetic_operator, $._primitive),
+
+    // boolean_expression: $ => choice($.boolean_primitive, ),
+    
+    // _binary_expression: $ => choice($.conditional_operations, $.arithmetic_expression),
     // expression: $ => choice($._primitive, $.binary_expression),
 
     // Yọrọ identifiers 
