@@ -14,12 +14,11 @@ module.exports = grammar({
 
   rules: {
 
-    // source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier)),
-    // source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.string_concatenation)),
-    source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.binary_expression)),
+    // source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.binary_expression)),
+    source_file: $ => repeat(choice($._comment, $._datatype, $._operator, $._expression)),
 
     // Character literal
-    _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
+    _character_literal: _ => prec(precedences["primitive"], /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/),
     _string_literal: _ => /"(\p{Letter}*|\p{Number}*|\p{Mark}*|\p{Symbol}*|\p{Separator}*|\p{Emoji}*|\p{Punctuation}*)*"/,
     /* Update to represent 
     - escaped characters e.g \n, \t etc.
@@ -129,7 +128,8 @@ module.exports = grammar({
                                       $.not_equals_operator,
                                       $.logical_and_operator,
                                       $.logical_or_operator),
-                                      
+           
+    // TODO: to be removed after all operators are linked to their expressions
     _binary_operator: $ => choice($._arithmetic_operator,
                                   $._comparison_operator),
 
@@ -137,48 +137,58 @@ module.exports = grammar({
 
 
     _number_arithmetic: $ => {
+
+      const left_or_right_expression = choice($._number_arithmetic, $._arithmetic_primitive);
       
       const addition = prec.left(precedences["addition_subtraction"],
                       seq(
-                        field("left", $._arithmetic_primitive),
+                        field("left", left_or_right_expression),
                         $.addition_operator,
-                        field("right", $._arithmetic_primitive)
+                        field("right", left_or_right_expression)
                       )
                     );
       
       const subtraction = prec.left(precedences["addition_subtraction"],
                       seq(
-                        field("left", $._arithmetic_primitive),
+                        field("left", left_or_right_expression),
                         $.subtraction_operator,
-                        field("right", $._arithmetic_primitive)
+                        field("right", left_or_right_expression)
                       )
                     );
 
-      const division = prec.left(precedences["addition_subtraction"],
+      const division = prec.right(precedences["addition_subtraction"],
                       seq(
-                        field("left", $._arithmetic_primitive),
+                        field("left", left_or_right_expression),
                         $.division_operator,
-                        field("right", $._arithmetic_primitive)
+                        field("right", left_or_right_expression)
                       )
                     );
                 
-      const multiplication = prec.left(precedences["addition_subtraction"],
+      const multiplication = prec.right(precedences["addition_subtraction"],
                       seq(
-                        field("left", $._arithmetic_primitive),
+                        field("left", left_or_right_expression),
                         $.multiplication_operator,
-                        field("right", $._arithmetic_primitive)
+                        field("right", left_or_right_expression)
                       )
                     );
 
       const modulus = prec.left(precedences["addition_subtraction"],
                       seq(
-                        field("left", $._arithmetic_primitive),
+                        field("left", left_or_right_expression),
                         $.modulus_operator,
-                        field("right", $._arithmetic_primitive)
+                        field("right", left_or_right_expression)
                       )
                     );
 
-      return choice(addition, subtraction, multiplication, division, modulus)
+      const exponent = prec.right(precedences["exponent"],
+                          seq(
+                            field("left", left_or_right_expression),
+                            $.exponent_operator,
+                            field("right", left_or_right_expression)
+                          )
+                        );
+
+      return choice(addition, subtraction, multiplication, division, modulus, exponent)
     },
 
 
@@ -193,43 +203,32 @@ module.exports = grammar({
 
     binary_expression: $ => choice($._number_arithmetic, $._string_concatenation),
 
-    // Add to expression -> power expression (** arithmetic_primitive ), 
 
-    expression: $ => choice($.identifier, $._primitive, $.binary_expression),
-    // parenthesized_expression: seq('(', expression ,')'),
-    // not expression (seq(! expression ))
-    // make left and right of number_arithmetic be expressions
-    
-    // statement: token($.expression),
-
-
-    // Capture expressions written in 
-
-
-    // Expressions
-
-    // Use the feild function when writing the expressions
-    
-
-    // _conditional_expression: $ => seq($._primitive, $._comparison_operator, $._primitive),
-    // _boolean_not_expression: $ => seq($.not_operator, ),
-    // arithmetic_expression: $ => seq($._primitive, $._arithmetic_operator, $._primitive),
-
-    // boolean_expression: $ => choice($.boolean_primitive, ),
-    
-    // _binary_expression: $ => choice($.conditional_operations, $.arithmetic_expression),
-    // expression: $ => choice($._primitive, $.binary_expression),
+    // conditional_expression: $ => ,
+    // add conditional_expression to _expression later
 
     // Yọrọ identifiers 
     identifier: $ => /(\p{Letter}|_)(\p{Letter}|\p{Number}|_)+/,
     word: $ => $.identifier,
 
+    _expression: $ => choice($.identifier, $._primitive, $.binary_expression),
+    // _expression: $ => choice($._primitive, $.binary_expression),
+    // parenthesized_expression: seq('(', expression ,')'),
+    // not expression (seq(! expression ))
+    // make left and right of number_arithmetic be expressions
+    
+    // statement: $ => token($._expression),
+
+    // conditional_expression: $ => seq($._primitive, $._comparison_operator, $._primitive),
+
     // statement: $ => choice($.identifier, $.expression, $._primitive),
     // statement: $ => choice($.identifier, $.expression, $._primitive, $.function_call),
 
+    // branch_condition: $ => ,
+
     // codeblock: $ => repeat($.statement),
 
-    // if_keyword: _ => 'ṣe',  //Update to use unicode regex when adding diacritcs
+    // if_keyword: _ => 'ṣe',
     // else_keyword: _ => 'tabi',
     // if_statement: $ => seq($.if_keyword, '(', choice($.conditional_expression, $.boolean), ')', '{', repeat($.statement), '}' , optional(optional($._else_if_block), $._else_block)),
     // _else_if_block: _ => seq($.else_keyword, $.if_keyword, '{', repeat($.statement), '}'),
@@ -242,8 +241,8 @@ module.exports = grammar({
     // manual_for_loop: $ => ,
     // auto_for_loop: $ => ,
 
-    // break_keyword: _ => 'kuro',
-    // continue_keyword: _ => 'tẹsiwaju',
+    // break_keyword: _ => 'kuro',?
+    // continue_keyword: _ => 'tẹsiwaju',?
 
     // expression: choice($._primitive, $.binary_expression),
 
