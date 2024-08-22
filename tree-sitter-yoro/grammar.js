@@ -16,7 +16,7 @@ module.exports = grammar({
 
     // source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier)),
     // source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.string_concatenation)),
-    source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.number_arithmetic)),
+    source_file: $ => repeat(choice($._primitive, $._comment, $._datatype, $._operator, $.identifier, $.binary_expression)),
 
     // Character literal
     _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
@@ -136,7 +136,7 @@ module.exports = grammar({
     _operator: $ => choice($._binary_operator, $.assignment_operator, $._unary_operator),
 
 
-    number_arithmetic: $ => {
+    _number_arithmetic: $ => {
       
       const addition = prec.left(precedences["addition_subtraction"],
                       seq(
@@ -182,7 +182,7 @@ module.exports = grammar({
     },
 
 
-    string_concatenation: $ => prec.left(
+    _string_concatenation: $ => prec.left(
                                   seq(
                                     field("left", $._concatenation_primitive),
                                     $.addition_operator,
@@ -191,12 +191,16 @@ module.exports = grammar({
                                 ),
 
 
-    binary_expression: choice($.number_arithmetic, $.string_concatenation),
+    binary_expression: $ => choice($._number_arithmetic, $._string_concatenation),
 
-    // Add to expression -> power expression, not expression
+    // Add to expression -> power expression (** arithmetic_primitive ), 
 
-    expression: token($.binary_expression),
-    statement: token($.expression),
+    expression: $ => choice($.identifier, $._primitive, $.binary_expression),
+    // parenthesized_expression: seq('(', expression ,')'),
+    // not expression (seq(! expression ))
+    // make left and right of number_arithmetic be expressions
+    
+    // statement: token($.expression),
 
 
     // Capture expressions written in 
