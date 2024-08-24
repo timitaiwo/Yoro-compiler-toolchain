@@ -86,7 +86,7 @@ string primitives
 -8951532264.852623
 
 
-// primitive datatypes
+// reserved words
 int
 f32
 f64
@@ -94,6 +94,15 @@ bool
 char
 str
 
+jẹki
+ṣe
+tabi
+fun
+nigbati
+kuro
+tẹsiwaju
+iṣẹ
+pada
 
 /*
     Operators
@@ -181,17 +190,12 @@ irọ ** 45.84
 
 
 // Conditional Expression
-<
->
-<=
->=
-!
-==
-!=
-&&
-||
-
-
+3 + 5
+343 - 32324
+67546 * 75645
+964859 / 2345645
+7654 % 7865
+67 ** 45.84
 
 <
 >
@@ -217,15 +221,48 @@ irọ ** 45.84
 
 
 
-<
->
-<=
->=
-!
-==
-!=
-&&
-||
+3 + 5
+343 - 32324
+67546 * 75645
+964859 / 2345645
+7654 % 7865
+67 ** 45.84
+
+3.434 + 5.904384
+343.434 - 32324.904384
+67546.434 * 75645.904384
+964859.434 / 2345645.904384
+7865.434 % 7865.904384
+67.561 ** 45.84
+
+3.434 + 5
+343 - 32324.904384
+67546 * 75645.904384
+964859.434 / 2345645
+7865.434 % 7865
+67 ** 45.84
+
+
+ootọ + ootọ
+ootọ - irọ
+ootọ * ootọ
+irọ / ootọ
+ootọ % irọ
+ootọ ** ootọ
+ootọ ** irọ
+irọ ** irọ
+irọ ** ootọ
+
+
+ootọ + 5
+964859.434 - ootọ
+ootọ * ootọ
+irọ / 7865
+ootọ % irọ
+67 ** ootọ
+ootọ ** 45.84
+irọ ** 45.84
+67 ** irọ
 
 
 
@@ -245,5 +282,29 @@ irọ ** 45.84
 
 
 
+
+
+// Function Declaration
+
+
+
+
+// Function Call
+
+sọpe()
+sọpe(orukọ)
+ropọ(9, 2)
+pewa("damisi")
+
+
+
+// Variable assignment 
+
+jẹki orukọ : str = "Damilọla";
+
+
+
+
+// Statements 
 
 
