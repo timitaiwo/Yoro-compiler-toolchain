@@ -1,10 +1,16 @@
-iṣe add(int a, int b) -> {
+iṣẹ pewa(str orukọ) {
+    sọpe(orukọ)
+}
+
+iṣe ropọ(int a, int b) -> int {
     pada a+b;
 }
 
 iṣẹ pataki() -> int {
     
-    sọpe(add(5, 8));
+    pewa("damisi");
+
+    jẹki addition : int = ropọ(3, 5);
 
     pada 0;
 }
