@@ -1,1 +1,12 @@
-build_dir/*
+tree-sitter-yoro/bindings
+tree-sitter-yoro/src
+tree-sitter-yoro/binding.gyp
+tree-sitter-yoro/Cargo.toml
+tree-sitter-yoro/Makefile
+tree-sitter-yoro/package.json
+tree-sitter-yoro/Package.swift
+tree-sitter-yoro/pyproject.toml
+tree-sitter-yoro/setup.py
+tree-sitter-yoro/.gitignore
+tree-sitter-yoro/.gitattributes
+tree-sitter-yoro/.editorconfig
