@@ -9,6 +9,16 @@ Alternatively, clone the repo then instanciate the submodules i.e
 
 **Remember to use g++ or clang++ when compiling**
 
+*TODO: ...*
+- Ensure compound binary expressions are parsed correctly
+- Fix floating point Regex to recognize literals like 3. to implicitly represent 3.00
+- Fix string literals to deal with greedy behaviour of collecting past the second double quotes (")
+- Fix comment regexs to handle empty comments 
+- Convert keyword literals to regex unicode 
+
+## Syntax checks
+- Figure out how to process syntax errors from Treesitter
+
 ## Semantic checks
 - Variable declaration done once in a block which Rust like shadowing occuring
 
