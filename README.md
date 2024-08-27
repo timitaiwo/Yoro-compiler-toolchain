@@ -1,5 +1,12 @@
 # Birkbeck Yọrọ repo
 
+To clone this repo use 
+>```git clone --recurse-submodule https://github.com/Birkbeck/msc-projects-2023-4-timitaiwo.git```
+
+Alternatively, clone the repo then instanciate the submodules i.e 
+- ```git clone https://github.com/Birkbeck/msc-projects-2023-4-timitaiwo.git```
+- ```git submodule update --init --recursive```
+
 **Remember to use g++ or clang++ when compiling**
 
 ## Semantic checks
@@ -11,9 +18,13 @@
     - strings and characters cannot be added to integer, floating point and boolean values
 
 
-## Behaviour of conditional expressions
+## Behaviour of primitives
+- Once a boolean interacts with an integer or floating point number in an expression, it is coersed to 0 or 1 for true and false values respectively
+
+### ...in conditional expressions
 - A string of length 0, i.e "", is coerced to false otherwise it is true
 - An integer equals to 0 is coerced to false, otherwise it is true
+
 
 
 ## Build instructions
