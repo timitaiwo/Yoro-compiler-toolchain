@@ -2,3 +2,6 @@
 	path = libs/llvm-project-18.x
 	url = https://github.com/llvm/llvm-project.git
 	branch = release/18.x
+[submodule "libs/treesitter"]
+	path = libs/treesitter
+	url = https://github.com/tree-sitter/tree-sitter.git
