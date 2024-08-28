@@ -9,15 +9,18 @@ Alternatively, clone the repo then instanciate the submodules i.e
 
 **Remember to use g++ or clang++ when compiling**
 
+error handling in C - https://youtu.be/A9bPqlgbUvg?si=5cPvZjbYq8qdRMr8 
+
 *TODO: ...*
 - Ensure compound binary expressions are parsed correctly
+- Hide arithmetic operators after the above is done
 - Fix floating point Regex to recognize literals like 3. to implicitly represent 3.00
 - Fix string literals to deal with greedy behaviour of collecting past the second double quotes (")
 - Fix comment regexs to handle empty comments 
 - Convert keyword literals to regex unicode 
 
 ## Syntax checks
-- Figure out how to process syntax errors from Treesitter
+- Figure out how to process syntax errors from Treesitter (possibly using Treesitter queries)
 
 ## Semantic checks
 - Variable declaration done once in a block which Rust like shadowing occuring
