@@ -3,6 +3,9 @@
  * precedences to integer values
  */
 const precedences = {
+
+  sub_expression: 2,
+
   comment : 0,
   assignment : 1,   // =
   logical_or : 2,   // || 
@@ -25,13 +28,16 @@ module.exports = grammar({
 
   rules: {
 
-    source_file: $ => repeat(choice($._comment, $._keywords, $._operator, $._expression)),
+    // source_file: $ => repeat(choice($._comment, $._keywords, $._expression)),
+    source_file: $ => repeat(choice($._comment, $._keywords, $._expression, $.function_call)),
 
 
     // Comments
     single_line_comment: $ => /(\/\/|#)(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*/,
     multi_line_comment: $ => /\/\*(\r|\n|\r\n)?(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*(\r|\n|\r\n)?\*\//,
-    _comment: $ => choice($.single_line_comment, $.multi_line_comment),
+    _comment: $ => prec(precedences["comment"], 
+                          choice($.single_line_comment, $.multi_line_comment)
+                          ),
 
     //Keywords
     _keywords: $ => choice($._datatype,
@@ -55,17 +61,27 @@ module.exports = grammar({
 
 
     // Character literal
-    _character_literal: _ => prec(precedences["primitive"], /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/),
-    _string_literal: _ => /"(\p{Letter}*|\p{Number}*|\p{Mark}*|\p{Symbol}*|\p{Separator}*|\p{Emoji}*|\p{Punctuation}*)*"/,
+    _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
+    // _string_literal: _ => /"(\p{Letter}*|\p{Number}*|\p{Mark}*|\p{Symbol}*|\p{Separator}*|\p{Emoji}*|\p{Punctuation}*)*"/,
+    _string_literal: _ => /"[^"\p{Other}]*"/,
     /* Update to represent 
     - escaped characters e.g \n, \t etc.
     */
 
-    _primitive: $ => prec(precedences["primitive"], choice($.boolean_primitive,
-                            $.character_primitive,
-                            $.integer_primitive,
-                            $.floating_point_primitive,
-                            $.string_primitive)),
+
+    _primitive: $ => prec(precedences["primitive"], 
+                            choice(
+                              $._arithmetic_primitive,
+                              $._concatenation_primitive)),
+
+    _arithmetic_primitive: $ => choice($.integer_primitive, 
+                                $.floating_point_primitive,
+                                $.boolean_primitive),
+
+
+    _concatenation_primitive: $ => choice($.character_primitive, 
+                                      $.string_primitive),
+
 
     // Boolean primitives
     boolean_primitive: $ => {
@@ -89,7 +105,8 @@ module.exports = grammar({
 
     floating_point_primitive: $ => {
       
-      const floating_point_literal = /[+|-]?[0-9]+\.[0-9]+/
+      // const floating_point_literal = /[+|-]?[0-9]+\.[0-9]+/
+      const floating_point_literal = /[+|-]?[0-9]+\.([0-9]+)?/
       
       return token(floating_point_literal);
     },
@@ -99,7 +116,7 @@ module.exports = grammar({
     string_primitive: $ => $._string_literal,
 
 
-    // Arithmetic Operations
+    // Arithmetic Operation Symbols
     addition_operator: _ => '+',
     subtraction_operator: _ => '-',
     multiplication_operator: _ => '*',
@@ -107,88 +124,9 @@ module.exports = grammar({
     modulus_operator: _ => '%',
     exponent_operator: _ => '**',
 
-    // String concatenation
 
-    _concatenation_primitive: $ => prec(precedences["primitive"],
-                                      choice($.character_primitive, 
-                                              $.string_primitive)), // Add identifier
-
-    // _concatenation_expression: $ => choice($.identifier, $._concatenation_primitive),
-                                          // Add identifier to list
-    string_concatenation: $ => prec.left(
-                                  seq(
-                                    field("left", $._concatenation_primitive),
-                                    $.addition_operator,
-                                    field("right", $._concatenation_primitive)
-                                  )
-                                ),
-
-    // Number Arithmetic
-    _arithmetic_primitive: $ => prec(precedences["primitive"],
-                                      choice($.integer_primitive, 
-                                            $.floating_point_primitive,
-                                            $.boolean_primitive)),
-
-    _arithmetic_expression: $ => choice($.identifier, $._arithmetic_primitive, $._number_arithmetic, $._parenthesized_expression),
+    // Comparison Operator Symbols
     
-    _number_arithmetic: $ => choice($.numeric_addition,
-                                    $.numeric_subtraction,
-                                    $.numeric_division,
-                                    $.numeric_multiplication,
-                                    $.numeric_modulus,
-                                    $.numeric_exponent),
-  
-  numeric_addition: $ => prec.left(precedences["addition_subtraction"],
-                  seq(
-                    field("left", $._arithmetic_expression),
-                    field("operator", $.addition_operator),
-                    field("right", $._arithmetic_expression)
-                  )
-                ),
-
-  numeric_subtraction: $ => prec.left(precedences["addition_subtraction"],
-                  seq(
-                    field("left", $._arithmetic_expression),
-                    field("operator", $.subtraction_operator),
-                    field("right", $._arithmetic_expression)
-                  )
-                ),
-                
-  numeric_multiplication: $ => prec.left(precedences["multiply_divide"],
-                  seq(
-                    field("left", $._arithmetic_expression),
-                    field("operator", $.multiplication_operator),
-                    field("right", $._arithmetic_expression)
-                  )
-                ),
-
-  numeric_division: $ => prec.left(precedences["multiply_divide"],
-                  seq(
-                    field("left", $._arithmetic_expression),
-                    field("operator", $.division_operator),
-                    field("right", $._arithmetic_expression)
-                  )
-                ),
-            
-  numeric_modulus: $ => prec.left(precedences["modulus"],
-                  seq(
-                    field("left", $._arithmetic_expression),
-                    field("operator", $.modulus_operator),
-                    field("right", $._arithmetic_expression)
-                  )
-                ),
-
-  numeric_exponent: $ => prec.left(precedences["exponent"],
-                      seq(
-                        field("left", $._arithmetic_expression),
-                        field("operator", $.exponent_operator),
-                        field("right", $._arithmetic_expression)
-                      )
-                    ),
-
-    // Conditional Operators
-    logical_or_operator: _ => '||',
-    logical_and_operator: _ => '&&',
     equals_operator: _ => '==',
     not_equals_operator: _ => '!=',
     less_than_operator: _ => '<',
@@ -197,104 +135,68 @@ module.exports = grammar({
     greater_than_equal_operator: _ => '>=',
 
 
-    string_char_comparison_expression: $ => choice(
-      ...[
-        [$.logical_or_operator, precedences.logical_or],
-        [$.logical_and_operator, precedences.logical_and],
-        [$.equals_operator, precedences.equality],
-        [$.not_equals_operator, precedences.equality],
-        [$.less_than_operator, precedences.comparison],
-        [$.less_than_equal_operator, precedences.comparison],
-        [$.greater_than_operator, precedences.comparison],
-        [$.greater_than_equal_operator, precedences.comparison]
-      ].map(([operator, precedence]) => 
-                    prec.left(precedence, seq(
-                      field('left', $._concatenation_primitive),
-                      field('operator', operator),
-                      field('right', $._concatenation_primitive)
-                    )))
-                ),
-
-    number_comparison_expression: $ => choice(
-                   ...[
-                    [$.logical_or_operator, precedences.logical_or],
-                    [$.logical_and_operator, precedences.logical_and],
-                    [$.equals_operator, precedences.equality],
-                    [$.not_equals_operator, precedences.equality],
-                    [$.less_than_operator, precedences.comparison],
-                    [$.less_than_equal_operator, precedences.comparison],
-                    [$.greater_than_operator, precedences.comparison],
-                    [$.greater_than_equal_operator, precedences.comparison]
-                   ].map(([operator, precedence]) => 
-                                prec.left(precedence, seq(
-                                  field('left', $._arithmetic_primitive),
-                                  field('operator', operator),
-                                  field('right', $._arithmetic_primitive)
-                                )))
-                            ),
-
     
-    
-    _comparison_expression: $ => ($.number_comparison_expression, $.string_char_comparison_expression),
 
 
-    _binary_expression: $ => choice($._number_arithmetic, $.string_concatenation, $._comparison_expression, ),
+    // Add the below to expressions
+    not_operator: _ => '!',
+    logical_or_operator: _ => '||',
+    logical_and_operator: _ => '&&',
 
+
+      
+    _binary_expression: $ => choice($._number_expression,
+                                    $._string_char_expression),
 
     _parenthesized_expression: $ => prec(precedences["parenthesis"], 
                                         seq('(', $._expression ,')')),
 
-    // conditional_expression: $ => ,
 
+                                            
     // Uniary Operators
     // TODO: remove _operator after done with it
-    _operator: $ => choice($.assignment_operator, $.not_operator),
-    not_operator: _ => '!',
+    
     // use + and - as unary operators
+    // Add requisite expressions to syntax
 
-    _expression: $ => choice($.identifier, $._primitive, $._binary_expression, $._parenthesized_expression),
-    // add conditional_expression to _expression later
+    _expression: $ => choice($.identifier, $._primitive, 
+                              $._binary_expression, 
+                              $._parenthesized_expression
+                            ),
 
-    
-    // not expression (seq(! expression ))
-
-    
+  
     // statement: $ => choice($._expression, $.assignment_statement),
 
-    // conditional_expression: $ => seq($._primitive, $._comparison_operator, $._primitive),
-
-    // statement: $ => choice($.identifier, $.expression, $._primitive),
-    // statement: $ => choice($.identifier, $.expression, $._primitive, $.function_call),
-
-    // branch_condition: $ => ,
-
-    // codeblock: $ => repeat($.statement),
-
     _control_flow_keywords: $ => choice($.if_statement_keyword, 
-                                    $.else_statement_keyword,
-                                    $.for_loop_keyword,
-                                    $.while_loop_keyword,
-                                    $.break_keyword,
-                                    $.continue_keyword,
-                                ),
+                                        $.else_statement_keyword,
+                                        $.for_loop_keyword,
+                                        $.while_loop_keyword,
+                                        $.break_keyword,
+                                        $.continue_keyword,
+                                    ),
 
     if_statement_keyword: _ => 'ṣe',
     else_statement_keyword: _ => 'tabi',
-    // if_statement: $ => seq($.if_keyword, '(', choice($.conditional_expression, $.boolean), ')', '{', repeat($.statement), '}' , optional(optional($._else_if_block), $._else_block)),
-    // _else_if_block: _ => seq($.else_keyword, $.if_keyword, '{', repeat($.statement), '}'),
-    // _else_block: _ => seq($.else_keyword, '{', repeat($.statement), '}'), 
-
-    // while loop and for loop
-
     for_loop_keyword: _ => 'fun',
     while_loop_keyword: _ => 'nigbati',
-
-    // while_loop: $ => ,
-    // _for_loop: $ => 
-
     break_keyword: _ => 'kuro',  // How to implement?
     continue_keyword: _ => 'tẹsiwaju',// How to implement?
+    
+    
+    
 
+    // branch_condition: $ => choice($.boolean_primitive, $._expression),
+
+    // codeblock: $ => seq('{', repeat($.statement), '}'),
+
+    // if_statement: $ => seq($.if_keyword, branch_condition , $.codeblock, optional(optional($._else_if_block), $._else_block)),
+    // _else_if_block: _ => seq($.else_keyword, $.if_keyword, branch_condition, $.codeblock),
+    // _else_block: _ => seq($.else_keyword, $.codeblock), 
+
+    // while_loop: $ => seq($.while_loop_keyword, $.branch_condition, $.codeblock),
+    // for_loop: $ => seq($.for_loop_keyword, 
+    //                     '(', $.assignment_statement, ';',
+    //                     $.branch_condition, ';', $.statement, ')', $.codeblock),
 
     _declarator_keywords: $ => choice($.function_keyword,
                                   $.return_keyword,
@@ -307,21 +209,30 @@ module.exports = grammar({
     // parameter_declaration: $ => seq($._datatype, $.identifier),
     // function_declaration: $ => seq($.function_declaration, $.identifier, '(',
     //                                 optional(optional(seq($.parameter_declaration, ',')), $.parameter_declaration), ')',
-    //                                 optional(seq('->', $._datatype)), '{', repeat($.statement),
+    //                                 optional(seq('->', $._datatype)), '{', $.codeblock,
     //                                 optional(seq($.return_keyword, $.expression)), '}'),
 
 
-    // function_call: $ => {
+    function_call: $ => {
 
-    //   const parameter = choice($.identifier, $._primitive)
+      const parameter = choice($.identifier, $._primitive);
+      const _parameter_in_list = optional(
+                                  field('parameter', 
+                                    seq(parameter, ','))
+                                  );
+
+      const parameter_list = optional(
+                                  seq(_parameter_in_list,
+                                    field('parameter',parameter))
+                                  );
       
-    //   return seq($.identifier, '(',
-    //               seq(
-    //                 repeat(seq(parameter, ',')),
-    //                 optional(parameter)
-    //                 ),
-    //               ')')
-    // },
+      return prec(precedences["sub_expression"],
+                  seq(
+                    field('function_name', $.identifier),
+                    '(', parameter_list,
+                    ')')
+                    )
+              },
 
     assignment_keyword: _ => 'jẹki',
     assignment_operator: _ => '=',
@@ -332,5 +243,225 @@ module.exports = grammar({
     // Yọrọ identifiers 
     identifier: $ => /(\p{Letter}|_)(\p{Letter}|\p{Number}|_)+/,
     word: $ => $.identifier,
+
+
+
+
+
+
+
+
+
+
+    // Integer Operations
+    // Integer Arithmetic
+
+    _number_expression: $ => choice(//$.identifier, 
+                                        $._arithmetic_primitive,
+                                        $._number_arithmetic, 
+                                        // $._parenthesized_expression,
+                                        $._number_comparison),
+
+    _number_arithmetic: $ => choice($.numeric_addition,
+                                    $.numeric_subtraction,
+                                    $.numeric_division,
+                                    $.numeric_multiplication,
+                                    $.numeric_modulus,
+                                    $.numeric_exponent),
+
+    _number_comparison: $ => choice($.numeric_equals,
+                                    $.numeric_not_equals,
+                                    $.numeric_greater_than,
+                                    $.numeric_greater_than_or_equals,
+                                    $.numeric_less_than,
+                                    $.numeric_less_than_or_equals
+                                    ),
+
+    numeric_addition: $ => prec.left(precedences["addition_subtraction"],
+                                      seq(
+                                      field("left", $._number_expression),
+                                      field("operator", $.addition_operator),
+                                      field("right", $._number_expression)
+                                      )
+    ),
+
+    numeric_subtraction: $ => prec.left(precedences["addition_subtraction"],
+                                          seq(
+                                          field("left", $._number_expression),
+                                          field("operator", $.subtraction_operator),
+                                          field("right", $._number_expression)
+                                          )
+    ),
+
+    numeric_multiplication: $ => prec.left(precedences["multiply_divide"],
+                                            seq(
+                                            field("left", $._number_expression),
+                                            field("operator", $.multiplication_operator),
+                                            field("right", $._number_expression)
+                                            )
+    ),
+
+    numeric_division: $ => prec.left(precedences["multiply_divide"],
+                                      seq(
+                                      field("left", $._number_expression),
+                                      field("operator", $.division_operator),
+                                      field("right", $._number_expression)
+                                      )
+    ),
+
+    numeric_modulus: $ => prec.left(precedences["modulus"],
+                                      seq(
+                                      field("left", $._number_expression),
+                                      field("operator", $.modulus_operator),
+                                      field("right", $._number_expression)
+                                      )
+          ),
+
+    numeric_exponent: $ => prec.left(precedences["exponent"],
+                                      seq(
+                                      field("left", $._number_expression),
+                                      field("operator", $.exponent_operator),
+                                      field("right", $._number_expression)
+                                      )
+                                      ),
+    
+    
+    // Integer Comparison
+    numeric_equals: $ => prec.left(precedences["equality"],
+                          seq(
+                          field("left", $._number_expression),
+                          field("operator", $.equals_operator),
+                          field("right", $._number_expression)
+                          )
+                        ),
+
+
+    numeric_not_equals: $ => prec.left(precedences["equality"],
+                          seq(
+                          field("left", $._number_expression),
+                          field("operator", $.not_equals_operator),
+                          field("right", $._number_expression)
+                          )
+                        ),
+
+
+    numeric_greater_than: $ => prec.left(precedences["comparison"],
+                          seq(
+                          field("left", $._number_expression),
+                          field("operator", $.greater_than_operator),
+                          field("right", $._number_expression)
+                          )
+                        ),
+
+
+    numeric_greater_than_or_equals: $ => prec.left(precedences["comparison"],
+                          seq(
+                          field("left", $._number_expression),
+                          field("operator", $.greater_than_equal_operator),
+                          field("right", $._number_expression)
+                          )
+                        ),
+
+
+    numeric_less_than: $ => prec.left(precedences["comparison"],
+                            seq(
+                            field("left", $._number_expression),
+                            field("operator", $.less_than_operator),
+                            field("right", $._number_expression)
+                            )
+                          ),
+
+
+    numeric_less_than_or_equals: $ => prec.left(precedences["comparison"],
+                          seq(
+                            field("left", $._number_expression),
+                            field("operator", $.less_than_equal_operator),
+                            field("right", $._number_expression)
+                          )
+                        ),
+
+
+    // String and Character Operations 
+    // String concatenation
+
+    _string_char_expression: $ => choice(//$.identifier, 
+                                            $._concatenation_primitive,
+                                            $.string_char_concatenation,
+                                            // $._parenthesized_expression,
+                                            $._string_char_comparison
+                                          ),
+
+
+    string_char_concatenation: $ => prec.left(
+                                      seq(
+                                      field("left", $._string_char_expression),
+                                      field("operator", $.addition_operator),
+                                      field("right", $._string_char_expression)
+                                      )
+                                    ),
+
+
+    _string_char_comparison: $ => choice($.string_char_equals,
+    $.string_char_not_equals,
+    $.string_char_greater_than,
+    $.string_char_greater_than_or_equals,
+    $.string_char_less_than,
+    $.string_char_less_than_or_equals
+    ),
+
+
+    string_char_equals: $ => prec.left(precedences["equality"],
+      seq(
+      field("left", $._string_char_expression),
+      field("operator", $.equals_operator),
+      field("right", $._string_char_expression)
+      )
+    ),
+
+
+    string_char_not_equals: $ => prec.left(precedences["equality"],
+        seq(
+        field("left", $._string_char_expression),
+        field("operator", $.not_equals_operator),
+        field("right", $._string_char_expression)
+        )
+    ),
+
+
+    string_char_greater_than: $ => prec.left(precedences["comparison"],
+                  seq(
+                  field("left", $._string_char_expression),
+                  field("operator", $.greater_than_operator),
+                  field("right", $._string_char_expression)
+                  )
+                ),
+
+
+    string_char_greater_than_or_equals: $ => prec.left(precedences["comparison"],
+                  seq(
+                  field("left", $._string_char_expression),
+                  field("operator", $.greater_than_equal_operator),
+                  field("right", $._string_char_expression)
+                  )
+                ),
+
+
+    string_char_less_than: $ => prec.left(precedences["comparison"],
+        seq(
+        field("left", $._string_char_expression),
+        field("operator", $.less_than_operator),
+        field("right", $._string_char_expression)
+        )
+      ),
+
+
+    string_char_less_than_or_equals: $ => prec.left(precedences["comparison"],
+                  seq(
+                    field("left", $._string_char_expression),
+                    field("operator", $.less_than_equal_operator),
+                    field("right", $._string_char_expression)
+                  )
+                ),
+
   }
 });
