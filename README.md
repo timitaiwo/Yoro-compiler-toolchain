@@ -12,31 +12,50 @@ Alternatively, clone the repo then instanciate the submodules i.e
 error handling in C - https://youtu.be/A9bPqlgbUvg?si=5cPvZjbYq8qdRMr8 
 
 *TODO: ...*
+- Add identifier and to _number_expression and _concatenation_expression
 - Ensure compound binary expressions are parsed correctly
 - Hide arithmetic operators after the above is done
-- Fix floating point Regex to recognize literals like 3. to implicitly represent 3.00
-- Fix string literals to deal with greedy behaviour of collecting past the second double quotes (")
-- Fix comment regexs to handle empty comments 
+- Figure out lexicographic order for character and string comparisons
 - Convert keyword literals to regex unicode 
 
+- Add Tests for a combination of comparison and arithmetic expressions (both for arit expressions or string expressions)
+
+- Implement the below expressions
+    - NOT
+    - AND
+    - OR 
+    - Parenthesised
+    - Fix identifiers in expressions
+
 ## Syntax checks
-- Figure out how to process syntax errors from Treesitter (possibly using Treesitter queries)
+- Figure out how to process syntax and semantic errors from Treesitter (possibly using Treesitter queries)
 
 ## Semantic checks
 - Variable declaration done once in a block which Rust like shadowing occuring
 
-- Determine if the arithmetic expression is valid e.g 
+- Determine if the arithmetic expression is valid e.g
+    - Boolean false (irọ) does not divide or modulus
+    - No division by zero
+    
+    - No int/floating_point/boolean and character/string mixup in the expressions
+    
     - integer, floating point and boolean values can be added together, with boolean values being coerced to 0 for false values and 1 for truth values.
     - strings and characters are appended
     - strings and characters cannot be added to integer, floating point and boolean values
 
 
 ## Behaviour of primitives
-- Once a boolean interacts with an integer or floating point number in an expression, it is coersed to 0 or 1 for true and false values respectively
+- Once a boolean interacts with an integer or floating point number in an expression, it is coersced to 0 or 1 for true and false values respectively
 
-### ...in conditional expressions
+### ...in a branch expression
 - A string of length 0, i.e "", is coerced to false otherwise it is true
-- An integer equals to 0 is coerced to false, otherwise it is true
+- An integer that equals to 0 is coerced to false, otherwise it is true
+
+
+## String and char comparison
+- An expression that compares a character and string would compare the character and the first grapheme (a.k.a) of the string
+- The comparion would compare the string/character in lexicographic order
+
 
 
 
