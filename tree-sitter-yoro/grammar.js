@@ -29,7 +29,12 @@ module.exports = grammar({
 
   rules: {
 
-    source_file: $ => repeat(choice($._comment, $.statement)),
+    source_file: $ => repeat(
+                            choice($._comment,
+                                  $.statement,
+                                  // $.function_declaration,
+                                )
+                            ),
 
     // Yọrọ identifiers 
     identifier: $ => /(\p{Letter}|_)(\p{Letter}|\p{Number}|_)+/,
@@ -202,27 +207,40 @@ module.exports = grammar({
     //                     '(', $.assignment_statement, ';',
     //                     $.branch_condition, ';', $.statement, ')', $.codeblock),
 
-    _declarator_keywords: $ => choice($.function_keyword,
+    _declarator_keywords: $ => choice($.function_decleration_keyword,
                                   $.return_keyword,
                                   $._assignment_keyword
                                   ),
 
-    function_keyword: _ => 'iṣẹ',
+    function_decleration_keyword: _ => 'iṣẹ',
     return_keyword: _ => 'pada',
 
-    // parameter_declaration: $ => seq($._datatype, $.identifier),
-    // function_declaration: $ => seq($.function_declaration, $.identifier, '(',
-    //                                 optional(optional(seq($.parameter_declaration, ',')), $.parameter_declaration), ')',
-    //                                 optional(seq('->', $._datatype)), '{', $.codeblock,
-    //                                 optional(seq($.return_keyword, $.expression)), '}'),
+    
+    // function_declaration: $ => {
+      
+    //   parameter_declaration = seq($._datatype, $.identifier);
+
+    //   const _parameter_declaration_in_list = optional(
+    //                               field("parameter_declaration", 
+    //                                 seq(parameter_declaration, ','))
+    //                               );
+
+    //   const parameter_list = optional(
+    //                           seq(repeat(_parameter_declaration_in_list),
+    //                             field("parameter_declaration", parameter_declaration))
+    //                           );
+      
+    //   return seq($.function_decleration_keyword,
+    //               field('function_name', $.identifier),
+    //             )
+    // },
 
 
     function_call: $ => {
 
       const parameter = choice($.identifier, $._primitive);
-      const _parameter_in_list = optional(
-                                  field("parameter", 
-                                    seq(parameter, ','))
+      const _parameter_in_list = repeat(
+                                    seq(field("parameter", parameter), ',')
                                   );
 
       const parameter_list = optional(
