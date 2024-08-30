@@ -1,0 +1,55 @@
+# String and Char Operations
+// Concatenation expressions
+'a' + 'ẹ'
+"test" + 'ọ'
+"Ọlabamiji32324" + "Mo mọ pe"
+"(48d-sf5" + "Ẹọ45"
+
+// Combined Concatenation expressions
+"Dindinri" + 'n' + "ọwọọrẹ"
+"Apani" + "lẹkun Jaye?" + 'o'
+"Dindinri" + 'n' + "ọwọọrẹ" + "jẹun"
+
+
+# String and Character Comparison expressions
+'ẹ' == 'ẹ'
+'c' != 'ọ'
+'ṣ' < 't'
+'k' <= 'ọ'
+'ṣ' <= 'ṣ'
+'o' > 'ṣ'
+'p' >= 'p'
+'ẹ' >= 't'
+
+"hello" == "hello"
+"hello" != "world"
+"abc" < "def"
+"abc" <= "abc"
+"abc" <= "def"
+"xyz" > "abc"
+"xyz" >= "xyz"
+"xyz" >= "abc"
+
+
+'h' == "hello"
+"world" != 'w'
+'ṣ' < "Ọlabamiji"
+'a' <= "Apani"
+'A' <= "Apani"
+'ọ' > "Ọlabamiji"
+'Ọ' >= "Ọlabamiji"
+'b' >= "Ọlabamiji"
+
+
+// Compound Comparison Expression (No Parenthesis)
+
+'h' == "hello" > 's'
+"world" != 'w' < '3'
+'ṣ' < "Ọlabamiji" >= "utfty" 
+
+
+// Compound Comparison Expression (Parenthesis)
+
+('h' == "hello") > 's'
+()"world" != 'w') < '3'
+'ṣ' < ("Ọlabamiji" >= "utfty")

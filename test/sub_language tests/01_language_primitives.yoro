@@ -1,0 +1,139 @@
+// boolean
+ootọ
+irọ
+-ootọ
+-irọ
+
+
+# identifiers
+iṣe
+pataki
+Damilọla
+lọ_soke
+_jẹun
+
+
+// character primitives
+'p'
+'Ọ'
+'?'
+'-'
+'='
+'£'
+'$'
+'7'
+'ẹ'
+' '
+'🫡'
+'🙇'
+'👽'
+
+
+/*
+string primitives
+*/
+""
+" "
+"  "
+"🙇💖✅⭐"
+"🫡✅ 🙇"
+"M"
+"ẹ"
+"Lekan"
+"Ọlabamiji32324"
+"Mo mọ pe"
+"Apanilẹkun Jaye"
+"Apanilẹkun Jaye?"
+"Temidun, ọrọ rẹ ko fe ye mi mo. bawo ni eleduwa se fikan gbakan lọwọ re?"
+
+
+# Boolean numbers
+0b0100
+0B0100
+-0b0100
+-0B0100
+
+
+// Octal numbers
+0o0732
+0O4253
+-0o0732
+-0O4253
+
+
+# Hexadecimal numbers
+0xBEEF
+0XBEEF
+-0xBEEF
+-0XBEEF
+0xf057
+0X32BA
+-0xf057
+-0X32BA
+
+
+// Decimal numbers
+2024
+895153226484852623
+-2024
+-895153226484852623
+
+
+# Floating Point numbers
+0.5
+-0.5
+9.745
+-9.745
+89515.3226484852623
+-8951532264.852623
+3.
+154844.
+-3.
+154844.
+
+
+/*
+    Operators
+*/
+
+// Starting with Assignment operator
+=
+
+# Arithmetic Operators
++
+-
+*
+/
+%
+
+
+// Conditional Operators
+==
+!=
+<
+<=
+>
+>=
+
+!
+&&
+||
+
+
+// reserved words
+int
+f32
+f64
+bool
+char
+str
+
+jẹki
+ṣe
+tabi
+fun
+nigbati
+kuro
+tẹsiwaju
+iṣẹ
+pada

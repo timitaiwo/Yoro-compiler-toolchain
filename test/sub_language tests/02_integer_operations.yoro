@@ -1,0 +1,132 @@
+# Integer Expressions
+// Simple integer expressions
+1 + 2
+3 - 4
+5 * 6
+7 / 8
+9 % 10
+11 ** 12
+14 + -15
+16 * -17
+18 / -19
+
+
+// Simple floating point expressions
+20.1 + 21.2
+22.3 - 23.4
+24.5 * 25.6
+26.7 / 27.8
+28.9 % 29.0
+30.1 ** 31.2
+33.4 + -34.5
+35.6 * -36.7
+37.8 / -38.9
+
+
+// Mixed float and Integer expressions
+40.1 + 41
+42 - 43.2
+44 * 45.3
+46.4 / 47
+48 % 49.5
+50.6 ** 51
+53 + -54.8
+55 * -56.9
+57.0 / -58
+
+
+// Boolean expressions
+ootọ + ootọ
+irọ - irọ
+ootọ - irọ
+ootọ * ootọ
+irọ / ootọ
+irọ / irọ
+ootọ % ootọ
+ootọ % irọ
+ootọ ** ootọ
+ootọ ** irọ
+irọ ** irọ
+irọ ** ootọ
+ootọ + -irọ
+ootọ * -ootọ
+ootọ / -irọ
+
+
+// Mixed Boolean and Integer expressions
+ootọ + 5
+60 - irọ
+61 * ootọ
+irọ / 62
+63 % ootọ
+67 ** ootọ
+66 + -irọ
+-ootọ * 67
+68 / -irọ
+
+
+// Mixed Boolean and Floating Point expressions
+60 + irọ
+9659.434 - ootọ
+ootọ * 541.7
+irọ / 7865
+73.4 % ootọ
+ootọ ** 45.84
+irọ ** 74.5
+67 ** irọ
+76.7 + -irọ
+77.8 * -ootọ
+78.9 / -irọ
+-ootọ * 45.84
+
+
+// Combined Arithmetic (NO Parenthesis)
+
+3 + ootọ - 32324.904384
+3.51515 / 54384 * irọ
+82.515 - 83 / 84
+79 + 80 ** ootọ
+88 ** 4 * 0.655
+96 * 97 + -98
+93 - 94 * -95
+96 * -97 / -98
+99 ** -irọ % -101
+
+
+3.434 + 5 - 32324.904384 * 75645.904384 / 2345645 7865.434 % 7865 + 67 ** 45.84
+
+
+// Combined Arithmetic (Parenthesis)
+
+3 + (ootọ - 32324.904384)
+3.51515 / (54384 * irọ)
+(82.515 - 83) / 84
+(79 + 80) ** ootọ
+88 ** (4 * 0.655)
+96 * (97 + -98)
+(93 - 94) * -95
+96 * -97 / -98
+99 ** -irọ % -101
+
+3.434 + 5 - 32324.904384 * 75645.904384 / 2345645 7865.434 % 7865 + 67 ** 45.84
+
+
+// Comparison Expressions
+3.434 == 5
+irọ != 32324.904384
+67546 < 75645.904384
+ootọ > 2345645
+7865.434 <= 7865
+67 >= 45.84
+
+
+// Combined Comparison Expressions
+3.434 == 5 > irọ
+irọ != 32324.904384 == 545667
+67546 < 75645.904384 > ootọ
+
+
+// Combined Comparison Expressions (Parenthesis)
+3.434 == 5 > irọ
+irọ != 32324.904384 == 545667
+67546 < 75645.904384 > ootọ
