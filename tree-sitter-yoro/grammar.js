@@ -4,6 +4,7 @@
  */
 const precedences = {
 
+  expression: 1,
   sub_expression: 2,
 
   comment : 0,
@@ -28,8 +29,11 @@ module.exports = grammar({
 
   rules: {
 
-    // source_file: $ => repeat(choice($._comment, $._keywords, $._expression)),
-    source_file: $ => repeat(choice($._comment, $._keywords, $._expression, $.function_call)),
+    source_file: $ => repeat(choice($._comment, $.statement)),
+
+    // Yọrọ identifiers 
+    identifier: $ => /(\p{Letter}|_)(\p{Letter}|\p{Number}|_)+/,
+    word: $ => $.identifier,
 
 
     // Comments
@@ -62,7 +66,6 @@ module.exports = grammar({
 
     // Character literal
     _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
-    // _string_literal: _ => /"(\p{Letter}*|\p{Number}*|\p{Mark}*|\p{Symbol}*|\p{Separator}*|\p{Emoji}*|\p{Punctuation}*)*"/,
     _string_literal: _ => /"[^"\p{Other}]*"/,
     /* Update to represent 
     - escaped characters e.g \n, \t etc.
@@ -139,7 +142,7 @@ module.exports = grammar({
 
 
     // Add the below to expressions
-    not_operator: _ => '!',
+    not_operator: _ => '!', // Also use + and - as unary operators
     logical_or_operator: _ => '||',
     logical_and_operator: _ => '&&',
 
@@ -151,21 +154,22 @@ module.exports = grammar({
     _parenthesized_expression: $ => prec(precedences["parenthesis"], 
                                         seq('(', $._expression ,')')),
 
-
-                                            
-    // Uniary Operators
-    // TODO: remove _operator after done with it
-    
-    // use + and - as unary operators
-    // Add requisite expressions to syntax
-
-    _expression: $ => choice($.identifier, $._primitive, 
-                              $._binary_expression, 
-                              $._parenthesized_expression
-                            ),
+    _expression: $ => prec(precedences["expression"], 
+                            choice($.identifier,
+                                    $._primitive, 
+                                    $._binary_expression, 
+                                    $._parenthesized_expression
+                            )
+                          ),
 
   
-    // statement: $ => choice($._expression, $.assignment_statement),
+    statement: $ => prec(precedences["expression"], 
+                          choice(
+                            seq(choice($._expression, $.function_call), ';'),
+                            $.assignment_statement,
+                          )
+                      ),
+
 
     _control_flow_keywords: $ => choice($.if_statement_keyword, 
                                         $.else_statement_keyword,
@@ -200,7 +204,7 @@ module.exports = grammar({
 
     _declarator_keywords: $ => choice($.function_keyword,
                                   $.return_keyword,
-                                  $.assignment_keyword
+                                  $._assignment_keyword
                                   ),
 
     function_keyword: _ => 'iṣẹ',
@@ -217,32 +221,37 @@ module.exports = grammar({
 
       const parameter = choice($.identifier, $._primitive);
       const _parameter_in_list = optional(
-                                  field('parameter', 
+                                  field("parameter", 
                                     seq(parameter, ','))
                                   );
 
       const parameter_list = optional(
                                   seq(_parameter_in_list,
-                                    field('parameter',parameter))
+                                    field("parameter",parameter))
                                   );
       
       return prec(precedences["sub_expression"],
                   seq(
-                    field('function_name', $.identifier),
+                    field("function_name", $.identifier),
                     '(', parameter_list,
                     ')')
                     )
               },
 
-    assignment_keyword: _ => 'jẹki',
-    assignment_operator: _ => '=',
-    // assignment_statement: $ => seq($.assignment_keyword, $.identifier, ':', $._datatype, $.assignment_operator, choice($._expression, $.function_call), ';'),
-    // assignment_statement: $ => seq($.assignment_keyword, $.identifier, ':', $._datatype, $.assignment_operator, $._expression, ';'),
+    _assignment_keyword: _ => 'jẹki',
+    _assignment_operator: _ => '=',
+    assignment_statement: $ => seq(
+                                $._assignment_keyword, 
+                                field("variable_name", $.identifier), 
+                                ':', 
+                                field("variable_datatype", $._datatype), 
+                                $._assignment_operator, 
+                                field("assigned_expression", choice($._expression, $.function_call)),
+                                ';'
+                              ),
 
 
-    // Yọrọ identifiers 
-    identifier: $ => /(\p{Letter}|_)(\p{Letter}|\p{Number}|_)+/,
-    word: $ => $.identifier,
+    
 
 
 
@@ -257,10 +266,10 @@ module.exports = grammar({
     // Integer Arithmetic
 
     _number_expression: $ => choice(//$.identifier, 
-                                        $._arithmetic_primitive,
-                                        $._number_arithmetic, 
-                                        // $._parenthesized_expression,
-                                        $._number_comparison),
+                                    $._arithmetic_primitive,
+                                    $._number_arithmetic, 
+                                    // $._parenthesized_expression,
+                                    $._number_comparison),
 
     _number_arithmetic: $ => choice($.numeric_addition,
                                     $.numeric_subtraction,
@@ -427,7 +436,7 @@ module.exports = grammar({
         )
     ),
 
-
+// $._parenthesized_expression,
     string_char_greater_than: $ => prec.left(precedences["comparison"],
                   seq(
                   field("left", $._string_char_expression),
