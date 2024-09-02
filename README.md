@@ -14,9 +14,13 @@ error handling in C - https://youtu.be/A9bPqlgbUvg?si=5cPvZjbYq8qdRMr8
 *TODO: ...*
 - Add identifier and to _number_expression and _concatenation_expression
 - Ensure compound binary expressions are parsed correctly
-- Hide arithmetic operators after the above is done
+
 - Figure out lexicographic order for character and string comparisons
 - Convert keyword literals to regex unicode 
+
+- Hide after all is done
+    - operator names
+    - statement
 
 - Add Tests for a combination of comparison and arithmetic expressions (both for arit expressions or string expressions)
 
@@ -32,6 +36,7 @@ error handling in C - https://youtu.be/A9bPqlgbUvg?si=5cPvZjbYq8qdRMr8
 
 ## Semantic checks
 - Variable declaration done once in a block which Rust like shadowing occuring
+- Make sure no return expression occurs outside a function
 
 - Determine if the arithmetic expression is valid e.g
     - Boolean false (irọ) does not divide or modulus
@@ -60,6 +65,9 @@ error handling in C - https://youtu.be/A9bPqlgbUvg?si=5cPvZjbYq8qdRMr8
 
 
 ## Build instructions
+
+- Add CMake build system
+
 - Download [Treesitter's binary](https://github.com/tree-sitter/tree-sitter/releases) and add it to the tree-sitter-yoro directory. Optionally, it can be added to the PATH environment variable.
 
 - Run ```./tree-sitter generate``` in the tree-sitter-yoro directory or ```tree-sitter generate``` in the tree-sitter-yoro directory if Treesitter is added as an environment PATH variable

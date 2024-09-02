@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/timi/Downloads/Projects/msc-projects-2023-4-timitaiwo/build",
+  "command": "/home/timi/Apps/llvm_toolchain_18.8/bin/clang++ -g -o CMakeFiles/yoro.dir/src/main.cpp.o -c /home/timi/Downloads/Projects/msc-projects-2023-4-timitaiwo/src/main.cpp",
+  "file": "/home/timi/Downloads/Projects/msc-projects-2023-4-timitaiwo/src/main.cpp",
+  "output": "CMakeFiles/yoro.dir/src/main.cpp.o"
+}
+]

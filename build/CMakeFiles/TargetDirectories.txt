@@ -1,0 +1,3 @@
+/home/timi/Downloads/Projects/msc-projects-2023-4-timitaiwo/build/CMakeFiles/yoro.dir
+/home/timi/Downloads/Projects/msc-projects-2023-4-timitaiwo/build/CMakeFiles/edit_cache.dir
+/home/timi/Downloads/Projects/msc-projects-2023-4-timitaiwo/build/CMakeFiles/rebuild_cache.dir
