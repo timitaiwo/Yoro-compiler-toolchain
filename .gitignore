@@ -1,4 +1,5 @@
 build/*
+bin/*
 
 tree-sitter-yoro/bindings
 tree-sitter-yoro/src
