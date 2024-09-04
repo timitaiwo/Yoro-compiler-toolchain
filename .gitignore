@@ -1,3 +1,5 @@
+build/*
+
 tree-sitter-yoro/bindings
 tree-sitter-yoro/src
 tree-sitter-yoro/binding.gyp
