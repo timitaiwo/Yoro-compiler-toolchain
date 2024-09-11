@@ -7,19 +7,19 @@
 <start_multi_line_comment_symbol> ::= "/*"
 <end_multi_line_comment_symbol> ::= "*/"
 
-<assignment_statement> :: = <variable_declaration_keyword> <identifier> [ : <datatype> ] = <primitive> | <expression> | <function_call>
+<assignment_statement> :: = <variable_declaration_keyword> <identifier> [ : <datatype> ] = <expression> | <function_call>
 
 <identifier> ::= { <unicode_grapheme> }+ | <decimal_integer> | <underscore>
 <datatype> ::= <primitive>
 
 <statement> ::=  ( ( <expression> | <function_call> ) ";" ) | <if_statement> | <while_loop> | <for_loop>
-<expression> ::= <primitive> | <binary_expression> 
+<expression> ::= <identifier> | <primitive> | <binary_expression> 
 
 <codeblock> ::= { <statement> }*
 
 <function_declaration> ::= <function_declaration_keyword> <identifier> "(" [ [ { <parameter_declaration> "," }* ] <parameter_declaration> ] ")" [ -> <datatype> ] "{" <codeblock> [ <return_keyword> <expression> ] "}"
 <parameter_declaration> ::= <datatype> <identifier>
-<function_call> ::= <identifier> "("[ [ { <identifier> "," }* ] <identifier> ] ")"
+<function_call> ::= <identifier> "("[ ( { <identifier> "," }* ) <identifier> ] ")"
 
 <if_statement> ::= <if_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" <codeblock> "}" [ [ <else_keyword> <if_keyword> "{" <codeblock> "}"] <else_keyword> "{" { statement }* "}" ]
 <while_loop> ::= <while_loop_keyword> "(" <conditional_expression> | <boolean_primitive> ")" "{" <codeblock> "}"
@@ -57,6 +57,7 @@
 <for_loop_keyword> ::= fun
 
 <break_keyword> ::= kuro
+
 <continue_keyword> ::= tẹsiwaju
 
 

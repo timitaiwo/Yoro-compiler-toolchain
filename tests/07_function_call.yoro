@@ -1,5 +1,5 @@
 iṣẹ pewa(str orukọ) {
-    sọpe(orukọ)
+    sọpe(orukọ);
 }
 
 iṣe ropọ(int a, int b) -> int {
