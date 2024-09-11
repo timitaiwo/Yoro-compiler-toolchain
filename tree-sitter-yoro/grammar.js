@@ -19,7 +19,8 @@ const precedences = {
   exponent : 9,     // **
   unary : 10,       // + - !   ? Python way or C++ way
   parenthesis : 11,  // (  )
-  primitive: 12,    // primitive datatypes
+  subtype_parenthesis : 12,  // (  )
+  primitive: 13,    // primitive datatypes
 };
 
 
@@ -32,7 +33,8 @@ module.exports = grammar({
     source_file: $ => repeat(
                             choice($._comment,
                                   $.statement,
-                                  // $.function_declaration,
+                                  $.function_declaration,
+                                  // $.codeblock, ?? Potential ambiguity
                                 )
                             ),
 
@@ -118,6 +120,8 @@ module.exports = grammar({
       
       return token(floating_point_literal);
     },
+
+    _end_of_line: _ => /\r|\n|\r\n/,
     
     // Characters and string primitives
     character_primitive: $ => $._character_literal,
@@ -125,22 +129,22 @@ module.exports = grammar({
 
 
     // Arithmetic Operation Symbols
-    addition_operator: _ => '+',
-    subtraction_operator: _ => '-',
-    multiplication_operator: _ => '*',
-    division_operator: _ => '/',
-    modulus_operator: _ => '%',
-    exponent_operator: _ => '**',
+    _addition_operator: _ => '+',
+    _subtraction_operator: _ => '-',
+    _multiplication_operator: _ => '*',
+    _division_operator: _ => '/',
+    _modulus_operator: _ => '%',
+    _exponent_operator: _ => '**',
 
 
     // Comparison Operator Symbols
     
-    equals_operator: _ => '==',
-    not_equals_operator: _ => '!=',
-    less_than_operator: _ => '<',
-    greater_than_operator: _ => '>',
-    less_than_equal_operator: _ => '<=',
-    greater_than_equal_operator: _ => '>=',
+    _equals_operator: _ => '==',
+    _not_equals_operator: _ => '!=',
+    _less_than_operator: _ => '<',
+    _greater_than_operator: _ => '>',
+    _less_than_equal_operator: _ => '<=',
+    _greater_than_equal_operator: _ => '>=',
 
 
     
@@ -156,47 +160,42 @@ module.exports = grammar({
     _binary_expression: $ => choice($._number_expression,
                                     $._string_char_expression),
 
-    _parenthesized_expression: $ => prec(precedences["parenthesis"], 
-                                        seq('(', $._expression ,')')),
-
     _expression: $ => prec(precedences["expression"], 
                             choice($.identifier,
                                     $._primitive, 
                                     $._binary_expression, 
-                                    $._parenthesized_expression
+                                    // $._parenthesized_expression
                             )
                           ),
 
   
-    statement: $ => prec(precedences["expression"], 
+    statement: $ => 
+      // prec(precedences[""], 
                           choice(
                             seq(choice($._expression, $.function_call), ';'),
                             $.assignment_statement,
-                          )
-                      ),
+                          ),
+                      // ),
 
 
     _control_flow_keywords: $ => choice($.if_statement_keyword, 
                                         $.else_statement_keyword,
                                         $.for_loop_keyword,
                                         $.while_loop_keyword,
-                                        $.break_keyword,
-                                        $.continue_keyword,
+                                        // $.break_keyword,
+                                        // $.continue_keyword,
                                     ),
 
     if_statement_keyword: _ => 'ṣe',
     else_statement_keyword: _ => 'tabi',
     for_loop_keyword: _ => 'fun',
     while_loop_keyword: _ => 'nigbati',
-    break_keyword: _ => 'kuro',  // How to implement?
-    continue_keyword: _ => 'tẹsiwaju',// How to implement?
-    
-    
-    
+    // break_keyword: _ => 'kuro',  // How to implement?
+    // continue_keyword: _ => 'tẹsiwaju',// How to implement?
 
-    // branch_condition: $ => choice($.boolean_primitive, $._expression),
+    _codeblock_start: _ => '{',
+    _codeblock_end: _ => '}',
 
-    // codeblock: $ => seq('{', repeat($.statement), '}'),
 
     // if_statement: $ => seq($.if_keyword, branch_condition , $.codeblock, optional(optional($._else_if_block), $._else_block)),
     // _else_if_block: _ => seq($.else_keyword, $.if_keyword, branch_condition, $.codeblock),
@@ -207,54 +206,79 @@ module.exports = grammar({
     //                     '(', $.assignment_statement, ';',
     //                     $.branch_condition, ';', $.statement, ')', $.codeblock),
 
-    _declarator_keywords: $ => choice($.function_decleration_keyword,
+    _declarator_keywords: $ => choice($._function_decleration_keyword,
                                   $.return_keyword,
                                   $._assignment_keyword
                                   ),
 
-    function_decleration_keyword: _ => 'iṣẹ',
+    _function_decleration_keyword: _ => 'iṣẹ',
     return_keyword: _ => 'pada',
 
-    
-    // function_declaration: $ => {
-      
-    //   parameter_declaration = seq($._datatype, $.identifier);
 
-    //   const _parameter_declaration_in_list = optional(
-    //                               field("parameter_declaration", 
-    //                                 seq(parameter_declaration, ','))
-    //                               );
+    _parameter: $ => choice($.identifier, $._primitive),
+    _parameter_declaration: $ => seq($._parameter, ':', $._datatype ),
+    _return_expression: $ => prec(precedences["sub_expression"],
+                                seq($.return_keyword, $._expression)
+                              ),
 
-    //   const parameter_list = optional(
-    //                           seq(repeat(_parameter_declaration_in_list),
-    //                             field("parameter_declaration", parameter_declaration))
-    //                           );
+    function_declaration: $ => {
+
+      const _parameter_decleration_in_list = repeat(
+                                    seq(field("parameter_declaration", $._parameter_declaration), ',')
+                                  );
+
+      const parameter_declaration_list = optional(
+                                  seq(_parameter_decleration_in_list,
+                                    field("parameter_declaration", $._parameter_declaration))
+                                  );
+
+      const _return_type = seq('->',
+                              field('return_datatype', $._datatype)
+                            );
+
       
-    //   return seq($.function_decleration_keyword,
-    //               field('function_name', $.identifier),
-    //             )
-    // },
+      
+      return seq(
+                  $._function_decleration_keyword,
+                  field("function_name", $.identifier),
+                  '(', parameter_declaration_list,
+                  ')',
+                  optional(_return_type),
+                  $._codeblock_start,
+                  field("function_body",
+                        repeat(
+                            choice(
+                                    $.statement, 
+                                    $._comment,
+                                    $._return_expression,
+                                  )
+                                )
+                              ),
+                  $._codeblock_end,
+                  $._end_of_line,
+                )
+    },
 
 
     function_call: $ => {
-
-      const parameter = choice($.identifier, $._primitive);
       const _parameter_in_list = repeat(
-                                    seq(field("parameter", parameter), ',')
+                                    seq(field("parameter", $._parameter), ',')
                                   );
 
       const parameter_list = optional(
                                   seq(_parameter_in_list,
-                                    field("parameter",parameter))
+                                    field("parameter", $._parameter))
                                   );
       
       return prec(precedences["sub_expression"],
                   seq(
                     field("function_name", $.identifier),
                     '(', parameter_list,
-                    ')')
+                    ')'
                     )
+                  )
               },
+
 
     _assignment_keyword: _ => 'jẹki',
     _assignment_operator: _ => '=',
@@ -269,25 +293,17 @@ module.exports = grammar({
                               ),
 
 
-    
-
-
-
-
-
-
-
-
-
-
     // Integer Operations
     // Integer Arithmetic
 
     _number_expression: $ => choice(//$.identifier, 
                                     $._arithmetic_primitive,
                                     $._number_arithmetic, 
-                                    // $._parenthesized_expression,
+                                    // $._number_parenthesis_expression,
                                     $._number_comparison),
+
+    // _number_parenthesis_expression: $ => prec(precedences["subtype_parenthesis"], 
+    //                                     seq('(', $._number_expression ,')')),
 
     _number_arithmetic: $ => choice($.numeric_addition,
                                     $.numeric_subtraction,
@@ -307,7 +323,7 @@ module.exports = grammar({
     numeric_addition: $ => prec.left(precedences["addition_subtraction"],
                                       seq(
                                       field("left", $._number_expression),
-                                      field("operator", $.addition_operator),
+                                      field("operator", $._addition_operator),
                                       field("right", $._number_expression)
                                       )
     ),
@@ -315,7 +331,7 @@ module.exports = grammar({
     numeric_subtraction: $ => prec.left(precedences["addition_subtraction"],
                                           seq(
                                           field("left", $._number_expression),
-                                          field("operator", $.subtraction_operator),
+                                          field("operator", $._subtraction_operator),
                                           field("right", $._number_expression)
                                           )
     ),
@@ -323,7 +339,7 @@ module.exports = grammar({
     numeric_multiplication: $ => prec.left(precedences["multiply_divide"],
                                             seq(
                                             field("left", $._number_expression),
-                                            field("operator", $.multiplication_operator),
+                                            field("operator", $._multiplication_operator),
                                             field("right", $._number_expression)
                                             )
     ),
@@ -331,7 +347,7 @@ module.exports = grammar({
     numeric_division: $ => prec.left(precedences["multiply_divide"],
                                       seq(
                                       field("left", $._number_expression),
-                                      field("operator", $.division_operator),
+                                      field("operator", $._division_operator),
                                       field("right", $._number_expression)
                                       )
     ),
@@ -339,7 +355,7 @@ module.exports = grammar({
     numeric_modulus: $ => prec.left(precedences["modulus"],
                                       seq(
                                       field("left", $._number_expression),
-                                      field("operator", $.modulus_operator),
+                                      field("operator", $._modulus_operator),
                                       field("right", $._number_expression)
                                       )
           ),
@@ -347,7 +363,7 @@ module.exports = grammar({
     numeric_exponent: $ => prec.left(precedences["exponent"],
                                       seq(
                                       field("left", $._number_expression),
-                                      field("operator", $.exponent_operator),
+                                      field("operator", $._exponent_operator),
                                       field("right", $._number_expression)
                                       )
                                       ),
@@ -357,7 +373,7 @@ module.exports = grammar({
     numeric_equals: $ => prec.left(precedences["equality"],
                           seq(
                           field("left", $._number_expression),
-                          field("operator", $.equals_operator),
+                          field("operator", $._equals_operator),
                           field("right", $._number_expression)
                           )
                         ),
@@ -366,7 +382,7 @@ module.exports = grammar({
     numeric_not_equals: $ => prec.left(precedences["equality"],
                           seq(
                           field("left", $._number_expression),
-                          field("operator", $.not_equals_operator),
+                          field("operator", $._not_equals_operator),
                           field("right", $._number_expression)
                           )
                         ),
@@ -375,7 +391,7 @@ module.exports = grammar({
     numeric_greater_than: $ => prec.left(precedences["comparison"],
                           seq(
                           field("left", $._number_expression),
-                          field("operator", $.greater_than_operator),
+                          field("operator", $._greater_than_operator),
                           field("right", $._number_expression)
                           )
                         ),
@@ -384,7 +400,7 @@ module.exports = grammar({
     numeric_greater_than_or_equals: $ => prec.left(precedences["comparison"],
                           seq(
                           field("left", $._number_expression),
-                          field("operator", $.greater_than_equal_operator),
+                          field("operator", $._greater_than_equal_operator),
                           field("right", $._number_expression)
                           )
                         ),
@@ -393,7 +409,7 @@ module.exports = grammar({
     numeric_less_than: $ => prec.left(precedences["comparison"],
                             seq(
                             field("left", $._number_expression),
-                            field("operator", $.less_than_operator),
+                            field("operator", $._less_than_operator),
                             field("right", $._number_expression)
                             )
                           ),
@@ -402,7 +418,7 @@ module.exports = grammar({
     numeric_less_than_or_equals: $ => prec.left(precedences["comparison"],
                           seq(
                             field("left", $._number_expression),
-                            field("operator", $.less_than_equal_operator),
+                            field("operator", $._less_than_equal_operator),
                             field("right", $._number_expression)
                           )
                         ),
@@ -414,15 +430,19 @@ module.exports = grammar({
     _string_char_expression: $ => choice(//$.identifier, 
                                             $._concatenation_primitive,
                                             $.string_char_concatenation,
-                                            // $._parenthesized_expression,
+                                            // $._string_char_parenthesis_expression,
                                             $._string_char_comparison
                                           ),
+
+
+    // _string_char_parenthesis_expression: $ => prec(precedences["subtype_parenthesis"], 
+    //                                         seq('(', $._number_expression ,')')),
 
 
     string_char_concatenation: $ => prec.left(
                                       seq(
                                       field("left", $._string_char_expression),
-                                      field("operator", $.addition_operator),
+                                      field("operator", $._addition_operator),
                                       field("right", $._string_char_expression)
                                       )
                                     ),
@@ -440,7 +460,7 @@ module.exports = grammar({
     string_char_equals: $ => prec.left(precedences["equality"],
       seq(
       field("left", $._string_char_expression),
-      field("operator", $.equals_operator),
+      field("operator", $._equals_operator),
       field("right", $._string_char_expression)
       )
     ),
@@ -449,16 +469,15 @@ module.exports = grammar({
     string_char_not_equals: $ => prec.left(precedences["equality"],
         seq(
         field("left", $._string_char_expression),
-        field("operator", $.not_equals_operator),
+        field("operator", $._not_equals_operator),
         field("right", $._string_char_expression)
         )
     ),
 
-// $._parenthesized_expression,
     string_char_greater_than: $ => prec.left(precedences["comparison"],
                   seq(
                   field("left", $._string_char_expression),
-                  field("operator", $.greater_than_operator),
+                  field("operator", $._greater_than_operator),
                   field("right", $._string_char_expression)
                   )
                 ),
@@ -467,7 +486,7 @@ module.exports = grammar({
     string_char_greater_than_or_equals: $ => prec.left(precedences["comparison"],
                   seq(
                   field("left", $._string_char_expression),
-                  field("operator", $.greater_than_equal_operator),
+                  field("operator", $._greater_than_equal_operator),
                   field("right", $._string_char_expression)
                   )
                 ),
@@ -476,7 +495,7 @@ module.exports = grammar({
     string_char_less_than: $ => prec.left(precedences["comparison"],
         seq(
         field("left", $._string_char_expression),
-        field("operator", $.less_than_operator),
+        field("operator", $._less_than_operator),
         field("right", $._string_char_expression)
         )
       ),
@@ -485,7 +504,7 @@ module.exports = grammar({
     string_char_less_than_or_equals: $ => prec.left(precedences["comparison"],
                   seq(
                     field("left", $._string_char_expression),
-                    field("operator", $.less_than_equal_operator),
+                    field("operator", $._less_than_equal_operator),
                     field("right", $._string_char_expression)
                   )
                 ),
