@@ -65,13 +65,12 @@ llvm_map_components_to_libnames(llvm_libs support core irreader)
 # Build the yọrọ compiler
 add_executable(${PROJECT_NAME} 
                 ${SOURCE_CODE_DIR}/main.cpp
-                # ${YORO_PARSER_DIR}/parser.c
+                ${SOURCE_CODE_DIR}/AST.cpp
             )
  
 target_include_directories(${PROJECT_NAME}
                             PRIVATE
                             "${LIBRARIES_DIR}/treesitter/lib/include"
-                            # "${TREESITTER_DIR}/lib/src"
                             "${YORO_PARSER_DIR}"
                             )
 

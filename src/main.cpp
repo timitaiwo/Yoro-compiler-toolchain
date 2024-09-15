@@ -1,32 +1,32 @@
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <tree_sitter/api.h>
 
-// Include parser header and header
-#include <tree_sitter/parser.h>
-#include <parser.c>
+#include "AST.hpp"
 
-int main()
+int main(int argv, char** args)
 {
+    // File Handling
+    // if (argv < 2){
+    //     std::cout << "Please pass in a file name" << std::endl;
+    //     return 1;
+    // }
 
-    // Instantiate the yoro parser
-    TSParser *parser = ts_parser_new();
+    // std::string yoro_file = args[1];
+    // std::ifstream source_file(yoro_file);
 
-    // Set the parser's language
-    ts_parser_set_language(parser, tree_sitter_yoro());
+    // if (!source_file.is_open()) {
+    //     std::cout << "Error: File " << yoro_file << " cannot be opened" << std::endl;
+    // }
+    // std::string source_code = source_file.text()
 
     // Build concrete syntax tree
-    std::string sample_yoro = "'a' + 'ẹ'";
-    // Use actual file text instead
-    // experiement with both C++ and C styles of file interaction
+    std::string source_code = "'a' + 'ẹ';";
+    
+    AST syntax_tree = AST();
+    syntax_tree.generate_tree(source_code);
 
-    TSTree *concrete_syntax_tree = ts_parser_parse_string(
-                                        parser,
-                                        nullptr,
-                                        sample_yoro.c_str(),
-                                        sample_yoro.length());
-
-    TSNode root_node = ts_tree_root_node(concrete_syntax_tree);
+    TSNode root_node = ts_tree_root_node(syntax_tree.get_tree());
 
     std::cout << "The root node is " << ts_node_string(root_node) << std::endl;
 
@@ -35,5 +35,7 @@ int main()
 
     // // Do LLVM codegen
 
-    // std::cout << sample_yoro << std::endl;
+
+    // source_file.close();
+    return 0;
 }
