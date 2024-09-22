@@ -179,7 +179,6 @@ module.exports = grammar({
                                 ';'),
                             $.if_statement,
                             $.while_loop,
-                            // $.for_loop,
                           ),
                       // ),
 
@@ -187,7 +186,7 @@ module.exports = grammar({
     _control_flow_keywords: $ => choice($._if_statement_keyword, 
                                         $._else_statement_keyword,
                                         $.for_loop_keyword,
-                                        $._while_loop_keyword,
+                                        $.while_loop_keyword,
                                         $.break_keyword,
                                         $.continue_keyword,
                                     ),
@@ -200,7 +199,7 @@ module.exports = grammar({
     _if_statement_keyword: _ => 'ṣe',
     _else_statement_keyword: _ => 'tabi',
     for_loop_keyword: _ => 'fun',
-    _while_loop_keyword: _ => 'nigbati',
+    while_loop_keyword: _ => 'nigbati',
     break_keyword: _ => 'kuro',  // Choose new keyword kuro is leave, fọ is break
     continue_keyword: _ => 'tẹsiwaju',
     _function_decleration_keyword: _ => 'iṣẹ',
@@ -258,22 +257,14 @@ module.exports = grammar({
                         ), 
 
     while_loop: $ => seq(
-                        $._while_loop_keyword,
+                        $.while_loop_keyword,
                         field("while_loop_condition", $._branch_expression),
                         field("while_loop_codeblock", $.codeblock),
                       ),
 
-    // for_loop: $ => seq(
-    //                   $.for_loop_keyword, 
-    //                   // '(', 
-    //                   $.assignment_statement,
-    //                   ';',
-    //                   $._branch_expression, // Conditional expression ??
-    //                   ';',
-    //                   $.statement,          // Normal expression ??
-    //                   // ')',
-    //                   $.codeblock
-    //                 ),
+    // for_loop: $ => seq($.for_loop_keyword, 
+    //                     '(', $.assignment_statement, ';',
+    //                     $._branch_expression, ';', $.statement, ')', $.codeblock),
 
 
     parameter: $ => choice($.identifier, $._primitive),
@@ -356,7 +347,7 @@ module.exports = grammar({
     // Integer Operations
     // Integer Arithmetic
 
-    _number_expression: $ => choice($.identifier, 
+    _number_expression: $ => choice(//$.identifier, 
                                     $._arithmetic_primitive,
                                     $._number_arithmetic, 
                                     // $._number_parenthesis_expression,
@@ -487,7 +478,7 @@ module.exports = grammar({
     // String and Character Operations 
     // String concatenation
 
-    _string_char_expression: $ => choice($.identifier, 
+    _string_char_expression: $ => choice(//$.identifier, 
                                             $._concatenation_primitive,
                                             $.string_char_concatenation,
                                             // $._string_char_parenthesis_expression,

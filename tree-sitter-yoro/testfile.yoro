@@ -1,7 +1,81 @@
+// Codeblock
+{}
+
+{
+}
+
+{
+    sọpe("Mo ki yin gbogbo agbaye");
+}
+
+{     // Entry point into the program
+    sọpe("Mo ki yin gbogbo agbaye");
+    pada 0;               // returning 0 indicates a sucessfull running of the program
+}
+
+{
+    jẹki mẹtala : int = ropọ(11, 2);
+    jẹki agbalagba : bool = pewa("damisi", 5);
+    ootọ;
+    sọpe();
+    sọpe(orukọ);
+    kuro;
+    tẹsiwaju;
+    pada 0;
+}
+
+
+
 // If statements
 
+ṣe x > 5 {
+
+}
+
+ṣe 3 % 3 == 0 {
+    sọpe("Fizz");
+} tabi {
+    sọpe("Buzz");
+}
+
+jẹki numba : int = 7;
+ṣe 7 > 10 {
+    numba = 7 * 7;
+} tabi ṣe 9 + 6 < 11 {
+    pada "Ko le work";
+} tabi {
+    sọpe("Invalid conditions");
+}
 
 
+
+// While loop
+
+jẹki numba : int = 0;
+
+nigbati numba < 5 {
+    sọpe(numba);
+    numba = numba + 1;
+}
+
+
+jẹki numba : int = 15;
+nigbati numba > 5 {
+    sọpe(numba);
+    numba = numba - 1;
+    ṣe numba == 10 {
+        kuro;
+    }
+}
+
+numba : int = 0;
+nigbati numba < 10 {
+    ṣe numba == 2 {
+        tẹsiwaju;
+    }
+    numba = numba + 1;
+    sọpe(numba);
+}
 
 
 // For loop
@@ -10,10 +84,14 @@
 
 
 
-// While loop
+// Function Call
 
-
-
+sọpe();
+sọpe(orukọ);
+ropọ(9, 2);
+pewa("damisi");
+ootọ_ni(irọ);
+pewa("damisi", 4, 5);
 
 
 // Function Declaration
@@ -25,7 +103,7 @@ iṣẹ pataki() -> int {     // Entry point into the program
     pada 0;               // returning 0 indicates a sucessfull running of the program
 }
 
-iṣẹ pewa(str : orukọ) {
+iṣẹ pewa(orukọ : str) {
     sọpe(orukọ);
 }
 
@@ -33,15 +111,6 @@ iṣe ropọ(a : int, b : int) -> int {
     sọpe("Add one and two");
     pada a+b;
 }
-
-// Function Call
-
-sọpe()
-sọpe(orukọ)
-ropọ(9, 2)
-pewa("damisi")
-ootọ_ni(irọ)
-pewa("damisi", 4, 5);
 
 
 // Variable assignment 

@@ -1,0 +1,27 @@
+[keywords.control_flow_keywords]
+if_statement_keyword = "ṣe"
+else_statement_keyword = "tabi"
+for_loop_keyword = "fun"
+while_loop_keyword = "nigbati"
+break_keyword = "kuro" 
+continue_keyword = "tẹsiwaju" 
+
+
+[keywords.declarator_keywords]
+function_declaration_keyword = "iṣẹ"
+return_keyword = "pada"
+assignment_keyword = "jẹki"
+
+
+[keywords.datatypes]
+int_primitive_keyword = "int"
+f32_primitive_keyword = "f32"
+f64_primitive_keyword = "f64"
+bool_primitive_keyword = "bool"
+char_primitive_keyword = "char"
+str_primitive_keyword = "str"
+
+
+[regex.booleans]
+boolean_true = [+|-]?ootọ
+boolean_false = [+|-]?irọ

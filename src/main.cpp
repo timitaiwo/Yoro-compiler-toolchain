@@ -30,12 +30,19 @@ int main(int argv, char** args)
 
     std::cout << "The root node is " << ts_node_string(root_node) << std::endl;
 
-    
-    // // Do semantic checks
+    std::cout << "Root node is named? " << ts_node_is_named(root_node) << std::endl;
 
-    // // Do LLVM codegen
+    // Do LLVM Codegen first
+    // Check no errors or missing
+    // Do semantic checks using treesitter query
+
+    // Do LLVM codegen
+
+    // TODO: implement the operators and test each one
+    // TODO: Generate the LLVM IR by iterating down to the 
+    //       lowest node of the graph and climbing back up
 
 
-    // source_file.close();
+    // source_file.close();  // close file 
     return 0;
 }
