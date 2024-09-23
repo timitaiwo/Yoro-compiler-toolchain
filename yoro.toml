@@ -1,5 +1,8 @@
 # accept keywords as regex??
 
+[special.functions]
+main = "pataki"
+
 [keywords.control_flow_keywords]
 if_statement_keyword = "ṣe"
 else_statement_keyword = "tabi"
@@ -25,5 +28,5 @@ str_primitive_keyword = "str"
 
 
 [regex.booleans]
-boolean_true = [+|-]?ootọ
-boolean_false = [+|-]?irọ
+boolean_true = "[+|-]?ootọ"
+boolean_false = "[+|-]?irọ"

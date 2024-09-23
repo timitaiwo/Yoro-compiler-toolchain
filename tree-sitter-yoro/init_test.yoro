@@ -1,5 +1,6 @@
-sọpe()
-sọpe(orukọ)
-ropọ(9, 2)
-pewa("damisi")
-ootọ_ni(irọ)
+fun jẹki numba : int = 0; numba < 10; numba = numba + 1 {
+    ṣe numba == 5 {
+        kuro;
+    }
+    sọpe(numba);
+}

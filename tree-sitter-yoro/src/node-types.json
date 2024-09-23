@@ -149,6 +149,58 @@
       "required": false,
       "types": [
         {
+          "type": "arithmetic",
+          "named": true
+        },
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "boolean_primitive",
+          "named": true
+        },
+        {
+          "type": "break_keyword",
+          "named": true
+        },
+        {
+          "type": "character_primitive",
+          "named": true
+        },
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "continue_keyword",
+          "named": true
+        },
+        {
+          "type": "floating_point_primitive",
+          "named": true
+        },
+        {
+          "type": "for_loop",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "integer_primitive",
+          "named": true
+        },
+        {
           "type": "multi_line_comment",
           "named": true
         },
@@ -161,7 +213,11 @@
           "named": true
         },
         {
-          "type": "statement",
+          "type": "string_primitive",
+          "named": true
+        },
+        {
+          "type": "while_loop",
           "named": true
         }
       ]
@@ -446,6 +502,88 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "for_loop",
+    "named": true,
+    "fields": {
+      "for_loop_codeblock": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "codeblock",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        },
+        {
+          "type": "assignment_statement",
+          "named": true
+        },
+        {
+          "type": "boolean_primitive",
+          "named": true
+        },
+        {
+          "type": "break_keyword",
+          "named": true
+        },
+        {
+          "type": "character_primitive",
+          "named": true
+        },
+        {
+          "type": "comparison",
+          "named": true
+        },
+        {
+          "type": "continue_keyword",
+          "named": true
+        },
+        {
+          "type": "floating_point_primitive",
+          "named": true
+        },
+        {
+          "type": "for_loop",
+          "named": true
+        },
+        {
+          "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "if_statement",
+          "named": true
+        },
+        {
+          "type": "integer_primitive",
+          "named": true
+        },
+        {
+          "type": "string_primitive",
+          "named": true
+        },
+        {
+          "type": "while_loop",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1248,33 +1386,6 @@
       "required": false,
       "types": [
         {
-          "type": "codeblock",
-          "named": true
-        },
-        {
-          "type": "multi_line_comment",
-          "named": true
-        },
-        {
-          "type": "single_line_comment",
-          "named": true
-        },
-        {
-          "type": "statement",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
           "type": "arithmetic",
           "named": true
         },
@@ -1295,6 +1406,10 @@
           "named": true
         },
         {
+          "type": "codeblock",
+          "named": true
+        },
+        {
           "type": "comparison",
           "named": true
         },
@@ -1304,6 +1419,10 @@
         },
         {
           "type": "floating_point_primitive",
+          "named": true
+        },
+        {
+          "type": "for_loop",
           "named": true
         },
         {
@@ -1320,6 +1439,14 @@
         },
         {
           "type": "integer_primitive",
+          "named": true
+        },
+        {
+          "type": "multi_line_comment",
+          "named": true
+        },
+        {
+          "type": "single_line_comment",
           "named": true
         },
         {
@@ -1670,10 +1797,6 @@
   },
   {
     "type": "floating_point_primitive",
-    "named": true
-  },
-  {
-    "type": "for_loop_keyword",
     "named": true
   },
   {

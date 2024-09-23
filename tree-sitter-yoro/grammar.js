@@ -19,7 +19,6 @@ const precedences = {
   exponent : 9,     // **
   unary : 10,       // + - !   ? Python way or C++ way
   parenthesis : 11,  // (  )
-  // subtype_parenthesis : 12,  // (  )
   primitive: 13,    // primitive datatypes
 };
 
@@ -27,12 +26,11 @@ const precedences = {
 module.exports = grammar({
   name: 'yoro',
 
-
   rules: {
 
     source_file: $ => repeat(
                             choice($._comment,
-                                  $.statement,
+                                  $._statement,
                                   $.codeblock,
                                   // $.function_declaration,
                                 )
@@ -264,7 +262,6 @@ module.exports = grammar({
     ),
 
     // TODO: Parenthesis, not and logical OR/AND expressions
-    //       For loop
     parenthesis_expression: $ => prec.left(precedences["parenthesis"],
                                             seq(
                                                 '(',
@@ -283,7 +280,7 @@ module.exports = grammar({
                           ),
 
   
-    statement: $ => 
+    _statement: $ => 
       // prec(precedences[""], 
                           choice(
                             seq(choice($._expression, 
@@ -295,14 +292,14 @@ module.exports = grammar({
                                 ';'),
                             $.if_statement,
                             $.while_loop,
-                            // $.for_loop,
+                            $.for_loop,
                           ),
                       // ),
 
 
     _control_flow_keywords: $ => choice($._if_statement_keyword, 
                                         $._else_statement_keyword,
-                                        $.for_loop_keyword,
+                                        $._for_loop_keyword,
                                         $._while_loop_keyword,
                                         $.break_keyword,
                                         $.continue_keyword,
@@ -315,9 +312,9 @@ module.exports = grammar({
 
     _if_statement_keyword: _ => 'ṣe',
     _else_statement_keyword: _ => 'tabi',
-    for_loop_keyword: _ => 'fun',
+    _for_loop_keyword: _ => 'fun',
     _while_loop_keyword: _ => 'nigbati',
-    break_keyword: _ => 'kuro',  // Choose new keyword kuro is leave, fọ is break
+    break_keyword: _ => 'kuro',  // Choose new keyword? kuro is leave, fọ is break
     continue_keyword: _ => 'tẹsiwaju',
     _function_decleration_keyword: _ => 'iṣẹ',
     _return_keyword: _ => 'pada',
@@ -339,7 +336,7 @@ module.exports = grammar({
                         '{',
                         repeat(
                           choice(
-                            $.statement,
+                            $._statement,
                             $._comment,
                             $.return_expression
                           )
@@ -380,15 +377,13 @@ module.exports = grammar({
                       ),
 
     for_loop: $ => seq(
-                      $.for_loop_keyword, 
-                      // '(', 
+                      $._for_loop_keyword,
                       $.assignment_statement,
                       ';',
-                      $.comparison, // Conditional expression ??
+                      $.comparison, 
                       ';',
-                      $.statement,          // Normal expression ??
-                      // ')',
-                      $.codeblock
+                      $._statement,
+                      field("for_loop_codeblock", $.codeblock)
                     ),
 
 

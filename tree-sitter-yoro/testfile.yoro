@@ -32,7 +32,8 @@
 
 }
 
-ṣe 3 % 3 == 0 {
+jẹki a_char : char = '🙇';
+ṣe a_char == '🙇' {
     sọpe("Fizz");
 } tabi {
     sọpe("Buzz");
@@ -80,7 +81,20 @@ nigbati numba < 10 {
 
 // For loop
 
+fun jẹki numba : int = 0; numba < 10; numba = numba + 1 {
+    ṣe numba == 5 {
+        kuro;
+    }
+    sọpe(numba);
+}
 
+fun jẹki numba : int = 0; numba < 10; numba = numba + 1 {
+    ṣe numba % 2 == 0{
+        sọpe("numba is even");
+    } tabi {
+        sọpe("numba is odd");
+    }
+}
 
 
 
@@ -92,7 +106,6 @@ ropọ(9, 2);
 pewa("damisi");
 ootọ_ni(irọ);
 pewa("damisi", 4, 5);
-
 
 // Function Declaration
 
@@ -110,6 +123,10 @@ iṣẹ pewa(orukọ : str) {
 iṣe ropọ(a : int, b : int) -> int {
     sọpe("Add one and two");
     pada a+b;
+}
+
+iṣe isChar(testChar : char) -> bool {
+    pada testChar == '🙇';
 }
 
 
