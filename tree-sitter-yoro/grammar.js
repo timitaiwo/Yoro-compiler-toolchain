@@ -78,20 +78,6 @@ module.exports = grammar({
     - escaped characters e.g \n, \t etc.
     */
 
-
-    // _primitive: $ => prec(precedences["primitive"], 
-    //                         choice(
-    //                           $._arithmetic_primitive,
-    //                           $._concatenation_primitive)),
-
-    // _arithmetic_primitive: $ => choice($.integer_primitive, 
-    //                             $.floating_point_primitive,
-    //                             $.boolean_primitive),
-
-
-    // _concatenation_primitive: $ => choice($.character_primitive, 
-    //                                   $.string_primitive),
-
     _primitive: $ => prec(precedences["primitive"], 
                                         choice(
                                           $.integer_primitive, 
@@ -154,32 +140,16 @@ module.exports = grammar({
     _greater_than_equal_operator: _ => '>=',
 
 
-    
-
-
     // Add the below to expressions
     not_operator: _ => '!', // Also use + and - as unary operators
     logical_or_operator: _ => '||',
     logical_and_operator: _ => '&&',
 
 
-      
-    // _binary_expression: $ => choice($.expression,
-    //                                 $._string_char_expression),
-
     _binary_expression: $ => choice(
                                 $.arithmetic,
                                 $.comparison,
                               ),
-
-        // expression: $ => choice($.identifier, 
-    //                                 $._arithmetic_primitive,
-    //                                 $.arithmetic, 
-    //                                 // $.parenthesis_expression,
-    //                                 $.comparison),
-
-    // // parenthesis_expression: $ => prec(precedences["subtype_parenthesis"], 
-    // //                                     seq('(', $.expression ,')')),
 
     arithmetic: $ => choice($.addition,
                               $.subtraction,
@@ -189,12 +159,12 @@ module.exports = grammar({
                               $.exponent),
 
     comparison: $ => choice($.equals,
-                                    $.not_equals,
-                                    $.greater_than,
-                                    $.greater_than_or_equals,
-                                    $.less_than,
-                                    $.less_than_or_equals
-                                    ),
+                            $.not_equals,
+                            $.greater_than,
+                            $.greater_than_or_equals,
+                            $.less_than,
+                            $.less_than_or_equals
+                            ),
 
     addition: $ => prec.left(precedences["addition_subtraction"],
                                       seq(
@@ -293,6 +263,8 @@ module.exports = grammar({
                                         )
     ),
 
+    // TODO: Parenthesis, not and logical OR/AND expressions
+    //       For loop
     parenthesis_expression: $ => prec.left(precedences["parenthesis"],
                                             seq(
                                                 '(',
@@ -407,17 +379,17 @@ module.exports = grammar({
                         field("while_loop_codeblock", $.codeblock),
                       ),
 
-    // for_loop: $ => seq(
-    //                   $.for_loop_keyword, 
-    //                   // '(', 
-    //                   $.assignment_statement,
-    //                   ';',
-    //                   $._branch_expression, // Conditional expression ??
-    //                   ';',
-    //                   $.statement,          // Normal expression ??
-    //                   // ')',
-    //                   $.codeblock
-    //                 ),
+    for_loop: $ => seq(
+                      $.for_loop_keyword, 
+                      // '(', 
+                      $.assignment_statement,
+                      ';',
+                      $.comparison, // Conditional expression ??
+                      ';',
+                      $.statement,          // Normal expression ??
+                      // ')',
+                      $.codeblock
+                    ),
 
 
     parameter: $ => choice($.identifier, $._primitive),
@@ -495,7 +467,6 @@ module.exports = grammar({
                                 $.variable_reassignment,
                                 $.variable_initialization, 
                             ),
-
 
   }
 });
