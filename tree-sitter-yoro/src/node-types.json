@@ -1,5 +1,122 @@
 [
   {
+    "type": "addition",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "arithmetic",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "addition",
+          "named": true
+        },
+        {
+          "type": "division",
+          "named": true
+        },
+        {
+          "type": "exponent",
+          "named": true
+        },
+        {
+          "type": "modulus",
+          "named": true
+        },
+        {
+          "type": "multiplication",
+          "named": true
+        },
+        {
+          "type": "subtraction",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "assignment_statement",
     "named": true,
     "fields": {},
@@ -51,6 +168,287 @@
     }
   },
   {
+    "type": "comparison",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "equals",
+          "named": true
+        },
+        {
+          "type": "greater_than",
+          "named": true
+        },
+        {
+          "type": "greater_than_or_equals",
+          "named": true
+        },
+        {
+          "type": "less_than",
+          "named": true
+        },
+        {
+          "type": "less_than_or_equals",
+          "named": true
+        },
+        {
+          "type": "not_equals",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "division",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "equals",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "exponent",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "function_call",
     "named": true,
     "fields": {
@@ -77,6 +475,170 @@
     }
   },
   {
+    "type": "greater_than",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "greater_than_or_equals",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "if_statement",
     "named": true,
     "fields": {
@@ -95,11 +657,19 @@
         "required": false,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
             "named": true
           },
           {
             "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -112,82 +682,6 @@
           },
           {
             "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
             "named": true
           },
           {
@@ -221,11 +715,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
             "named": true
           },
           {
             "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -238,82 +740,6 @@
           },
           {
             "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
             "named": true
           },
           {
@@ -325,7 +751,7 @@
     }
   },
   {
-    "type": "numeric_addition",
+    "type": "less_than",
     "named": true,
     "fields": {
       "left": {
@@ -333,7 +759,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -349,51 +787,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -403,7 +797,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -419,51 +825,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -471,7 +833,7 @@
     }
   },
   {
-    "type": "numeric_division",
+    "type": "less_than_or_equals",
     "named": true,
     "fields": {
       "left": {
@@ -479,7 +841,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -495,51 +869,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -549,7 +879,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -565,51 +907,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -617,7 +915,7 @@
     }
   },
   {
-    "type": "numeric_equals",
+    "type": "modulus",
     "named": true,
     "fields": {
       "left": {
@@ -625,7 +923,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -641,51 +951,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -695,7 +961,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -711,51 +989,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -763,7 +997,7 @@
     }
   },
   {
-    "type": "numeric_exponent",
+    "type": "multiplication",
     "named": true,
     "fields": {
       "left": {
@@ -771,7 +1005,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -787,51 +1033,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -841,7 +1043,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -857,51 +1071,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -909,7 +1079,7 @@
     }
   },
   {
-    "type": "numeric_greater_than",
+    "type": "not_equals",
     "named": true,
     "fields": {
       "left": {
@@ -917,7 +1087,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -933,51 +1115,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -987,7 +1125,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -1003,1073 +1153,7 @@
             "named": true
           },
           {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "numeric_greater_than_or_equals",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "numeric_less_than",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "numeric_less_than_or_equals",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "numeric_modulus",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "numeric_multiplication",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "numeric_not_equals",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "numeric_subtraction",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "boolean_primitive",
-            "named": true
-          },
-          {
-            "type": "floating_point_primitive",
-            "named": true
-          },
-          {
-            "type": "identifier",
-            "named": true
-          },
-          {
-            "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
+            "type": "string_primitive",
             "named": true
           }
         ]
@@ -2082,7 +1166,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "boolean_primitive",
@@ -2120,11 +1204,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
             "named": true
           },
           {
             "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -2137,82 +1229,6 @@
           },
           {
             "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
             "named": true
           },
           {
@@ -2256,8 +1272,12 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": false,
+      "required": true,
       "types": [
+        {
+          "type": "arithmetic",
+          "named": true
+        },
         {
           "type": "assignment_statement",
           "named": true
@@ -2272,6 +1292,10 @@
         },
         {
           "type": "character_primitive",
+          "named": true
+        },
+        {
+          "type": "comparison",
           "named": true
         },
         {
@@ -2299,82 +1323,6 @@
           "named": true
         },
         {
-          "type": "numeric_addition",
-          "named": true
-        },
-        {
-          "type": "numeric_division",
-          "named": true
-        },
-        {
-          "type": "numeric_equals",
-          "named": true
-        },
-        {
-          "type": "numeric_exponent",
-          "named": true
-        },
-        {
-          "type": "numeric_greater_than",
-          "named": true
-        },
-        {
-          "type": "numeric_greater_than_or_equals",
-          "named": true
-        },
-        {
-          "type": "numeric_less_than",
-          "named": true
-        },
-        {
-          "type": "numeric_less_than_or_equals",
-          "named": true
-        },
-        {
-          "type": "numeric_modulus",
-          "named": true
-        },
-        {
-          "type": "numeric_multiplication",
-          "named": true
-        },
-        {
-          "type": "numeric_not_equals",
-          "named": true
-        },
-        {
-          "type": "numeric_subtraction",
-          "named": true
-        },
-        {
-          "type": "string_char_concatenation",
-          "named": true
-        },
-        {
-          "type": "string_char_equals",
-          "named": true
-        },
-        {
-          "type": "string_char_greater_than",
-          "named": true
-        },
-        {
-          "type": "string_char_greater_than_or_equals",
-          "named": true
-        },
-        {
-          "type": "string_char_less_than",
-          "named": true
-        },
-        {
-          "type": "string_char_less_than_or_equals",
-          "named": true
-        },
-        {
-          "type": "string_char_not_equals",
-          "named": true
-        },
-        {
           "type": "string_primitive",
           "named": true
         },
@@ -2386,639 +1334,91 @@
     }
   },
   {
-    "type": "string_char_concatenation",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string_char_equals",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string_char_greater_than",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string_char_greater_than_or_equals",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string_char_less_than",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string_char_less_than_or_equals",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
-    "type": "string_char_not_equals",
-    "named": true,
-    "fields": {
-      "left": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      },
-      "right": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "character_primitive",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
-            "named": true
-          },
-          {
-            "type": "string_primitive",
-            "named": true
-          }
-        ]
-      }
-    }
-  },
-  {
     "type": "string_primitive",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "subtraction",
+    "named": true,
+    "fields": {
+      "left": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      },
+      "right": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
+            "type": "boolean_primitive",
+            "named": true
+          },
+          {
+            "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
+            "named": true
+          },
+          {
+            "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "integer_primitive",
+            "named": true
+          },
+          {
+            "type": "string_primitive",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "variable_initialization",
@@ -3029,11 +1429,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
             "named": true
           },
           {
             "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -3050,82 +1458,6 @@
           },
           {
             "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
             "named": true
           },
           {
@@ -3185,11 +1517,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
             "named": true
           },
           {
             "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -3206,82 +1546,6 @@
           },
           {
             "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
             "named": true
           },
           {
@@ -3321,11 +1585,19 @@
         "required": true,
         "types": [
           {
+            "type": "arithmetic",
+            "named": true
+          },
+          {
             "type": "boolean_primitive",
             "named": true
           },
           {
             "type": "character_primitive",
+            "named": true
+          },
+          {
+            "type": "comparison",
             "named": true
           },
           {
@@ -3338,82 +1610,6 @@
           },
           {
             "type": "integer_primitive",
-            "named": true
-          },
-          {
-            "type": "numeric_addition",
-            "named": true
-          },
-          {
-            "type": "numeric_division",
-            "named": true
-          },
-          {
-            "type": "numeric_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_exponent",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than",
-            "named": true
-          },
-          {
-            "type": "numeric_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than",
-            "named": true
-          },
-          {
-            "type": "numeric_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_modulus",
-            "named": true
-          },
-          {
-            "type": "numeric_multiplication",
-            "named": true
-          },
-          {
-            "type": "numeric_not_equals",
-            "named": true
-          },
-          {
-            "type": "numeric_subtraction",
-            "named": true
-          },
-          {
-            "type": "string_char_concatenation",
-            "named": true
-          },
-          {
-            "type": "string_char_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than",
-            "named": true
-          },
-          {
-            "type": "string_char_greater_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than",
-            "named": true
-          },
-          {
-            "type": "string_char_less_than_or_equals",
-            "named": true
-          },
-          {
-            "type": "string_char_not_equals",
             "named": true
           },
           {
