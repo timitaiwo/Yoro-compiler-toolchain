@@ -1,3 +1,5 @@
+# accept keywords as regex??
+
 [keywords.control_flow_keywords]
 if_statement_keyword = "ṣe"
 else_statement_keyword = "tabi"
