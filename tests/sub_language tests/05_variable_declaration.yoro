@@ -1,0 +1,8 @@
+// Variable assignment 
+
+jẹki orukọ : str = "Damilọla";
+jẹki mokanla : int = 5+6;
+jẹki maa_lọ : bool = ootọ;
+jẹki mẹtala : int = ropọ(11, 2);
+jẹki agbalagba : bool = pewa("damisi", 5);
+jẹki _2024 : str = "ọdin yii";

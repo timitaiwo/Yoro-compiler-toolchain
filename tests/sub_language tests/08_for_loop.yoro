@@ -1,0 +1,16 @@
+// For loop
+
+fun jẹki numba : int = 0; numba < 10; numba = numba + 1 {
+    ṣe numba == 5 {
+        kuro;
+    }
+    sọpe(numba);
+}
+
+fun jẹki numba : int = 0; numba < 10; numba = numba + 1 {
+    ṣe numba % 2 == 0{
+        sọpe("numba is even");
+    } tabi {
+        sọpe("numba is odd");
+    }
+}

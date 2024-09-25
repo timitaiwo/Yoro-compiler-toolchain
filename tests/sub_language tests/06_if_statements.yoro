@@ -1,0 +1,21 @@
+// If statements
+
+ṣe x > 5 {
+
+}
+
+jẹki a_char : char = '🙇';
+ṣe a_char == '🙇' {
+    sọpe("Fizz");
+} tabi {
+    sọpe("Buzz");
+}
+
+jẹki numba : int = 7;
+ṣe 7 > 10 {
+    numba = 7 * 7;
+} tabi ṣe 9 + 6 < 11 {
+    pada "Ko le work";
+} tabi {
+    sọpe("Invalid conditions");
+}

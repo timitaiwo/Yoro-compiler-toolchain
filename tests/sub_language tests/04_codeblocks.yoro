@@ -1,0 +1,25 @@
+// Codeblock
+{}
+
+{
+}
+
+{
+    sọpe("Mo ki yin gbogbo agbaye");
+}
+
+{     // Entry point into the program
+    sọpe("Mo ki yin gbogbo agbaye");
+    pada 0;               // returning 0 indicates a sucessfull running of the program
+}
+
+{
+    jẹki mẹtala : int = ropọ(11, 2);
+    jẹki agbalagba : bool = pewa("damisi", 5);
+    ootọ;
+    sọpe();
+    sọpe(orukọ);
+    kuro;
+    tẹsiwaju;
+    pada 0;
+}

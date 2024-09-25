@@ -1,0 +1,27 @@
+// While loop
+
+jẹki numba : int = 0;
+
+nigbati numba < 5 {
+    sọpe(numba);
+    numba = numba + 1;
+}
+
+
+jẹki numba : int = 15;
+nigbati numba > 5 {
+    sọpe(numba);
+    numba = numba - 1;
+    ṣe numba == 10 {
+        kuro;
+    }
+}
+
+numba : int = 0;
+nigbati numba < 10 {
+    ṣe numba == 2 {
+        tẹsiwaju;
+    }
+    numba = numba + 1;
+    sọpe(numba);
+}
