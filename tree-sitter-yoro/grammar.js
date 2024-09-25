@@ -4,9 +4,6 @@
  */
 const precedences = {
 
-  expression: 1,
-  sub_expression: 2,
-
   comment : 0,
   assignment : 1,   // =
   logical_or : 2,   // || 
@@ -32,12 +29,12 @@ module.exports = grammar({
                             choice($._comment,
                                   $._statement,
                                   $.codeblock,
-                                  // $.function_declaration,
+                                  $.function_declaration,
                                 )
                             ),
 
     // Yọrọ identifiers 
-    identifier: $ => /(\p{Letter}|_)(\p{Letter}|\p{Number}|_)+/,
+    identifier: $ => /(\p{Letter}|_)((\p{Letter}|\p{Number}|_)+)?/,
     word: $ => $.identifier,
 
 
@@ -49,12 +46,12 @@ module.exports = grammar({
                           ),
 
     //Keywords
-    _keywords: $ => choice($._datatype,
+    _keywords: $ => choice($._datatype_keyword,
                             $._control_flow_keywords,
                             $._declarator_keywords),
 
     // Datatype definitions
-    _datatype: $ => choice($.int_primitive_keyword, 
+    _datatype_keyword: $ => choice($.int_primitive_keyword, 
                             $.f32_primitive_keyword, 
                             $.f64_primitive_keyword, 
                             $.bool_primitive_keyword,
@@ -280,9 +277,7 @@ module.exports = grammar({
                           ),
 
   
-    _statement: $ => 
-      // prec(precedences[""], 
-                          choice(
+    _statement: $ => choice(
                             seq(choice($._expression, 
                                       $.function_call,
                                       $.break_keyword,
@@ -294,7 +289,6 @@ module.exports = grammar({
                             $.while_loop,
                             $.for_loop,
                           ),
-                      // ),
 
 
     _control_flow_keywords: $ => choice($._if_statement_keyword, 
@@ -305,7 +299,7 @@ module.exports = grammar({
                                         $.continue_keyword,
                                     ),
 
-    _declarator_keywords: $ => choice($._function_decleration_keyword,
+    _declarator_keywords: $ => choice($._function_declaration_keyword,
                                       $._return_keyword,
                                       $._variable_declaration_keyword
                                     ),
@@ -316,16 +310,13 @@ module.exports = grammar({
     _while_loop_keyword: _ => 'nigbati',
     break_keyword: _ => 'kuro',  // Choose new keyword? kuro is leave, fọ is break
     continue_keyword: _ => 'tẹsiwaju',
-    _function_decleration_keyword: _ => 'iṣẹ',
+    _function_declaration_keyword: _ => 'iṣẹ',
     _return_keyword: _ => 'pada',
 
-
-    // return_expression: $ => prec( precedences["sub_expression"],
     return_expression: $ => seq(
                                   $._return_keyword,
                                   field('return_expression', $._expression),
                                   ';'
-                                // )
                               ),
 
 
@@ -387,57 +378,61 @@ module.exports = grammar({
                     ),
 
 
-    parameter: $ => choice($.identifier, $._primitive),
-    parameter_declaration: $ => seq($.parameter, ':', $._datatype ),
+    _parameter: $ => choice($.identifier, $._primitive),
+    parameter_declaration: $ => seq(
+                                  field("parameter_name", $._parameter), 
+                                  ':', 
+                                  field("parameter_type", $._datatype_keyword)
+                                ),
     
 
-    // function_declaration: $ => {
+    function_declaration: $ => {
+      const _parameter_declaration_in_list = repeat(
+        seq($.parameter_declaration, ',')
+      );
 
-    //   const _parameter_decleration_in_list = repeat(
-    //                                 seq(field("parameter_declaration", $.parameter_declaration), ',')
-    //                               );
+      const parameter_declaration_list = optional(
+            seq(
+              _parameter_declaration_in_list,
+              $.parameter_declaration)
+            );
 
-    //   const parameter_declaration_list = optional(
-    //                               seq(_parameter_decleration_in_list,
-    //                                 field("parameter_declaration", $.parameter_declaration))
-    //                               );
-
-    //   const _return_type = seq('->',
-    //                           field('return_datatype', $._datatype)
-    //                         );
-
+      return_value = $._datatype_keyword;
+      return_sequence = optional(
+                          seq(
+                            '->', 
+                            field("return_value", return_value)
+                          )
+                        );
       
-      
-    //   // return prec(precedences["sub_expression"],
-    //   return seq(
-    //                     $._function_decleration_keyword,
-    //                     field("function_name", $.identifier),
-    //                     '(', parameter_declaration_list,
-    //                     ')',
-    //                     optional(_return_type),
-    //                     $.codeblock
-    //                   )
-    //                 // )
-    // },
+      return seq(
+                    $._function_declaration_keyword,
+                    field("function_name", $.identifier),
+                    '(',
+                    parameter_declaration_list,
+                    ')',
+                    return_sequence,
+                    $.codeblock
+                    )
+                },
 
 
     function_call: $ => {
       const _parameter_in_list = repeat(
-                                    seq(field("parameter", $.parameter), ',')
+                                    seq(field("parameter", $._parameter), ',')
                                   );
 
-      const parameter_list = optional(
+      const _parameter_list = optional(
                                   seq(_parameter_in_list,
-                                    field("parameter", $.parameter))
+                                    field("parameter", $._parameter))
                                   );
       
-      // return prec(precedences["sub_expression"],
       return seq(
                     field("function_name", $.identifier),
-                    '(', parameter_list,
+                    '(',
+                    field("parameter_list", _parameter_list),
                     ')'
                     )
-                  // )
               },
 
 
@@ -445,9 +440,10 @@ module.exports = grammar({
     _assignment_operator: _ => '=',
     variable_initialization: $ => seq(
                                 $._variable_declaration_keyword, 
-                                field("variable_name", $.identifier), 
-                                ':', 
-                                field("variable_datatype", $._datatype), 
+                                // field("variable_name", $.identifier), 
+                                // ':', 
+                                // field("variable_datatype", $._datatype_keyword),
+                                $.parameter_declaration, 
                                 $._assignment_operator, 
                                 field("assigned_expression", choice($._expression, $.function_call)),
                               ),
