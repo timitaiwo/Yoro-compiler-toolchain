@@ -1,18 +1,18 @@
 cmake_minimum_required(VERSION 3.30.1)
-# If on windows NMake needs to be installed.
-# It comes bundled with the Microsoft Visual Studio IDE
-project(yoro)
+# On windows NMake needs to be installed.
+# It bundled with the Microsoft Visual Studio IDE
+project(yoro-tool)
 
 # Integrate CMake and Google Test
 # https://matgomes.com/integrate-google-test-into-cmake/
 
-set(CXX_STANDARD 20)
+set(CXX_STANDARD 17)
 set(CXX_STANDARD_REQUIRED TRUE)
 set(CXX_STANDARD_EXTENSIONS OFF)
 
-# enable_testing()
-
 # add_subdirectory(src)
+
+# enable_testing()
 # add_subdirectory(tests)
 
 
@@ -37,11 +37,10 @@ set(YORO_PARSER_DIR "${CMAKE_SOURCE_DIR}/tree-sitter-yoro/src")
 message(STATUS "${YORO_PARSER_DIR}")
 
 
-# Setup Treesitter library
+# Setup Treesitter libjsonrary
 add_subdirectory(${LIBRARIES_DIR})
 # Ensure this is valid
-# add_executable(parser 
-#                 ")
+
 
 # Setup LLVM - https://releases.llvm.org/18.1.8/docs/CMake.html#embedding-llvm-in-your-project
 # find_package(LLVM REQUIRED CONFIG)
@@ -79,6 +78,7 @@ target_include_directories(${PROJECT_NAME}
                             PRIVATE
                             "${LIBRARIES_DIR}/treesitter/lib/include"
                             "${YORO_PARSER_DIR}"
+                            "${SOURCE_CODE_DIR}"
                             )
 
 target_link_libraries(${PROJECT_NAME}
