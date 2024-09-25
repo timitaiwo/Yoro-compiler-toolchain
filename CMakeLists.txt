@@ -1,14 +1,18 @@
 cmake_minimum_required(VERSION 3.30.1)
 # On windows NMake needs to be installed.
 # It bundled with the Microsoft Visual Studio IDE
-project(yoro-tool)
+project(yoro)
 
 # Integrate CMake and Google Test
 # https://matgomes.com/integrate-google-test-into-cmake/
 
 set(CXX_STANDARD 17)
-set(CXX_STANDARD_REQUIRED TRUE)
-set(CXX_STANDARD_EXTENSIONS OFF)
+set(CXX_STANDARD_REQUIRED ON)
+set(CXX_STANDARD_EXTENSIONS ON)
+
+set(C_STANDARD 11)
+set(C_STANDARD_REQUIRED ON)
+set(C_STANDARD_EXTENSIONS ON)
 
 # add_subdirectory(src)
 
@@ -86,8 +90,15 @@ target_link_libraries(${PROJECT_NAME}
                         # ${llvm_libs}
                         )
 
-target_compile_features(${PROJECT_NAME}
-                        PRIVATE cxx_std_20)
+# target_compile_definitions(${PROJECT_NAME}
+#                             PRIVATE
+#                             -Wno-c99-designated-initializer-order
+#                             -Wc99-designator
+#                             -Wreorder-init-list
+#                             )
+
+# target_compile_features(${PROJECT_NAME}
+#                         PRIVATE cxx_std_20)
 
 # Link against LLVM libraries
 # target_link_libraries(simple-tool ${llvm_libs})
