@@ -3,6 +3,9 @@
  *
  */
 
+#ifndef _YORO_AST_
+#define _YORO_AST_
+
 #include <tree_sitter/api.h>
 #include <string>
 
@@ -23,3 +26,4 @@ public:
 };
 
 
+#endif
