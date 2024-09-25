@@ -109,6 +109,8 @@ pewa("damisi", 4, 5);
 
 // Function Declaration
 
+iṣẹ pataki() {}
+
 iṣẹ pataki() -> int {}
 
 iṣẹ pataki() -> int {     // Entry point into the program
@@ -118,6 +120,11 @@ iṣẹ pataki() -> int {     // Entry point into the program
 
 iṣẹ pewa(orukọ : str) {
     sọpe(orukọ);
+}
+
+iṣẹ pewa(orukọ : str) {
+    jẹki output = "Hello, " + orukọ + "!";
+    sọpe(output);
 }
 
 iṣe ropọ(a : int, b : int) -> int {

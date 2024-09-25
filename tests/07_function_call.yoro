@@ -1,8 +1,8 @@
-iṣẹ pewa(str orukọ) {
-    sọpe(orukọ);
+iṣẹ pewa(orukọ : str) {
+    sọpe("Hello ", orukọ);
 }
 
-iṣe ropọ(int a, int b) -> int {
+iṣẹ ropọ(a : int, b: int) -> int {
     pada a+b;
 }
 
