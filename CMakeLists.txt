@@ -72,6 +72,7 @@ add_subdirectory(${LIBRARIES_DIR})
 set(SOURCES 
     ${SOURCE_CODE_DIR}/main.cpp
     ${SOURCE_CODE_DIR}/AST.cpp
+    ${SOURCE_CODE_DIR}/IRGenerator.cpp
     )
 
 add_executable(${PROJECT_NAME}
@@ -82,7 +83,7 @@ target_include_directories(${PROJECT_NAME}
                             PRIVATE
                             "${LIBRARIES_DIR}/treesitter/lib/include"
                             "${YORO_PARSER_DIR}"
-                            "${SOURCE_CODE_DIR}"
+                            "${SOURCE_CODE_DIR}/include"
                             )
 
 target_link_libraries(${PROJECT_NAME}
