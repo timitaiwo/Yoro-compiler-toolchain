@@ -17,18 +17,22 @@
 class AST
 {
 private:
-    /* data */
     TSParser *parser = nullptr;
     TSTree* concrete_tree = nullptr;
-    bool tree_ready;
+    TSNode rootNode;
+    bool tree_ready = false;
+    TSInputEncoding file_encoding;
 
 public:
-    AST(void);
+    AST(TSInputEncoding file_encoding);
+    AST(void) : AST(TSInputEncodingUTF8) {};
     ~AST(void);
     
     bool generate_tree(std::string source_code);
     bool hasValidTree(void);
+    std::string printTree(void);
+    std::string printNode(TSNode& node);
+    bool isUTF8();
 };
-
 
 #endif
