@@ -3,7 +3,7 @@
 #include <fstream>
 #include <sstream>
 
-
+// 
 #include <string>
 
 // Include project headers in src/include folder
@@ -13,33 +13,33 @@
 // Main function
 int main(int argv, char** args)
 {
-    // File Handling
-    if (argv < 2){
-        std::cout << "Please pass in a file name and try again" << std::endl;
-        return 1;
-    }
+    // // File Handling
+    // if (argv < 2){
+    //     std::cout << "Please pass in a file name and try again" << std::endl;
+    //     return 1;
+    // }
 
-    std::string yoro_file = args[1];
-    std::ifstream source_file(yoro_file);
+    // std::string yoro_file = args[1];
+    // std::ifstream source_file(yoro_file);
 
 
-    if (!source_file.is_open()) {
-        std::cout << "File " << yoro_file << " cannot be opened" << std::endl;
-        return 1;
-    }
+    // if (!source_file.is_open()) {
+    //     std::cout << "File " << yoro_file << " cannot be opened" << std::endl;
+    //     return 1;
+    // }
 
-    // check file is UTF-16 for web environments
-    // else it is assumed to be UTF-8
+    // // check file is UTF-16 for web environments
+    // // else it is assumed to be UTF-8
 
-    // TSInputEncoding file_encoding = TSInputEncodingUTF16; //Only for the web
+    // // TSInputEncoding file_encoding = TSInputEncodingUTF16; //Only for the web
 
-    // std::cout << "Reading the source code" << std::endl;
-    std::stringstream source_stream;
-    source_stream << source_file.rdbuf();
-    std::string source_code = source_stream.str();
+    // // std::cout << "Reading the source code" << std::endl;
+    // std::stringstream source_stream;
+    // source_stream << source_file.rdbuf();
+    // std::string source_code = source_stream.str();
 
     // Build concrete syntax tree
-    // std::string source_code = "'a' + 'ẹ';";
+    std::string source_code = "'a' + 'ẹ';";
 
     // std::cout << '\n' << source_code << '\n' << std::endl;
     
@@ -53,22 +53,20 @@ int main(int argv, char** args)
     std::cout << syntax_tree.isUTF8() << std::endl;
     
 
-    // // Generate IR
-    std::string LLVM_IR = IRGenerator().getIR(syntax_tree);
-    std::cout << LLVM_IR << std::endl;
+    // Do semantic checks
+
+
+    // Generate IR
+    std::unique_ptr<llvm::Module> LLVMModule = IRGenerator().getIR(syntax_tree);
+    LLVMModule->print(llvm::outs(), nullptr);
+    // std::cout << LLVM_IR << std::endl;
 
     // Do LLVM Codegen first
     // Check no errors or missing
     // Do semantic checks using treesitter query
 
-    // Do LLVM codegen
+    
 
-    // TODO: implement the operators and test each one
-    // TODO: Generate the LLVM IR by iterating down to the 
-    //       lowest node of the graph and climbing back up
-
-    // std::cout << "This one runs" << std::endl;
-
-    source_file.close();  // close file 
+    // source_file.close();  // close file 
     return 0;
 }

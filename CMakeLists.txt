@@ -36,22 +36,20 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 
 set(SOURCE_CODE_DIR "${CMAKE_SOURCE_DIR}/src")
 set(LIBRARIES_DIR "${CMAKE_SOURCE_DIR}/libs")
-set(YORO_PARSER_DIR "${CMAKE_SOURCE_DIR}/tree-sitter-yoro/src")
-
-message(STATUS "${YORO_PARSER_DIR}")
 
 
 # Setup Treesitter libjsonrary
 add_subdirectory(${LIBRARIES_DIR})
+# add_subdirectory("${LIBRARIES_DIR}/llvm-project-18.x/llvm")
 # Ensure this is valid
 
 
 # Setup LLVM - https://releases.llvm.org/18.1.8/docs/CMake.html#embedding-llvm-in-your-project
-# find_package(LLVM REQUIRED CONFIG)
-# if(LLVM_FOUND)
-#     message(STATUS "Found install of LLVM ${LLVM_PACKAGE_VERSION} on the system")
-# else()
-#     message(STATUS "Did not find an install of LLVM on the system")
+find_package(LLVM REQUIRED CONFIG)
+if(LLVM_FOUND)
+    message(STATUS "Found install of LLVM ${LLVM_PACKAGE_VERSION} on the system")
+else()
+    message(STATUS "Did not find an install of LLVM on the system")
 #     message(WARNING "LLVM install not found on the systemso compile of LLVM attempted"
 #                     "ensure the command below is executed\n"
 #                     "git submodule update --init --recursive"
@@ -59,13 +57,13 @@ add_subdirectory(${LIBRARIES_DIR})
 #     set(LLVM_SRC_DIR "${LIBRARIES_DIR}/llvm-project-18.x/llvm")
 #     include_directories("{LLVM_SRC_DIR}/include/llvm")
 #     add_subdirectory(${LLVM_SRC_DIR})
-# endif()
+endif()
 
-# include_directories(${LLVM_INCLUDE_DIRS})
-# separate_arguments(LLVM_DEFINITIONS_LIST NATIVE_COMMAND ${LLVM_DEFINITIONS})
-# add_definitions(${LLVM_DEFINITIONS_LIST})
+include_directories(${LLVM_INCLUDE_DIRS})
+separate_arguments(LLVM_DEFINITIONS_LIST NATIVE_COMMAND ${LLVM_DEFINITIONS})
+add_definitions(${LLVM_DEFINITIONS_LIST})
 
-# llvm_map_components_to_libnames(llvm_libs support core irreader)
+llvm_map_components_to_libnames(llvm_libs support core irreader)
 
 
 # Build the yọrọ compiler
@@ -78,17 +76,23 @@ set(SOURCES
 add_executable(${PROJECT_NAME}
                 "${SOURCES}"
                 )
+
+# set(LLVM_INCLUDES
+#     "${LIBRARIES_DIR}/llvm-project-18.x/llvm/include"
+#     "${LIBRARIES_DIR}/llvm-project-18.x/utils/bazel/llvm-project-overlay/llvm/include"
+# )
  
 target_include_directories(${PROJECT_NAME}
                             PRIVATE
-                            "${LIBRARIES_DIR}/treesitter/lib/include"
-                            "${YORO_PARSER_DIR}"
                             "${SOURCE_CODE_DIR}/include"
+                            "${CMAKE_SOURCE_DIR}/tree-sitter-yoro/src"
+                            "${LIBRARIES_DIR}/treesitter/lib/include"
+                            # "${LLVM_INCLUDES}/"
                             )
 
 target_link_libraries(${PROJECT_NAME}
                         tree-sitter
-                        # ${llvm_libs}
+                        ${llvm_libs}
                         )
 
 # target_compile_definitions(${PROJECT_NAME}
