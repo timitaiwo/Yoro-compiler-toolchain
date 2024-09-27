@@ -54,8 +54,8 @@ int main(int argv, char** args)
     
 
     // // Generate IR
-    // std::string LLVM_IR = IRGenerator().getIR(syntax_tree);
-    // std::cout << LLVM_IR << std::endl;
+    std::string LLVM_IR = IRGenerator().getIR(syntax_tree);
+    std::cout << LLVM_IR << std::endl;
 
     // Do LLVM Codegen first
     // Check no errors or missing
