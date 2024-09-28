@@ -24,9 +24,6 @@ private:
     bool tree_ready = false;
     TSInputEncoding file_encoding;
 
-    bool hasMissing(TSTree* prospective_tree);
-    bool hasError(TSTree* prospective_tree);
-
 public:
     AST(TSInputEncoding file_encoding, std::string source_code);
     AST(std::string source_code) : AST(TSInputEncodingUTF8, source_code) {};
@@ -38,7 +35,6 @@ public:
     TSNode getRoot(void);
 
     // String casting
-    // std::string toString() const;
     std::string toString(TSNode node) const;
     friend std::ostream& operator<<(std::ostream& os, const AST& ast);
 };

@@ -22,21 +22,22 @@ AST::AST(TSInputEncoding file_encoding, std::string source_code) {
         // TODO: Throw error
     }
 
-    this->file_encoding = file_encoding;
-
     // Generate tree
     TSTree* prospective_tree = ts_parser_parse_string(
                                         parser,
                                         nullptr,
                                         source_code.c_str(),
                                         source_code.length());
-    // TODO: Implement error checking
-    // if (hasMissing(prospective_tree) || hasError(prospective_tree) ) {
-    //     ts_tree_delete(prospective_tree);
-    //     ts_parser_delete(parser);
-    //     Throw error for missing
-    // }
+    
+    // Error checking
+    if (ts_node_has_error(ts_tree_root_node(prospective_tree))){
+        std::cout << "Tree Has Error!!!" << std::endl;
+        ts_tree_delete(prospective_tree); // Introduces segmentation fault
+        ts_parser_delete(parser);
+        throw std::invalid_argument("Supplied script has error");
+    }
 
+    this->file_encoding = file_encoding;
     concrete_tree = prospective_tree;
     rootNode = ts_tree_root_node(concrete_tree);
     tree_ready = true;
@@ -51,19 +52,6 @@ AST::~AST(void)
 }
 
 
-// TODO: Implement hasMissing and hasError
-bool AST::hasMissing(TSTree* prospective_tree) {
-
-
-    return false;
-}
-
-bool AST::hasError(TSTree* prospective_tree) {
-
-    return false;
-}
-
-
 
 bool AST::isUTF8() {
     return file_encoding == TSInputEncodingUTF8;
@@ -74,17 +62,6 @@ TSNode AST::getRoot(void) {
 }
 
 
-
-// std::string AST::toString() const {
-//     if(!tree_ready) return "AST does not exist";
-
-//     char * nodeSExpressionChar = ts_node_string(rootNode);
-
-//     std::string nodeSExpression = nodeSExpressionChar;
-
-//     free(nodeSExpressionChar);
-//     return nodeSExpression;
-// }
 
 std::string AST::toString(TSNode node) const{
     if(!tree_ready) return "AST does not exist";
