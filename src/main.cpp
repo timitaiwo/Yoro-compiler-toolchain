@@ -29,15 +29,18 @@ int main(int argv, char** args)
     //     return 1;
     // }
 
-    // Determine Compiler environment
+    // Create Pasrser, IRGenerator and IR executor objects
+    // Throw error if any of them fail
     #ifdef __wasm__
     TSInputEncoding file_encoding = TSInputEncodingUTF16;
     AST syntax_tree = AST(file_encoding);
     #else
     AST syntax_tree = AST();
     #endif
-    
 
+    IRGenerator irGenerator = IRGenerator();
+    auto executor = IRExecutor();
+    
     // // std::cout << "Reading the source code" << std::endl;
     // std::stringstream source_stream;
     // source_stream << source_file.rdbuf();
@@ -54,12 +57,11 @@ int main(int argv, char** args)
 
 
     // Generate IR
-    std::unique_ptr<llvm::Module> inMemoryIR = IRGenerator().getIR(syntax_tree);
+    std::unique_ptr<llvm::Module> inMemoryIR = irGenerator.getIR(syntax_tree);
     inMemoryIR->print(llvm::outs(), nullptr); // Print IR
 
     // Execute IR Module
-    // bool executor = IRExecutor();//.initiateExecution(inMemoryIR);
-    
+    executor.initiateExecution(inMemoryIR);
 
     // source_file.close();  // close file 
     return 0;

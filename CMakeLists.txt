@@ -71,6 +71,7 @@ set(SOURCES
     ${SOURCE_CODE_DIR}/main.cpp
     ${SOURCE_CODE_DIR}/AST.cpp
     ${SOURCE_CODE_DIR}/IRGenerator.cpp
+    ${SOURCE_CODE_DIR}/IRExecutor.cpp
     )
 
 add_executable(${PROJECT_NAME}
