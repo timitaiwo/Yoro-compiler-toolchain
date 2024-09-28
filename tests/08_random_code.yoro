@@ -1,0 +1,16 @@
+ṣe ootọ {
+    jẹki a : int = 3;
+    jẹki b : int = 2;
+    fun a = 0; a < 5; a = a + 1 {
+        b = b + 1;
+        ṣe b > 4 {
+            kuro;
+        } tabi {
+            ṣe a == 3 {
+                pada b;
+            } tabi {
+                pada 0;
+            }
+        }
+    }
+}

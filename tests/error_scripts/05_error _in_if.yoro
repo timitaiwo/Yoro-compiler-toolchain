@@ -1,0 +1,6 @@
+jẹki a_char : char = '🙇';
+ṣe +ses a_char  == '🙇' {
+    sọpe("Fizz")
+} tabi {
+    sọpe("Buzz");
+}
