@@ -1,75 +1,72 @@
 // boolean
-ootọ
-irọ
--ootọ
--irọ
+ootọ;
+irọ;
+-ootọ;
+-irọ;
 
 
 # identifiers
-iṣe
-pataki
-Damilọla
-lọ_soke
-_jẹun
+iṣe;
+pataki;
+Damilọla;
+lọ_soke;
+_jẹun;
 
 
 // character primitives
-'p'
-'Ọ'
-'?'
-'-'
-'='
-'£'
-'$'
-'7'
-'ẹ'
-' '
-'🫡'
-'🙇'
-'👽'
-
-
-/*
-string primitives
-*/
-""
-" "
-"  "
-"🙇💖✅⭐"
-"🫡✅ 🙇"
-"M"
-"ẹ"
-"Lekan"
-"Ọlabamiji32324"
-"Mo mọ pe"
-"Apanilẹkun Jaye"
-"Apanilẹkun Jaye?"
-"Temidun, ọrọ rẹ ko fe ye mi mo. bawo ni eleduwa se fikan gbakan lọwọ re?"
+'p';
+'Ọ';
+'?';
+'-';
+'=';
+'£';
+'$';
+'7';
+'ẹ';
+' ';
+'🫡';iṣe;
+pataki;
+Damilọla;
+lọ_soke;
+_jẹun;
+"";
+" ";
+"  ";
+"🙇💖✅⭐";
+"🫡✅ 🙇";
+"M";
+"ẹ";
+"Lekan";
+"Ọlabamiji32324";
+"Mo mọ pe";
+"Apanilẹkun Jaye";
+"Apanilẹkun Jaye?";
+"Temidun, ọrọ rẹ ko fe ye mi mo. bawo ni eleduwa se fikan gbakan lọwọ re?";
 
 
 # Boolean numbers
-0b0100
-0B0100
--0b0100
--0B0100
+0b0100;
+0B0100;
+-0b0100;
+-0B0100;
 
 
 // Octal numbers
-0o0732
-0O4253
--0o0732
--0O4253
+0o0732;
+0O4253;
+-0o0732;
+-0O4253;
 
 
 # Hexadecimal numbers
-0xBEEF
-0XBEEF
--0xBEEF
--0XBEEF
-0xf057
-0X32BA
--0xf057
--0X32BA
+0xBEEF;
+0XBEEF;
+-0xBEEF;
+-0XBEEF;
+0xf057;
+0X32BA;
+-0xf057;
+-0X32BA;
 
 
 // Decimal numbers
