@@ -4,15 +4,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -24,7 +40,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -32,7 +56,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -52,15 +76,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -72,7 +112,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -80,7 +128,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -146,7 +194,12 @@
     }
   },
   {
-    "type": "character_primitive",
+    "type": "boolean_false",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "boolean_true",
     "named": true,
     "fields": {}
   },
@@ -167,7 +220,15 @@
           "named": true
         },
         {
-          "type": "boolean_primitive",
+          "type": "binary_integer",
+          "named": true
+        },
+        {
+          "type": "boolean_false",
+          "named": true
+        },
+        {
+          "type": "boolean_true",
           "named": true
         },
         {
@@ -187,6 +248,10 @@
           "named": true
         },
         {
+          "type": "decimal_integer",
+          "named": true
+        },
+        {
           "type": "floating_point_primitive",
           "named": true
         },
@@ -199,6 +264,10 @@
           "named": true
         },
         {
+          "type": "hexadecimal_integer",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -207,7 +276,7 @@
           "named": true
         },
         {
-          "type": "integer_primitive",
+          "type": "octal_integer",
           "named": true
         },
         {
@@ -265,15 +334,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -285,7 +370,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -293,7 +386,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -313,15 +406,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -333,7 +442,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -341,7 +458,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -357,15 +474,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -377,7 +510,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -385,7 +526,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -405,15 +546,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -425,7 +582,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -433,7 +598,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -449,15 +614,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -469,7 +650,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -477,7 +666,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -497,15 +686,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -517,7 +722,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -525,7 +738,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -564,7 +777,15 @@
           "named": true
         },
         {
-          "type": "boolean_primitive",
+          "type": "binary_integer",
+          "named": true
+        },
+        {
+          "type": "boolean_false",
+          "named": true
+        },
+        {
+          "type": "boolean_true",
           "named": true
         },
         {
@@ -584,6 +805,10 @@
           "named": true
         },
         {
+          "type": "decimal_integer",
+          "named": true
+        },
+        {
           "type": "floating_point_primitive",
           "named": true
         },
@@ -596,6 +821,10 @@
           "named": true
         },
         {
+          "type": "hexadecimal_integer",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -604,7 +833,7 @@
           "named": true
         },
         {
-          "type": "integer_primitive",
+          "type": "octal_integer",
           "named": true
         },
         {
@@ -637,7 +866,15 @@
         "required": false,
         "types": [
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -645,7 +882,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -653,7 +898,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -671,7 +916,15 @@
             "named": false
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -679,7 +932,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -687,7 +948,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -763,15 +1024,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -783,7 +1060,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -791,7 +1076,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -811,15 +1096,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -831,7 +1132,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -839,7 +1148,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -855,15 +1164,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -875,7 +1200,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -883,7 +1216,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -903,15 +1236,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -923,7 +1272,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -931,7 +1288,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -961,11 +1318,27 @@
         "required": false,
         "types": [
           {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -977,7 +1350,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -985,7 +1366,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1015,15 +1396,31 @@
         ]
       },
       "if_statement_condition": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1035,7 +1432,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1043,7 +1448,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1059,15 +1464,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1079,7 +1500,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1087,7 +1516,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1107,15 +1536,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1127,7 +1572,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1135,7 +1588,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1151,15 +1604,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1171,7 +1640,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1179,7 +1656,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1199,15 +1676,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1219,7 +1712,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1227,7 +1728,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1243,15 +1744,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1263,7 +1780,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1271,7 +1796,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1291,15 +1816,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1311,7 +1852,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1319,7 +1868,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1335,15 +1884,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1355,7 +1920,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1363,7 +1936,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1383,15 +1956,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1403,7 +1992,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1411,7 +2008,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1427,15 +2024,31 @@
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1447,7 +2060,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1455,7 +2076,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1475,15 +2096,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1495,7 +2132,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1503,7 +2148,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1523,7 +2168,15 @@
         "required": true,
         "types": [
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1531,7 +2184,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1539,7 +2200,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1585,15 +2246,31 @@
     "named": true,
     "fields": {
       "return_expression": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1605,7 +2282,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1613,7 +2298,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1641,7 +2326,15 @@
           "named": true
         },
         {
-          "type": "boolean_primitive",
+          "type": "binary_integer",
+          "named": true
+        },
+        {
+          "type": "boolean_false",
+          "named": true
+        },
+        {
+          "type": "boolean_true",
           "named": true
         },
         {
@@ -1665,6 +2358,10 @@
           "named": true
         },
         {
+          "type": "decimal_integer",
+          "named": true
+        },
+        {
           "type": "floating_point_primitive",
           "named": true
         },
@@ -1681,6 +2378,10 @@
           "named": true
         },
         {
+          "type": "hexadecimal_integer",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -1689,7 +2390,7 @@
           "named": true
         },
         {
-          "type": "integer_primitive",
+          "type": "octal_integer",
           "named": true
         },
         {
@@ -1704,24 +2405,35 @@
     }
   },
   {
-    "type": "string_primitive",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "subtraction",
     "named": true,
     "fields": {
       "left": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1733,7 +2445,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1741,7 +2461,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1761,15 +2481,31 @@
         ]
       },
       "right": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1781,7 +2517,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1789,7 +2533,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1805,15 +2549,31 @@
     "named": true,
     "fields": {
       "assigned_expression": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1825,6 +2585,10 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
             "named": true
           },
@@ -1833,11 +2597,15 @@
             "named": true
           },
           {
+            "type": "hexadecimal_integer",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1863,15 +2631,31 @@
     "named": true,
     "fields": {
       "assigned_expression": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1883,6 +2667,10 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
             "named": true
           },
@@ -1891,11 +2679,15 @@
             "named": true
           },
           {
+            "type": "hexadecimal_integer",
+            "named": true
+          },
+          {
             "type": "identifier",
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -1931,15 +2723,31 @@
         ]
       },
       "while_loop_condition": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
           {
             "type": "arithmetic",
             "named": true
           },
           {
-            "type": "boolean_primitive",
+            "type": "binary_integer",
+            "named": true
+          },
+          {
+            "type": "boolean_false",
+            "named": true
+          },
+          {
+            "type": "boolean_true",
             "named": true
           },
           {
@@ -1951,7 +2759,15 @@
             "named": true
           },
           {
+            "type": "decimal_integer",
+            "named": true
+          },
+          {
             "type": "floating_point_primitive",
+            "named": true
+          },
+          {
+            "type": "hexadecimal_integer",
             "named": true
           },
           {
@@ -1959,7 +2775,7 @@
             "named": true
           },
           {
-            "type": "integer_primitive",
+            "type": "octal_integer",
             "named": true
           },
           {
@@ -2047,11 +2863,11 @@
     "named": false
   },
   {
-    "type": "bool_primitive_keyword",
+    "type": "binary_integer",
     "named": true
   },
   {
-    "type": "boolean_primitive",
+    "type": "bool_primitive_keyword",
     "named": true
   },
   {
@@ -2063,7 +2879,15 @@
     "named": true
   },
   {
+    "type": "character_primitive",
+    "named": true
+  },
+  {
     "type": "continue_keyword",
+    "named": true
+  },
+  {
+    "type": "decimal_integer",
     "named": true
   },
   {
@@ -2083,6 +2907,10 @@
     "named": false
   },
   {
+    "type": "hexadecimal_integer",
+    "named": true
+  },
+  {
     "type": "identifier",
     "named": true
   },
@@ -2091,8 +2919,8 @@
     "named": true
   },
   {
-    "type": "integer_primitive",
-    "named": true
+    "type": "irọ",
+    "named": false
   },
   {
     "type": "iṣẹ",
@@ -2107,11 +2935,23 @@
     "named": false
   },
   {
+    "type": "octal_integer",
+    "named": true
+  },
+  {
+    "type": "ootọ",
+    "named": false
+  },
+  {
     "type": "pada",
     "named": false
   },
   {
     "type": "str_primitive_keyword",
+    "named": true
+  },
+  {
+    "type": "string_primitive",
     "named": true
   },
   {

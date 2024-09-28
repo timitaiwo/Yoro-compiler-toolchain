@@ -128,14 +128,6 @@
       "type": "STRING",
       "value": "str"
     },
-    "_character_literal": {
-      "type": "PATTERN",
-      "value": "'(\\p{Letter}|\\p{Number}|\\p{Symbol}|\\p{Punctuation}|\\p{Separator}|\\p{Emoji})'"
-    },
-    "_string_literal": {
-      "type": "PATTERN",
-      "value": "\"[^\"\\p{Other}]*\""
-    },
     "_primitive": {
       "type": "PREC",
       "value": 13,
@@ -144,15 +136,7 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "integer_primitive"
-          },
-          {
-            "type": "SYMBOL",
             "name": "floating_point_primitive"
-          },
-          {
-            "type": "SYMBOL",
-            "name": "boolean_primitive"
           },
           {
             "type": "SYMBOL",
@@ -161,64 +145,103 @@
           {
             "type": "SYMBOL",
             "name": "string_primitive"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "boolean_true"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "boolean_false"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "binary_integer"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "octal_integer"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "decimal_integer"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "hexadecimal_integer"
           }
         ]
       }
     },
-    "boolean_primitive": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[+|-]?ootọ"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[+|-]?irọ"
-          }
-        ]
-      }
+    "boolean_true": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "-"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "ootọ"
+        }
+      ]
     },
-    "integer_primitive": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "PATTERN",
-            "value": "[+|-]?0[b|B][0|1]+"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[+|-]?0[o|O][0-7]+"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[+|-]?[0-9]+"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[+|-]?0[x|X][0-9A-Fa-f]+"
-          }
-        ]
-      }
+    "boolean_false": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "-"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "irọ"
+        }
+      ]
+    },
+    "binary_integer": {
+      "type": "PATTERN",
+      "value": "[+|-]?0[b|B][0|1]+"
+    },
+    "octal_integer": {
+      "type": "PATTERN",
+      "value": "[+|-]?0[o|O][0-7]+"
+    },
+    "decimal_integer": {
+      "type": "PATTERN",
+      "value": "[+|-]?[0-9]+"
+    },
+    "hexadecimal_integer": {
+      "type": "PATTERN",
+      "value": "[+|-]?0[x|X][0-9A-Fa-f]+"
     },
     "floating_point_primitive": {
-      "type": "TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "[+|-]?[0-9]+\\.([0-9]+)?"
-      }
+      "type": "PATTERN",
+      "value": "[+|-]?([0-9]+)?\\.([0-9]+)?"
     },
     "character_primitive": {
-      "type": "SYMBOL",
-      "name": "_character_literal"
+      "type": "PATTERN",
+      "value": "'(\\p{Letter}|\\p{Number}|\\p{Symbol}|\\p{Punctuation}|\\p{Separator}|\\p{Emoji})'"
     },
     "string_primitive": {
-      "type": "SYMBOL",
-      "name": "_string_literal"
+      "type": "PATTERN",
+      "value": "\"[^\"\\p{Other}]*\""
     },
     "_addition_operator": {
       "type": "STRING",
@@ -747,7 +770,7 @@
         ]
       }
     },
-    "parenthesis_expression": {
+    "_parenthesis_expression": {
       "type": "PREC_LEFT",
       "value": 11,
       "content": {
@@ -773,15 +796,19 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "identifier"
-        },
-        {
-          "type": "SYMBOL",
           "name": "_primitive"
         },
         {
           "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_binary_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_parenthesis_expression"
         }
       ]
     },

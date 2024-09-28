@@ -37,7 +37,6 @@ module.exports = grammar({
     identifier: $ => /(\p{Letter}|_)((\p{Letter}|\p{Number}|_)+)?/,
     word: $ => $.identifier,
 
-
     // Comments
     _single_line_comment: $ => /(\/\/|#)(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*/,
     _multi_line_comment: $ => /\/\*(\r|\n|\r\n)?(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})*(\r|\n|\r\n)?\*\//,
@@ -51,12 +50,14 @@ module.exports = grammar({
                             $._declarator_keywords),
 
     // Datatype definitions
-    _datatype_keyword: $ => choice($.int_primitive_keyword, 
-                            $.f32_primitive_keyword, 
-                            $.f64_primitive_keyword, 
-                            $.bool_primitive_keyword,
-                            $.char_primitive_keyword,
-                            $.str_primitive_keyword),
+    _datatype_keyword: $ => choice(
+                                $.int_primitive_keyword, 
+                                $.f32_primitive_keyword, 
+                                $.f64_primitive_keyword, 
+                                $.bool_primitive_keyword,
+                                $.char_primitive_keyword,
+                                $.str_primitive_keyword
+                              ),
 
     int_primitive_keyword: _ => 'int',
     f32_primitive_keyword: _ => 'f32',
@@ -65,55 +66,39 @@ module.exports = grammar({
     char_primitive_keyword: _ => 'char',
     str_primitive_keyword: _ => 'str',
 
-
-    // Character literal
-    _character_literal: _ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
-    _string_literal: _ => /"[^"\p{Other}]*"/,
-    /* Update to represent 
-    - escaped characters e.g \n, \t etc.
-    */
-
     _primitive: $ => prec(precedences["primitive"], 
                                         choice(
-                                          $.integer_primitive, 
                                           $.floating_point_primitive,
-                                          $.boolean_primitive,
                                           $.character_primitive, 
-                                          $.string_primitive)
+                                          $.string_primitive,
+                                          $.boolean_true,
+                                          $.boolean_false,
+                                          $.binary_integer,
+                                          $.octal_integer,
+                                          $.decimal_integer,
+                                          $.hexadecimal_integer
+                                        )
                               ),
 
 
     // Boolean primitives
-    boolean_primitive: $ => {
+    boolean_true: $ => seq(optional("-"), "ootọ"),
+    boolean_false: $ => seq(optional("-"), "irọ"),
 
-      const truth_primitive = /[+|-]?ootọ/;
-      const false_primitive =/[+|-]?irọ/;
+    // Integer primitives
+    binary_integer: $ => /[+|-]?0[b|B][0|1]+/,
+    octal_integer: $ => /[+|-]?0[o|O][0-7]+/,
+    decimal_integer: $ => /[+|-]?[0-9]+/,
+    hexadecimal_integer: $ => /[+|-]?0[x|X][0-9A-Fa-f]+/,
 
-      return token(choice(truth_primitive, false_primitive));
-    },
-
-    integer_primitive: $ => {
-
-      const binary_literal = /[+|-]?0[b|B][0|1]+/
-      const octal_literal = /[+|-]?0[o|O][0-7]+/
-      const decimal_literal = /[+|-]?[0-9]+/
-      const hexadecimal_literal= /[+|-]?0[x|X][0-9A-Fa-f]+/
-
-      return token(choice(binary_literal, octal_literal, 
-        decimal_literal, hexadecimal_literal));
-    },
-
-    floating_point_primitive: $ => {
-      
-      // const floating_point_literal = /[+|-]?[0-9]+\.[0-9]+/
-      const floating_point_literal = /[+|-]?[0-9]+\.([0-9]+)?/
-      
-      return token(floating_point_literal);
-    },
+    floating_point_primitive: $ => /[+|-]?([0-9]+)?\.([0-9]+)?/,
     
     // Characters and string primitives
-    character_primitive: $ => $._character_literal,
-    string_primitive: $ => $._string_literal,
+    character_primitive: $ => /'(\p{Letter}|\p{Number}|\p{Symbol}|\p{Punctuation}|\p{Separator}|\p{Emoji})'/,
+    string_primitive: $ => /"[^"\p{Other}]*"/,
+    /* Update to represent 
+    - escaped characters e.g \n, \t etc.
+    */
 
 
     // Arithmetic Operation Symbols
@@ -135,7 +120,7 @@ module.exports = grammar({
     _greater_than_equal_operator: _ => '>=',
 
 
-    // Add the below to expressions
+    // TODO: NOT, OR and AND expressions
     not_operator: _ => '!', // Also use + and - as unary operators
     logical_or_operator: _ => '||',
     logical_and_operator: _ => '&&',
@@ -258,8 +243,8 @@ module.exports = grammar({
                                         )
     ),
 
-    // TODO: Parenthesis, not and logical OR/AND expressions
-    parenthesis_expression: $ => prec.left(precedences["parenthesis"],
+    
+    _parenthesis_expression: $ => prec.left(precedences["parenthesis"],
                                             seq(
                                                 '(',
                                                 $._expression,
@@ -268,11 +253,11 @@ module.exports = grammar({
                                             ),
 
 
-    // _expression: $ => prec(precedences["expression"], 
-    _expression: $ => choice($.identifier,
-                                    $._primitive, 
-                                    $._binary_expression, 
-                                    // $.parenthesis_expression
+    _expression: $ => choice(
+                            $._primitive, 
+                            $.identifier,
+                            $._binary_expression, 
+                            $._parenthesis_expression
                             // )
                           ),
 
