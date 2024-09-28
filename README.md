@@ -1,4 +1,4 @@
-# Birkbeck Yọrọ repo
+# Note that this is WIP and is not ready to be run yet
 
 To clone this repo use 
 >```git clone --recurse-submodule https://github.com/Birkbeck/msc-projects-2023-4-timitaiwo.git```
