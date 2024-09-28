@@ -9,6 +9,7 @@
 // Include project headers in src/include folder
 #include "AST.hpp"
 #include "IRGenerator.hpp"
+#include "IRExecutor.hpp"
 
 // Main function
 int main(int argv, char** args)
@@ -28,10 +29,14 @@ int main(int argv, char** args)
     //     return 1;
     // }
 
-    // // check file is UTF-16 for web environments
-    // // else it is assumed to be UTF-8
-
-    // // TSInputEncoding file_encoding = TSInputEncodingUTF16; //Only for the web
+    // Determine Compiler environment
+    #ifdef __wasm__
+    TSInputEncoding file_encoding = TSInputEncodingUTF16;
+    AST syntax_tree = AST(file_encoding);
+    #else
+    AST syntax_tree = AST();
+    #endif
+    
 
     // // std::cout << "Reading the source code" << std::endl;
     // std::stringstream source_stream;
@@ -43,28 +48,17 @@ int main(int argv, char** args)
 
     // std::cout << '\n' << source_code << '\n' << std::endl;
     
-    AST syntax_tree = AST();
-    // AST syntax_tree = AST(file_encoding);  // Web environments
     syntax_tree.generate_tree(source_code);
 
-
-    std::cout << syntax_tree.hasValidTree() << std::endl;
-    std::cout << syntax_tree.printTree() << std::endl;
-    std::cout << syntax_tree.isUTF8() << std::endl;
-    
-
-    // Do semantic checks
+    // TODO: Do semantic checks using treesitter query
 
 
     // Generate IR
-    std::unique_ptr<llvm::Module> LLVMModule = IRGenerator().getIR(syntax_tree);
-    LLVMModule->print(llvm::outs(), nullptr);
-    // std::cout << LLVM_IR << std::endl;
+    std::unique_ptr<llvm::Module> inMemoryIR = IRGenerator().getIR(syntax_tree);
+    inMemoryIR->print(llvm::outs(), nullptr); // Print IR
 
-    // Do LLVM Codegen first
-    // Check no errors or missing
-    // Do semantic checks using treesitter query
-
+    // Execute IR Module
+    // bool executor = IRExecutor();//.initiateExecution(inMemoryIR);
     
 
     // source_file.close();  // close file 

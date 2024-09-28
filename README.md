@@ -14,6 +14,7 @@ Alternatively, clone the repo then instanciate the submodules i.e
 - NodeJS
 - Visual Studio IDE (Windows only)
 - Docker/Podman (WASM)
+- Emscripten (WASM)
 - LLVM installed on the system -> libedit, libzstd, libcurl ```sudo apt install libzstd-dev libcurl4-openssl-dev libedit-dev``` is the command to run in a linux system
 
 Visual Studio IDE is required on windows so that the compiler executable gets to be built
