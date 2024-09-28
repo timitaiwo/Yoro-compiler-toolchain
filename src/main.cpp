@@ -15,12 +15,13 @@
 int main(int argv, char** args)
 {
     // File Handling
-    if (argv < 2){
-        std::cout << "Please pass in a file name and try again" << std::endl;
+    if (argv < 3){
+        std::cout << "Please pass in the name of the main function and a file name and try again" << std::endl;
         return 1;
     }
 
-    std::string yoro_file = args[1];
+    std::string name_main = args[1];
+    std::string yoro_file = args[2];
     std::ifstream source_file(yoro_file);
 
     if (!source_file.is_open()) {
