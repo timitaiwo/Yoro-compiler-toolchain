@@ -69,7 +69,7 @@ bool AST::hasValidTree(void) {
     return tree_ready;
 }
 
-std::string AST::printTree(void) {
+std::string AST::treeSExpression(void) {
     if(!tree_ready) return "Generate a tree first";
     return printNode(rootNode);
 }

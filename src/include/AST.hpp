@@ -30,7 +30,7 @@ public:
     
     bool generate_tree(std::string source_code);
     bool hasValidTree(void);
-    std::string printTree(void);
+    std::string treeSExpression(void);
     std::string printNode(TSNode& node);
     bool isUTF8();
 };
