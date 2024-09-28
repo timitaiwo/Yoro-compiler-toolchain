@@ -33,11 +33,11 @@
       "type": "SYMBOL",
       "name": "identifier"
     },
-    "single_line_comment": {
+    "_single_line_comment": {
       "type": "PATTERN",
       "value": "(\\/\\/|#)(\\p{Letter}|\\p{Number}|\\p{Symbol}|\\p{Punctuation}|\\p{Separator}|\\p{Emoji})*"
     },
-    "multi_line_comment": {
+    "_multi_line_comment": {
       "type": "PATTERN",
       "value": "\\/\\*(\\r|\\n|\\r\\n)?(\\p{Letter}|\\p{Number}|\\p{Symbol}|\\p{Punctuation}|\\p{Separator}|\\p{Emoji})*(\\r|\\n|\\r\\n)?\\*\\/"
     },
@@ -49,11 +49,11 @@
         "members": [
           {
             "type": "SYMBOL",
-            "name": "single_line_comment"
+            "name": "_single_line_comment"
           },
           {
             "type": "SYMBOL",
-            "name": "multi_line_comment"
+            "name": "_multi_line_comment"
           }
         ]
       }

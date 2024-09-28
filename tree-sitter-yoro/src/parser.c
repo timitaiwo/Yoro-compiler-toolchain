@@ -17,8 +17,8 @@
 
 enum ts_symbol_identifiers {
   sym_identifier = 1,
-  sym_single_line_comment = 2,
-  sym_multi_line_comment = 3,
+  sym__single_line_comment = 2,
+  sym__multi_line_comment = 3,
   sym_int_primitive_keyword = 4,
   sym_f32_primitive_keyword = 5,
   sym_f64_primitive_keyword = 6,
@@ -131,8 +131,8 @@ enum ts_symbol_identifiers {
 static const char * const ts_symbol_names[] = {
   [ts_builtin_sym_end] = "end",
   [sym_identifier] = "identifier",
-  [sym_single_line_comment] = "single_line_comment",
-  [sym_multi_line_comment] = "multi_line_comment",
+  [sym__single_line_comment] = "_single_line_comment",
+  [sym__multi_line_comment] = "_multi_line_comment",
   [sym_int_primitive_keyword] = "int_primitive_keyword",
   [sym_f32_primitive_keyword] = "f32_primitive_keyword",
   [sym_f64_primitive_keyword] = "f64_primitive_keyword",
@@ -245,8 +245,8 @@ static const char * const ts_symbol_names[] = {
 static const TSSymbol ts_symbol_map[] = {
   [ts_builtin_sym_end] = ts_builtin_sym_end,
   [sym_identifier] = sym_identifier,
-  [sym_single_line_comment] = sym_single_line_comment,
-  [sym_multi_line_comment] = sym_multi_line_comment,
+  [sym__single_line_comment] = sym__single_line_comment,
+  [sym__multi_line_comment] = sym__multi_line_comment,
   [sym_int_primitive_keyword] = sym_int_primitive_keyword,
   [sym_f32_primitive_keyword] = sym_f32_primitive_keyword,
   [sym_f64_primitive_keyword] = sym_f64_primitive_keyword,
@@ -365,12 +365,12 @@ static const TSSymbolMetadata ts_symbol_metadata[] = {
     .visible = true,
     .named = true,
   },
-  [sym_single_line_comment] = {
-    .visible = true,
+  [sym__single_line_comment] = {
+    .visible = false,
     .named = true,
   },
-  [sym_multi_line_comment] = {
-    .visible = true,
+  [sym__multi_line_comment] = {
+    .visible = false,
     .named = true,
   },
   [sym_int_primitive_keyword] = {
@@ -1240,7 +1240,7 @@ static TSCharacterRange sym_identifier_character_set_2[] = {
   {0x108a7, 0x108af}, {0x108e0, 0x108f2}, {0x108f4, 0x108f5}, {0x108fb, 0x1091b},
 };
 
-static TSCharacterRange sym_single_line_comment_character_set_1[] = {
+static TSCharacterRange sym__single_line_comment_character_set_1[] = {
   {' ', '~'}, {0xa0, 0xac}, {0xae, 0x2ff}, {0x370, 0x377}, {0x37a, 0x37f}, {0x384, 0x38a}, {0x38c, 0x38c}, {0x38e, 0x3a1},
   {0x3a3, 0x482}, {0x48a, 0x52f}, {0x531, 0x556}, {0x559, 0x58a}, {0x58d, 0x58f}, {0x5be, 0x5be}, {0x5c0, 0x5c0}, {0x5c3, 0x5c3},
   {0x5c6, 0x5c6}, {0x5d0, 0x5ea}, {0x5ef, 0x5f4}, {0x606, 0x60f}, {0x61b, 0x61b}, {0x61d, 0x64a}, {0x660, 0x66f}, {0x671, 0x6d5},
@@ -1307,7 +1307,7 @@ static TSCharacterRange sym_single_line_comment_character_set_1[] = {
   {0x1fae0, 0x1fae8}, {0x1faf0, 0x1faf8},
 };
 
-static TSCharacterRange sym_multi_line_comment_character_set_1[] = {
+static TSCharacterRange sym__multi_line_comment_character_set_1[] = {
   {'\n', '\n'}, {'\r', '\r'}, {' ', '~'}, {0xa0, 0xac}, {0xae, 0x2ff}, {0x370, 0x377}, {0x37a, 0x37f}, {0x384, 0x38a},
   {0x38c, 0x38c}, {0x38e, 0x3a1}, {0x3a3, 0x482}, {0x48a, 0x52f}, {0x531, 0x556}, {0x559, 0x58a}, {0x58d, 0x58f}, {0x5be, 0x5be},
   {0x5c0, 0x5c0}, {0x5c3, 0x5c3}, {0x5c6, 0x5c6}, {0x5d0, 0x5ea}, {0x5ef, 0x5f4}, {0x606, 0x60f}, {0x61b, 0x61b}, {0x61d, 0x64a},
@@ -1429,13 +1429,13 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '\r') ADVANCE(3);
       if (lookahead == '*') ADVANCE(1);
       if (lookahead == '/') ADVANCE(101);
-      if (set_contains(sym_multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
+      if (set_contains(sym__multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
       END_STATE();
     case 2:
       if (lookahead == '\n') ADVANCE(15);
       if (lookahead == '\r') ADVANCE(3);
       if (lookahead == '*') ADVANCE(1);
-      if (set_contains(sym_multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
+      if (set_contains(sym__multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
       END_STATE();
     case 3:
       if (lookahead == '\n') ADVANCE(15);
@@ -1445,13 +1445,13 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (lookahead == '\n') ADVANCE(2);
       if (lookahead == '\r') ADVANCE(3);
       if (lookahead == '*') ADVANCE(1);
-      if (set_contains(sym_multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
+      if (set_contains(sym__multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
       END_STATE();
     case 5:
       if (lookahead == '\n') ADVANCE(2);
       if (lookahead == '\r') ADVANCE(4);
       if (lookahead == '*') ADVANCE(1);
-      if (set_contains(sym_multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
+      if (set_contains(sym__multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
       END_STATE();
     case 6:
       ADVANCE_MAP(
@@ -1705,7 +1705,7 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
           ('a' <= lookahead && lookahead <= 'f')) ADVANCE(123);
       END_STATE();
     case 47:
-      if (set_contains(sym_single_line_comment_character_set_1, 506, lookahead)) ADVANCE(13);
+      if (set_contains(sym__single_line_comment_character_set_1, 506, lookahead)) ADVANCE(13);
       END_STATE();
     case 48:
       if (eof) ADVANCE(50);
@@ -2007,18 +2007,18 @@ static bool ts_lex(TSLexer *lexer, TSStateId state) {
       if (set_contains(sym_identifier_character_set_2, 476, lookahead)) ADVANCE(98);
       END_STATE();
     case 99:
-      ACCEPT_TOKEN(sym_single_line_comment);
-      if (set_contains(sym_single_line_comment_character_set_1, 506, lookahead)) ADVANCE(99);
+      ACCEPT_TOKEN(sym__single_line_comment);
+      if (set_contains(sym__single_line_comment_character_set_1, 506, lookahead)) ADVANCE(99);
       END_STATE();
     case 100:
-      ACCEPT_TOKEN(sym_multi_line_comment);
+      ACCEPT_TOKEN(sym__multi_line_comment);
       END_STATE();
     case 101:
-      ACCEPT_TOKEN(sym_multi_line_comment);
+      ACCEPT_TOKEN(sym__multi_line_comment);
       if (lookahead == '\n') ADVANCE(15);
       if (lookahead == '\r') ADVANCE(3);
       if (lookahead == '*') ADVANCE(1);
-      if (set_contains(sym_multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
+      if (set_contains(sym__multi_line_comment_character_set_1, 508, lookahead)) ADVANCE(2);
       END_STATE();
     case 102:
       ACCEPT_TOKEN(sym_int_primitive_keyword);
@@ -2428,8 +2428,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
   [0] = {
     [ts_builtin_sym_end] = ACTIONS(1),
     [sym_identifier] = ACTIONS(1),
-    [sym_single_line_comment] = ACTIONS(1),
-    [sym_multi_line_comment] = ACTIONS(1),
+    [sym__single_line_comment] = ACTIONS(1),
+    [sym__multi_line_comment] = ACTIONS(1),
     [sym_int_primitive_keyword] = ACTIONS(1),
     [sym_f32_primitive_keyword] = ACTIONS(1),
     [sym_f64_primitive_keyword] = ACTIONS(1),
@@ -2512,8 +2512,8 @@ static const uint16_t ts_parse_table[LARGE_STATE_COUNT][SYMBOL_COUNT] = {
     [aux_sym_source_file_repeat1] = STATE(2),
     [ts_builtin_sym_end] = ACTIONS(3),
     [sym_identifier] = ACTIONS(5),
-    [sym_single_line_comment] = ACTIONS(7),
-    [sym_multi_line_comment] = ACTIONS(7),
+    [sym__single_line_comment] = ACTIONS(7),
+    [sym__multi_line_comment] = ACTIONS(7),
     [sym__character_literal] = ACTIONS(9),
     [sym__string_literal] = ACTIONS(11),
     [sym_boolean_primitive] = ACTIONS(13),
@@ -2571,8 +2571,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(33), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(143), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -2644,8 +2644,8 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(156), 1,
       sym__function_declaration_keyword,
     ACTIONS(40), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     ACTIONS(49), 2,
       sym_boolean_primitive,
       sym_integer_primitive,
@@ -2721,8 +2721,8 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(111), 1,
       sym__for_loop_keyword,
     ACTIONS(76), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     ACTIONS(78), 2,
       sym_boolean_primitive,
       sym_integer_primitive,
@@ -2803,8 +2803,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(94), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -2879,8 +2879,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(98), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -2955,8 +2955,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(102), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -3031,8 +3031,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(98), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -3107,8 +3107,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(108), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -3183,8 +3183,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(98), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -3259,8 +3259,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(98), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -3335,8 +3335,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(116), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -3405,8 +3405,8 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(111), 1,
       sym__for_loop_keyword,
     ACTIONS(123), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     ACTIONS(132), 2,
       sym_boolean_primitive,
       sym_integer_primitive,
@@ -3487,8 +3487,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym_break_keyword,
       sym_continue_keyword,
     ACTIONS(98), 2,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
     STATE(145), 2,
       sym_function_call,
       sym_assignment_statement,
@@ -5347,8 +5347,8 @@ static const uint16_t ts_small_parse_table[] = {
       sym__else_if_block,
     ACTIONS(312), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5376,8 +5376,8 @@ static const uint16_t ts_small_parse_table[] = {
     STATE(141), 1,
       sym__else_if_block,
     ACTIONS(312), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5396,8 +5396,8 @@ static const uint16_t ts_small_parse_table[] = {
   [3800] = 2,
     ACTIONS(320), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5417,8 +5417,8 @@ static const uint16_t ts_small_parse_table[] = {
   [3823] = 2,
     ACTIONS(324), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5438,8 +5438,8 @@ static const uint16_t ts_small_parse_table[] = {
   [3846] = 2,
     ACTIONS(328), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5458,8 +5458,8 @@ static const uint16_t ts_small_parse_table[] = {
   [3868] = 2,
     ACTIONS(332), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5477,8 +5477,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [3890] = 2,
     ACTIONS(324), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5497,8 +5497,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [3912] = 2,
     ACTIONS(320), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5518,8 +5518,8 @@ static const uint16_t ts_small_parse_table[] = {
   [3934] = 2,
     ACTIONS(336), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5538,8 +5538,8 @@ static const uint16_t ts_small_parse_table[] = {
   [3956] = 2,
     ACTIONS(340), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5558,8 +5558,8 @@ static const uint16_t ts_small_parse_table[] = {
   [3978] = 2,
     ACTIONS(344), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5578,8 +5578,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4000] = 2,
     ACTIONS(348), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5598,8 +5598,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4022] = 2,
     ACTIONS(352), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5618,8 +5618,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4044] = 2,
     ACTIONS(324), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5638,8 +5638,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4066] = 2,
     ACTIONS(356), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5658,8 +5658,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4088] = 2,
     ACTIONS(360), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5698,8 +5698,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4132] = 2,
     ACTIONS(368), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5718,8 +5718,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4154] = 2,
     ACTIONS(372), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5758,8 +5758,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4198] = 2,
     ACTIONS(380), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5778,8 +5778,8 @@ static const uint16_t ts_small_parse_table[] = {
   [4220] = 2,
     ACTIONS(320), 7,
       ts_builtin_sym_end,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5797,8 +5797,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4242] = 2,
     ACTIONS(328), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5816,8 +5816,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4263] = 2,
     ACTIONS(380), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5835,8 +5835,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4284] = 2,
     ACTIONS(336), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5854,8 +5854,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4305] = 2,
     ACTIONS(324), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5873,8 +5873,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4326] = 2,
     ACTIONS(344), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5914,8 +5914,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_SEMI,
   [4374] = 2,
     ACTIONS(394), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5933,8 +5933,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4395] = 2,
     ACTIONS(372), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5952,8 +5952,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4416] = 2,
     ACTIONS(320), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,
@@ -5971,8 +5971,8 @@ static const uint16_t ts_small_parse_table[] = {
       anon_sym_ju1eb9ki,
   [4437] = 2,
     ACTIONS(368), 6,
-      sym_single_line_comment,
-      sym_multi_line_comment,
+      sym__single_line_comment,
+      sym__multi_line_comment,
       sym__character_literal,
       sym__string_literal,
       sym_floating_point_primitive,

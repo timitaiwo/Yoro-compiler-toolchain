@@ -211,15 +211,7 @@
           "named": true
         },
         {
-          "type": "multi_line_comment",
-          "named": true
-        },
-        {
           "type": "return_expression",
-          "named": true
-        },
-        {
-          "type": "single_line_comment",
           "named": true
         },
         {
@@ -1701,14 +1693,6 @@
           "named": true
         },
         {
-          "type": "multi_line_comment",
-          "named": true
-        },
-        {
-          "type": "single_line_comment",
-          "named": true
-        },
-        {
           "type": "string_primitive",
           "named": true
         },
@@ -2119,20 +2103,12 @@
     "named": false
   },
   {
-    "type": "multi_line_comment",
-    "named": true
-  },
-  {
     "type": "nigbati",
     "named": false
   },
   {
     "type": "pada",
     "named": false
-  },
-  {
-    "type": "single_line_comment",
-    "named": true
   },
   {
     "type": "str_primitive_keyword",
