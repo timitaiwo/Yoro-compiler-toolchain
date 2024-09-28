@@ -6,7 +6,9 @@
 #include <parser.c>
 
 
-AST::AST(TSInputEncoding file_encoding) {
+AST::AST(TSInputEncoding file_encoding, std::string source_code) {
+
+    // Instantiate Parse Object
     parser = ts_parser_new();
     bool languageSet = ts_parser_set_language(parser, tree_sitter_yoro());
 
@@ -22,6 +24,23 @@ AST::AST(TSInputEncoding file_encoding) {
 
     this->file_encoding = file_encoding;
 
+    // Generate tree
+    TSTree* prospective_tree = ts_parser_parse_string(
+                                        parser,
+                                        nullptr,
+                                        source_code.c_str(),
+                                        source_code.length());
+    // TODO: Implement error checking
+    // if (hasMissing(prospective_tree) || hasError(prospective_tree) ) {
+    //     ts_tree_delete(prospective_tree);
+    //     ts_parser_delete(parser);
+    //     Throw error for missing
+    // }
+
+    concrete_tree = prospective_tree;
+    rootNode = ts_tree_root_node(concrete_tree);
+    tree_ready = true;
+
 }
 
 
@@ -32,52 +51,45 @@ AST::~AST(void)
 }
 
 
-bool AST::generate_tree(std::string source_code)
-{
-    TSTree* prospective_tree = ts_parser_parse_string(
-                                        parser,
-                                        nullptr,
-                                        source_code.c_str(),
-                                        source_code.length());
-    // TODO: Implement error checking
-    // if (hasMissing(prospective_tree) || hasError(prospective_tree) ) {
-    //     ts_tree_delete(prospective_tree);
-    //     tree_ready = false;
-    //     return tree_ready;
-    // }
-
-
-    concrete_tree = prospective_tree;
-    rootNode = ts_tree_root_node(concrete_tree);
-    tree_ready = true;
-    return tree_ready;
-}
-
 // TODO: Implement hasMissing and hasError
-bool hasMissing(TSTree* prospective_tree) {
+bool AST::hasMissing(TSTree* prospective_tree) {
 
 
     return false;
 }
 
-bool hasError(TSTree* prospective_tree) {
+bool AST::hasError(TSTree* prospective_tree) {
 
     return false;
 }
 
-bool AST::hasValidTree(void) {
-    return tree_ready;
+
+
+bool AST::isUTF8() {
+    return file_encoding == TSInputEncodingUTF8;
 }
 
-std::string AST::treeSExpression(void) {
-    if(!tree_ready) return "Generate a tree first";
-    return printNode(rootNode);
+TSNode AST::getRoot(void) {
+    return rootNode;
 }
 
-std::string AST::printNode(TSNode& node) {
-    if(!tree_ready) return "Generate a tree first";
 
-    char * nodeSExpressionChar = ts_node_string(node);
+
+// std::string AST::toString() const {
+//     if(!tree_ready) return "AST does not exist";
+
+//     char * nodeSExpressionChar = ts_node_string(rootNode);
+
+//     std::string nodeSExpression = nodeSExpressionChar;
+
+//     free(nodeSExpressionChar);
+//     return nodeSExpression;
+// }
+
+std::string AST::toString(TSNode node) const{
+    if(!tree_ready) return "AST does not exist";
+
+    char * nodeSExpressionChar = ts_node_string(rootNode);
 
     std::string nodeSExpression = nodeSExpressionChar;
 
@@ -85,6 +97,6 @@ std::string AST::printNode(TSNode& node) {
     return nodeSExpression;
 }
 
-bool AST::isUTF8() {
-    return file_encoding == TSInputEncodingUTF8;
+std::ostream& operator<<(std::ostream& os, const AST& ast) {
+    return os << ast.toString(ast.rootNode);
 }

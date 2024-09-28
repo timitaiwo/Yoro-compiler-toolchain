@@ -8,6 +8,7 @@
 
 #include <string>
 #include <iostream>
+#include <optional>
 
 #include <tree_sitter/api.h>
 // Include parser header
@@ -23,16 +24,23 @@ private:
     bool tree_ready = false;
     TSInputEncoding file_encoding;
 
+    bool hasMissing(TSTree* prospective_tree);
+    bool hasError(TSTree* prospective_tree);
+
 public:
-    AST(TSInputEncoding file_encoding);
-    AST(void) : AST(TSInputEncodingUTF8) {};
+    AST(TSInputEncoding file_encoding, std::string source_code);
+    AST(std::string source_code) : AST(TSInputEncodingUTF8, source_code) {};
     ~AST(void);
     
+    // 
     bool generate_tree(std::string source_code);
-    bool hasValidTree(void);
-    std::string treeSExpression(void);
-    std::string printNode(TSNode& node);
     bool isUTF8();
+    TSNode getRoot(void);
+
+    // String casting
+    // std::string toString() const;
+    std::string toString(TSNode node) const;
+    friend std::ostream& operator<<(std::ostream& os, const AST& ast);
 };
 
 #endif
