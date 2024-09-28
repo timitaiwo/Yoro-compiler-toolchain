@@ -31,10 +31,10 @@ AST::AST(TSInputEncoding file_encoding, std::string source_code) {
     
     // Error checking
     if (ts_node_has_error(ts_tree_root_node(prospective_tree))){
-        std::cout << "Tree Has Error!!!" << std::endl;
-        ts_tree_delete(prospective_tree); // Introduces segmentation fault
+        // std::cout << "Tree Has Error!!!" << std::endl;
+        ts_tree_delete(prospective_tree);
         ts_parser_delete(parser);
-        throw std::invalid_argument("Supplied script has error");
+        throw std::invalid_argument("Supplied script has an error");
     }
 
     this->file_encoding = file_encoding;
@@ -66,7 +66,7 @@ TSNode AST::getRoot(void) {
 std::string AST::toString(TSNode node) const{
     if(!tree_ready) return "AST does not exist";
 
-    char * nodeSExpressionChar = ts_node_string(rootNode);
+    char * nodeSExpressionChar = ts_node_string(node);
 
     std::string nodeSExpression = nodeSExpressionChar;
 
