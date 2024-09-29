@@ -18,15 +18,23 @@ sdsf
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/Module.h"
 
+
+enum Integer {
+    BINARY,
+    OCTAL,
+    HEXADECIMAL,
+    DECIMAL
+};
+
 class IRGenerator
 {
     public:
     // IRGenerator(void) : IRGenerator("pataki"){};
-    IRGenerator(std::map<std::string, std::string> custom_functions);
+    IRGenerator(std::map<std::string, std::string> custom_functions, std::string);
     ~IRGenerator(void);
 
-    // std::unique_ptr<llvm::Module> getIR(AST& tree);
-    std::string getIR(AST& tree);
+    std::unique_ptr<llvm::Module> getIR(AST& tree);
+    // std::string getIR(AST& tree);
 
 
     private:
@@ -34,14 +42,19 @@ class IRGenerator
     std::unique_ptr<llvm::Module> LLVMModule;
     std::unique_ptr<llvm::IRBuilder<>> LLVMIRBuilder;
 
+    std::string innerSourceCode;
     std::string name_main;
     std::string print;
+    std::set<std::string> functionsCannotDefine = {};
+    std::set<std::string> functionsCannotCall = {};
 
-    void recursiveGeneration(TSNode startNode);
+    void recursiveGeneration(TSNode& startNode);
 
     // std::map<std::string, std::function<>> IRGenMap;
-    std::vector<std::string> functionNames {};
+    std::set<std::string> functionNames {};
     std::vector<TSNode> missingNodes {};
+
+    std::string getStringValue(TSNode& node);
 
     std::set<std::string> primitiveNodes = {
                                             "boolean_true",

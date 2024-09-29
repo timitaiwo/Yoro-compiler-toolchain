@@ -56,13 +56,12 @@ int main(int argv, char** args)
 
 
     // Generate IR
-    IRGenerator irGenerator = IRGenerator(custom_functions);
-    auto inMemoryIR = irGenerator.getIR(abstractSTree); // Update to return only llvm::Module
+    IRGenerator irGenerator = IRGenerator(custom_functions, source_code);
 
-    // std::unique_ptr<llvm::Module> inMemoryIR = irGenerator.getIR(abstractSTree);
-    // inMemoryIR->print(llvm::outs(), nullptr); // Print IR
+    std::unique_ptr<llvm::Module> inMemoryIR = irGenerator.getIR(abstractSTree);
+    inMemoryIR->print(llvm::outs(), nullptr); // Print IR
 
-    std::cout << inMemoryIR << std::endl;
+    
     // // Execute IR Module
     // auto executor = IRExecutor();
     // executor.initiateExecution(inMemoryIR);
