@@ -1,0 +1,11 @@
+// These should throw errors as put and main names are reserved internally
+
+iṣẹ put(a : int, b : int) -> int {
+    sọpe("Add one and two");
+    pada a+b;
+}
+
+iṣẹ main(orukọ : str) {
+    jẹki output : str = "Hello, " + orukọ + "!";
+    sọpe(output);
+}

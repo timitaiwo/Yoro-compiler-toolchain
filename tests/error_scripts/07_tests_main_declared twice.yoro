@@ -1,0 +1,10 @@
+iṣẹ pataki() -> int {}
+
+iṣẹ pataki() -> int {     // Entry point into the program
+    sọpe("Mo ki yin gbogbo agbaye");
+    pada 0;               // returning 0 indicates a sucessfull running of the program
+}
+
+iṣẹ sọpe(my_string : str) { 
+    pada "Mo ki yin gbogbo agbaye";
+}
