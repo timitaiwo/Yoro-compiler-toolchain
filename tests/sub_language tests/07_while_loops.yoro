@@ -17,7 +17,7 @@ nigbati numba > 5 {
     }
 }
 
-numba : int = 0;
+jẹki numba : int = 0;
 nigbati numba < 10 {
     ṣe numba == 2 {
         tẹsiwaju;
