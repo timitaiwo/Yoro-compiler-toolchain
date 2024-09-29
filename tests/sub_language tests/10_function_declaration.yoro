@@ -14,15 +14,15 @@ iṣẹ pewa(orukọ : str) {
 }
 
 iṣẹ pewa(orukọ : str) {
-    jẹki output = "Hello, " + orukọ + "!";
+    jẹki output : str = "Hello, " + orukọ + "!";
     sọpe(output);
 }
 
-iṣe ropọ(a : int, b : int) -> int {
+iṣẹ ropọ(a : int, b : int) -> int {
     sọpe("Add one and two");
     pada a+b;
 }
 
-iṣe isChar(testChar : char) -> bool {
+iṣẹ isChar(testChar : char) -> bool {
     pada testChar == '🙇';
 }

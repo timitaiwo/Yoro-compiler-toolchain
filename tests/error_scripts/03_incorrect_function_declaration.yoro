@@ -1,0 +1,4 @@
+iṣe ropọ(a : int, b : int) -> int {
+    sọpe("Add one and two");
+    pada a+b;
+}

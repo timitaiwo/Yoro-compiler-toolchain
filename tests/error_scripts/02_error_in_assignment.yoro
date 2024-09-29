@@ -1,0 +1,4 @@
+iṣẹ pewa(orukọ : str) {
+    jẹki output = "Hello, " + orukọ + "!";
+    sọpe(output);
+}

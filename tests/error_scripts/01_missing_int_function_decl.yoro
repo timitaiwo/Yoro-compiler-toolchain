@@ -1,0 +1,4 @@
+iṣẹ ropọ(a : int, be :) {
+    jẹki output : str = "Hello, " + orukọ + "!";
+    sọpe(output);
+}
