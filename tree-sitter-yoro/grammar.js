@@ -358,7 +358,10 @@ module.exports = grammar({
                       ';',
                       $.comparison, 
                       ';',
-                      $._statement,
+                      choice($._expression, 
+                              $.function_call,
+                              $.assignment_statement
+                            ),
                       field("for_loop_codeblock", $.codeblock)
                     ),
 

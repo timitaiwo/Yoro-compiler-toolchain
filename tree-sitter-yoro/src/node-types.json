@@ -789,10 +789,6 @@
           "named": true
         },
         {
-          "type": "break_keyword",
-          "named": true
-        },
-        {
           "type": "character_primitive",
           "named": true
         },
@@ -801,19 +797,11 @@
           "named": true
         },
         {
-          "type": "continue_keyword",
-          "named": true
-        },
-        {
           "type": "decimal_integer",
           "named": true
         },
         {
           "type": "floating_point_primitive",
-          "named": true
-        },
-        {
-          "type": "for_loop",
           "named": true
         },
         {
@@ -829,19 +817,11 @@
           "named": true
         },
         {
-          "type": "if_statement",
-          "named": true
-        },
-        {
           "type": "octal_integer",
           "named": true
         },
         {
           "type": "string_primitive",
-          "named": true
-        },
-        {
-          "type": "while_loop",
           "named": true
         }
       ]
