@@ -21,8 +21,8 @@ sdsf
 class IRGenerator
 {
     public:
-    IRGenerator(void) : IRGenerator("pataki");
-    IRGenerator(std::string name_main);
+    // IRGenerator(void) : IRGenerator("pataki"){};
+    IRGenerator(std::map<std::string, std::string> custom_functions);
     ~IRGenerator(void);
 
     // std::unique_ptr<llvm::Module> getIR(AST& tree);
@@ -35,6 +35,7 @@ class IRGenerator
     std::unique_ptr<llvm::IRBuilder<>> LLVMIRBuilder;
 
     std::string name_main;
+    std::string print;
 
     void recursiveGeneration(TSNode startNode);
 

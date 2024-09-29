@@ -5,6 +5,7 @@
 
 // 
 #include <string>
+#include <map>
 
 // Include project headers in src/include folder
 #include "AST.hpp"
@@ -15,13 +16,14 @@
 int main(int argv, char** args)
 {
     // File Handling
-    if (argv < 3){
+    if (argv < 2) {
         std::cout << "Please pass in the name of the main function and a file name and try again" << std::endl;
         return 1;
     }
 
-    std::string name_main = args[1];
-    std::string yoro_file = args[2];
+    std::map<std::string, std::string> custom_functions = {{"name_main", "pataki"}, {"print","sọpe"}};
+
+    std::string yoro_file = args[1];
     std::ifstream source_file(yoro_file);
 
     if (!source_file.is_open()) {
@@ -54,7 +56,7 @@ int main(int argv, char** args)
 
 
     // Generate IR
-    IRGenerator irGenerator = IRGenerator();
+    IRGenerator irGenerator = IRGenerator(custom_functions);
     auto inMemoryIR = irGenerator.getIR(abstractSTree); // Update to return only llvm::Module
 
     // std::unique_ptr<llvm::Module> inMemoryIR = irGenerator.getIR(abstractSTree);

@@ -1,12 +1,20 @@
 // #include <iostream>
 #include "IRGenerator.hpp"
 
-IRGenerator::IRGenerator(std::string name_main)
+IRGenerator::IRGenerator(std::map<std::string, std::string> custom_functions)
 {
+    // Check if name_main and print are in custom_functions else throw 
+    // exception
+    if (custom_functions.count("print") != 1 && custom_functions.count("name_main")) 
+        throw std::invalid_argument("The custom_functions variable needs to define a name for the print and main functions respectively");
+
     LLVMContext = std::make_unique<llvm::LLVMContext>();
     LLVMModule = std::make_unique<llvm::Module>("Yoro Complier", *LLVMContext);
     LLVMIRBuilder = std::make_unique<llvm::IRBuilder<>>(*LLVMContext);
-    name_main = name_main;
+
+    name_main = custom_functions["name_main"];
+    print = custom_functions["print"];
+
     std::cout << "IR instantiated\n" << std::endl;
 };
 
@@ -37,6 +45,11 @@ void IRGenerator::recursiveGeneration(TSNode startNode) {
         TSNode childNode = ts_node_named_child(startNode, i);
 
         std::string nodeType = ts_node_type(childNode);
+        // uint32_t startByte = ts_node_start_byte(childNode);
+        // uint32_t endByte = ts_node_end_byte(childNode);
+
+        // std::cout << nodeType << std::endl;
+        // std::cout << startByte << ',' << endByte << std::endl;
 
         // if nodeType is missing add to missing Nodes vector 
 
@@ -60,11 +73,12 @@ void IRGenerator::recursiveGeneration(TSNode startNode) {
 
         // if nodeType is if_statement implements skip
         // if nodeType is while_loop implements skip
+        // if nodeType is for_loop implements skip
 
         
 
 
-        std::cout << nodeType << std::endl;
+        
         // std::cout << << std::endl;
         // std::cout << ts_node_start_byte(childNode) << std::endl;
         // std::cout << ts_node_end_byte(childNode) << std::endl;
