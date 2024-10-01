@@ -1,17 +1,22 @@
 
 iṣẹ pataki() -> int {
 
-    // Use Not / !, ati and tabi
 
-    jẹki temprature : int = 15;
-    
-    ṣe (temprature < 12 ){
-        sọpe()
-    } tabi ṣe () {
-        sọpe()
+    jẹki a_char : char = '🙇';
+    ṣe a_char == '🙇' {
+        sọpe("Fizz");
     } tabi {
-        sọpe()
+        sọpe("Buzz");
     }
 
-    return 0;
+    jẹki numba : int = 7;
+    ṣe 7 > 10 {
+        numba = 7 * 7;
+    } tabi ṣe 9 + 6 < 11 {
+        pada "Ko le work";
+    } tabi {
+        sọpe("Invalid conditions");
+    }
+
+    pada 0;
 }

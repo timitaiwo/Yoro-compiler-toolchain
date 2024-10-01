@@ -19,6 +19,8 @@ iṣẹ pataki() -> int {
 
     nigbati (ka < 10) {
 
+        ka = ka + 1;
+
         ṣe (ka == 8){
             kuro;
         }
@@ -26,8 +28,6 @@ iṣẹ pataki() -> int {
         tabi ṣe (ka == 3) {
             tẹsiwaju;
         }
-
-        ka = ka + 1;
 
         sọpe(ka);
     }
