@@ -16,8 +16,6 @@ set(C_STANDARD_EXTENSIONS ON)
 
 # add_subdirectory(src)
 
-# enable_testing()
-# add_subdirectory(tests)
 
 
 # Move the below to src after sorting out AST
@@ -103,8 +101,8 @@ target_link_libraries(${PROJECT_NAME}
 #                             -Wreorder-init-list
 #                             )
 
-# target_compile_features(${PROJECT_NAME}
-#                         PRIVATE cxx_std_20)
-
 # Link against LLVM libraries
 # target_link_libraries(simple-tool ${llvm_libs})
+
+enable_testing()
+add_subdirectory(tests)

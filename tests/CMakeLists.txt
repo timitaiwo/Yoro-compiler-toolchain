@@ -1,22 +1,34 @@
 # This CMake File controls tests
 
-include(FetchContent)
-FetchContent_Declare(
-            googletest
-            GIT_REPOSITORY https://github.com/google/googletest.git
-            GIT_TAG        release-1.15.2
-            )
-FetchContent_MakeAvailable(googletest)
+include(CTest)
+add_test(NAME TestPrint
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/01_print.yoro"
+)
 
-add_executable(hello-world initial_google_test.cpp)
+add_test(NAME TestVariableDeclaration
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/02_var_decl.yoro"
+)
 
-target_link_directories(
-                hello-world
-                PRIVATE
-                GTest::GTest
+add_test(NAME TestArithmeticOperators
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/03_arithmetic_operators.yoro"
+)
 
-                # Other relevant CMake Targets
-) 
+add_test(NAME TestComparisonOperators
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/04_comparison_operators.yoro"
+)
 
-add_test(gtest_tests
-            hello-world)
+add_test(NAME TestConditionalStatements
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/05_conditonal_statements.yoro"
+)
+
+add_test(NAME TestForLoops
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/06_loops_statements.yoro"
+)
+
+add_test(NAME TestFunctionCalls
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/07_function_call.yoro"
+)
+
+add_test(NAME TestRandomCode
+        COMMAND "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${PROJECT_NAME}" "${CMAKE_SOURCE_DIR}/tests/08_random_code.yoro"
+)
