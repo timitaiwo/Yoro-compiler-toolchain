@@ -2,6 +2,7 @@
 
 [special.functions]
 main = "pataki"
+print = "sọpe"
 
 [keywords.control_flow_keywords]
 if_statement_keyword = "ṣe"
