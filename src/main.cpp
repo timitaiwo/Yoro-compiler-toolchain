@@ -1,4 +1,5 @@
 // Include IO std libs
+#include <exception>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -10,6 +11,7 @@
 // Include project headers in src/include folder
 #include "AST.hpp"
 #include "IRGenerator.hpp"
+#include "SemanticSearcher.hpp"
 #include "IRExecutor.hpp"
 
 // Main function
@@ -17,7 +19,7 @@ int main(int argv, char** args)
 {
     // File Handling
     if (argv < 2) {
-        std::cout << "Please pass in the name of the main function and a file name and try again" << std::endl;
+        std::cout << "Please pass in a valid file name and try again" << std::endl;
         return 1;
     }
 
@@ -41,6 +43,8 @@ int main(int argv, char** args)
 
     std::cout << '\n' << source_code << '\n' << std::endl;
 
+    try {
+
     // Create Pasrser, IRGenerator and IR executor objects
     // Return 1 if any of them fail
     #ifdef __wasm__
@@ -53,6 +57,7 @@ int main(int argv, char** args)
     // std::cout << abstractSTree << std::endl;
 
     // TODO: Do semantic checks using treesitter query
+    SemanticSearcher semanticSearcher = SemanticSearcher(abstractSTree);
 
 
     // Generate IR
@@ -65,6 +70,11 @@ int main(int argv, char** args)
     // // Execute IR Module
     // auto executor = IRExecutor();
     // executor.initiateExecution(inMemoryIR);
+
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
 
     source_file.close();  // close file 
     return 0;

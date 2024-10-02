@@ -8,7 +8,6 @@
 
 #include <string>
 #include <iostream>
-#include <optional>
 
 #include <tree_sitter/api.h>
 // Include parser header
@@ -37,6 +36,9 @@ public:
     // String casting
     std::string toString(TSNode node) const;
     friend std::ostream& operator<<(std::ostream& os, const AST& ast);
+
+    // 
+    const TSLanguage* getLanguage();
 };
 
 #endif
