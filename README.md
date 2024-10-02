@@ -8,6 +8,8 @@ Alternatively, clone the repo then instanciate the submodules i.e
 - ```git submodule update --init --recursive```
 
 
+Build verified for Linux systems only
+
 ## Prerequisites
 - CMake
 - Build system e.g Ninja
@@ -26,7 +28,7 @@ lli test_lli.ll; echo $?
 
 - Add CMake build system
 
-- Download [Treesitter's binary](https://github.com/tree-sitter/tree-sitter/releases) and add it to the tree-sitter-yoro directory. Optionally, it can be added to the PATH environment variable.
+- Download [Treesitter's binary](https://github.com/tree-sitter/tree-sitter/releases) and add it to can be added to the OS PATH environment variable.
 
 - Run ```./tree-sitter generate``` in the tree-sitter-yoro directory or ```tree-sitter generate``` in the tree-sitter-yoro directory if Treesitter is added as an environment PATH variable
 
