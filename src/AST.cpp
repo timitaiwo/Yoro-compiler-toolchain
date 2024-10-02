@@ -34,7 +34,7 @@ AST::AST(TSInputEncoding file_encoding, std::string source_code) {
         // std::cout << "Tree Has Error!!!" << std::endl;
         ts_tree_delete(prospective_tree);
         ts_parser_delete(parser);
-        throw std::invalid_argument("Supplied script has an error");
+        throw std::invalid_argument("The program has an incorrect syntax. Check every line of code for syntax errors");
     }
 
     this->file_encoding = file_encoding;
