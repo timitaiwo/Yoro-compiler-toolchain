@@ -6,7 +6,7 @@ add_subdirectory(libs)
 
 
 # Setup LLVM - https://releases.llvm.org/18.1.8/docs/CMake.html#embedding-llvm-in-your-project
-find_package(LLVM REQUIRED CONFIG)
+find_package(LLVM REQUIRED CONFIG COMPONENTS)
 if(LLVM_FOUND)
     message(STATUS "Found install of LLVM ${LLVM_PACKAGE_VERSION} on the system")
 else()
@@ -26,6 +26,8 @@ add_definitions(${LLVM_DEFINITIONS_LIST})
 
 llvm_map_components_to_libnames(llvm_libs support core irreader)
 
+message(STATUS "${llvm_libs}")
+
 
 # Build the yọrọ compiler
 set(SOURCES 
@@ -33,6 +35,7 @@ set(SOURCES
     AST.cpp
     IRGenerator.cpp
     IRExecutor.cpp
+    SemanticSearcher.cpp
     )
 
 add_executable(${PROJECT_NAME}
@@ -55,7 +58,8 @@ target_include_directories(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME}
                         tree-sitter
-                        ${llvm_libs}
+                        LLVM
+                        # ${llvm_libs}
                         )
 
 # target_compile_definitions(${PROJECT_NAME}

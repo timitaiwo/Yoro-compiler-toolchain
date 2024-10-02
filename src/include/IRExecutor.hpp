@@ -6,7 +6,9 @@
 #include "llvm/IR/Module.h"
 
 // Include LLVM stuffs
-#include <llvm/ExecutionEngine/Orc/LLJIT.h>
+#include "llvm/ExecutionEngine/Orc/LLJIT.h"
+// #include "llvm/ExecutionEngine/Orc/Core.h"
+
 
 class IRExecutor
 {
@@ -19,7 +21,7 @@ class IRExecutor
     IRExecutor(void);
     ~IRExecutor(void);
 
-    bool initiateExecution(std::unique_ptr<llvm::Module>& LLVMModule);
+    bool initiateExecution(std::unique_ptr<llvm::Module> LLVMModule);
 };
 
 #endif

@@ -14,6 +14,7 @@
 #include "SemanticSearcher.hpp"
 #include "IRExecutor.hpp"
 
+
 // Main function
 int main(int argv, char** args)
 {
@@ -45,14 +46,7 @@ int main(int argv, char** args)
 
     try {
 
-    // Create Pasrser, IRGenerator and IR executor objects
-    // Return 1 if any of them fail
-    #ifdef __wasm__
-    TSInputEncoding file_encoding = TSInputEncodingUTF16;
-    AST abstractSTree = AST(file_encoding, source_code);
-    #else
     AST abstractSTree = AST(source_code);
-    #endif
 
     // std::cout << abstractSTree << std::endl;
 
@@ -67,9 +61,9 @@ int main(int argv, char** args)
     inMemoryIR->print(llvm::outs(), nullptr); // Print IR
 
     
-    // // Execute IR Module
-    // auto executor = IRExecutor();
-    // executor.initiateExecution(inMemoryIR);
+    // Execute IR Module
+    auto executor = IRExecutor();
+    executor.initiateExecution(std::move(inMemoryIR));
 
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
