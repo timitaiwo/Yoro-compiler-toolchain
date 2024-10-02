@@ -2,9 +2,12 @@
 
 #include "./AST.hpp"
 
+#ifndef __YORO_PARSER_C__
+#define __YORO_PARSER_C__
 // Include parser file
 #include <parser.c>
 
+#endif
 
 AST::AST(TSInputEncoding file_encoding, std::string source_code) {
 
@@ -77,3 +80,4 @@ std::string AST::toString(TSNode node) const{
 std::ostream& operator<<(std::ostream& os, const AST& ast) {
     return os << ast.toString(ast.rootNode);
 }
+

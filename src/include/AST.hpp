@@ -23,6 +23,8 @@ private:
     bool tree_ready = false;
     TSInputEncoding file_encoding;
 
+    bool findStringIntOperations();
+
 public:
     AST(TSInputEncoding file_encoding, std::string source_code);
     AST(std::string source_code) : AST(TSInputEncodingUTF8, source_code) {};
@@ -39,6 +41,7 @@ public:
 
     // 
     const TSLanguage* getLanguage();
+
 };
 
 #endif

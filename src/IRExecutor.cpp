@@ -21,12 +21,10 @@ IRExecutor::~IRExecutor(void){
 
 bool IRExecutor::initiateExecution(std::unique_ptr<llvm::Module> LLVMModule) {
 
-    // auto manage = jit->addIRModule(LLVMModule);
-
     // auto moduleManager = jit->addModule(std::move(LLVMModule));
     // if (!moduleManager) {
-        // throw error
-    }
+    //     // throw error
+    // }
 
     // auto mainFunction = moduleHandle->getModule()->getFunction("main");
     // if (!mainFunction) {

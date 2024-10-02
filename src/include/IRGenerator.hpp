@@ -41,8 +41,7 @@ class IRGenerator
     IRGenerator(std::map<std::string, std::string> custom_functions, std::string);
     ~IRGenerator(void);
 
-    std::unique_ptr<llvm::Module> getIR(AST& tree);
-    // std::string getIR(AST& tree);
+    std::string getIR(AST& tree);
 
 
     private:
@@ -74,7 +73,7 @@ class IRGenerator
     void createFunction(TSNode& functionNode, AST& tree);
     // llvm::Function* createPrintFunction();
     // llvm::Function* createCodeblock(TSNode& blockNode, std::string blockName, llvm::Function* function);
-    // llvm::Value* createFunctionCall(TSNode& callNode);
+    llvm::Value* createFunctionCall(TSNode& callNode);
 
     // Node cross-checks
 

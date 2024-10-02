@@ -1,5 +1,4 @@
 // Include IO std libs
-#include <exception>
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -13,13 +12,12 @@
 #include "IRGenerator.hpp"
 #include "IRExecutor.hpp"
 
-
 // Main function
 int main(int argv, char** args)
 {
     // File Handling
     if (argv < 2) {
-        std::cout << "Please pass in a valid file name and try again" << std::endl;
+        std::cout << "Please pass in the name of the main function and a file name and try again" << std::endl;
         return 1;
     }
 
@@ -43,27 +41,30 @@ int main(int argv, char** args)
 
     std::cout << '\n' << source_code << '\n' << std::endl;
 
-    try {
-
+    // Create Pasrser, IRGenerator and IR executor objects
+    // Return 1 if any of them fail
+    #ifdef __wasm__
+    TSInputEncoding file_encoding = TSInputEncodingUTF16;
+    AST abstractSTree = AST(file_encoding, source_code);
+    #else
     AST abstractSTree = AST(source_code);
+    #endif
+
+    // std::cout << abstractSTree << std::endl;
+
+    // TODO: Do semantic checks using treesitter query
+
 
     // Generate IR
     IRGenerator irGenerator = IRGenerator(custom_functions, source_code);
 
-    auto inMemoryIR = irGenerator.getIR(abstractSTree);
-    // std::unique_ptr<llvm::Module> inMemoryIR = irGenerator.getIR(abstractSTree);
-    // inMemoryIR->print(llvm::outs(), nullptr); // Print IR
-    // std::unique_ptr<llvm::LLVMContext> context = irGenerator.getContext();
+    std::unique_ptr<llvm::Module> inMemoryIR = irGenerator.getIR(abstractSTree);
+    inMemoryIR->print(llvm::outs(), nullptr); // Print IR
 
     
-    // Execute IR Module
+    // // Execute IR Module
     // auto executor = IRExecutor();
-    // executor.initiateExecution(std::move(inMemoryIR));
-
-    } catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-        return 1;
-    }
+    // executor.initiateExecution(inMemoryIR);
 
     source_file.close();  // close file 
     return 0;

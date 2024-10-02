@@ -35,7 +35,6 @@ set(SOURCES
     AST.cpp
     IRGenerator.cpp
     IRExecutor.cpp
-    SemanticSearcher.cpp
     )
 
 add_executable(${PROJECT_NAME}

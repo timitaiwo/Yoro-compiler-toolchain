@@ -31,9 +31,9 @@ IRGenerator::~IRGenerator(void)
 
 };
 
-std::unique_ptr<llvm::Module> IRGenerator::getIR(AST& tree)
-// std::string IRGenerator::getIR(AST& tree)
+std::string IRGenerator::getIR(AST& tree)
 { 
+    
     std::cout << "The tree's S-Expression is " << tree << std::endl << std::endl;
 
     TSNode astRoot = tree.getRoot();
@@ -46,10 +46,14 @@ std::unique_ptr<llvm::Module> IRGenerator::getIR(AST& tree)
         std::string errorMsg = "Please note this script has not been declared with a '" + name_main + "' function. Please define this as it is where the program starts from";
         throw std::invalid_argument(errorMsg);
     }
+
+    auto newModule = std::move(LLVMModule);
+    LLVMModule = std::make_unique<llvm::Module>("Yoro Complier", *LLVMContext);
     
-    return std::move(LLVMModule);
-    // return "";
+    // return std::move(newModule);
+    return "";
 }
+
 
 llvm::Value* IRGenerator::recursiveGeneration(TSNode& startNode, AST& tree, bool isRoot) {
     // if (nodeType == "string_primitive") throw std::invalid_argument("This compiler does not yet support strings")
@@ -58,7 +62,7 @@ llvm::Value* IRGenerator::recursiveGeneration(TSNode& startNode, AST& tree, bool
 
     size_t childrenCount = ts_node_named_child_count(startNode);
 
-    std::cout << "is root " << isRoot << std::endl;
+    // std::cout << "is root " << isRoot << std::endl;
 
     for (int i {}; i < childrenCount; ++i){
         TSNode childNode = ts_node_named_child(startNode, i);
@@ -77,11 +81,11 @@ llvm::Value* IRGenerator::recursiveGeneration(TSNode& startNode, AST& tree, bool
         }
 
         if (nodeType == "function_declaration") {
-            // createFunction(childNode, tree);
+            createFunction(childNode, tree);
         }
 
         if (nodeType == "function_call") {
-            // createFunctionCall(childNode);
+            createFunctionCall(childNode);
         }
 
         if (nodeType == "codeblock") {
@@ -263,7 +267,7 @@ void IRGenerator::createFunction(TSNode& functionNode, AST& tree) {
 
 // }
 
-// llvm::Function* IRGenerator::createCodeblock(TSNode& blockNode, std::string blockName = "", llvm::Function* function = nullptr) {
+// llvm::Value* IRGenerator::createCodeblock(TSNode& blockNode, std::string blockName = "", llvm::Function* function = nullptr) {
 //     int numChildren = ts_node_named_child_count(blockNode);
 
 //     if (numChildren == 0) {
@@ -282,47 +286,47 @@ void IRGenerator::createFunction(TSNode& functionNode, AST& tree) {
 //     }
 // }
 
-// llvm::Value* IRGenerator::createFunctionCall(TSNode& callNode){
-//     std::string functionNameFieldName = "function_name";
-//     TSNode functionNameNode = ts_node_child_by_field_name(callNode, functionNameFieldName.c_str(), functionNameFieldName.length());
-//     std:: string functionName = getNodeStringValue(functionNameNode);
+llvm::Value* IRGenerator::createFunctionCall(TSNode& callNode){
+    std::string functionNameFieldName = "function_name";
+    TSNode functionNameNode = ts_node_child_by_field_name(callNode, functionNameFieldName.c_str(), functionNameFieldName.length());
+    std:: string functionName = getNodeStringValue(functionNameNode);
 
-//     if (functionsCannotCall.count(functionName) > 0) {
-//         std::string errorMsg = "Please note that function '" + functionName + "' cannot be called due to internal useage. Please select the right function";
-//         throw std::invalid_argument(errorMsg);
-//     }
+    if (functionsCannotCall.count(functionName) > 0) {
+        std::string errorMsg = "Please note that function '" + functionName + "' cannot be called due to internal useage. Please select the right function";
+        throw std::invalid_argument(errorMsg);
+    }
 
-//     functionName = functionName == print ? "put" : functionName;
+    functionName = functionName == print ? "put" : functionName;
 
-//     if (functionNames.count(functionName) == 0) {
-//         std::string errorMsg = "Please note that the function '" + functionName + "' has not been defined. Please define.";
-//         throw std::invalid_argument(errorMsg);
-//     }
+    if (functionNames.count(functionName) == 0) {
+        std::string errorMsg = "Please note that the function '" + functionName + "' has not been defined. Please define.";
+        throw std::invalid_argument(errorMsg);
+    }
 
-//     if (functionName == "put") {
-//         //call external function
-//         // reuturn nothing
-//     }
+    if (functionName == "put") {
+        //call external function
+        // reuturn nothing
+    }
 
-//     llvm::Function* calleFunction = LLVMModule->getFunction(functionName);
+    llvm::Function* calleFunction = LLVMModule->getFunction(functionName);
 
-//     // if (!calleFunction->arg_size() == ) {
-//     //     std::string errorMsg = "The function call " + functionName + " does not match the number of parameters declard";
-//     //     std::invalid_argument(errorMsg);
-//     // }
+    // if (!calleFunction->arg_size() == ) {
+    //     std::string errorMsg = "The function call " + functionName + " does not match the number of parameters declard";
+    //     std::invalid_argument(errorMsg);
+    // }
     
-//     std::vector<llvm::Value*> functionArguements;
-//     for(size_t i = 0; i<calleFunction->arg_size(); ++i) {
+    std::vector<llvm::Value*> functionArguements;
+    for(size_t i = 0; i<calleFunction->arg_size(); ++i) {
 
-//     }
+    }
 
 
-//     std::cout << "Function " << functionName << " called" << std::endl;
+    std::cout << "Function " << functionName << " called" << std::endl;
 
-//     // if main proceed as normal
-//     // if functionName = put  call external function
+    // if main proceed as normal
+    // if functionName = put  call external function
 
-//     // Create function object
-//     std::cout << functionName << std::endl;
-//     return nullptr;
-// }
+    // Create function object
+    std::cout << functionName << "called" << std::endl;
+    return nullptr;
+}
