@@ -37,27 +37,10 @@ lli test_lli.ll; echo $?
 error handling in C - https://youtu.be/A9bPqlgbUvg?si=5cPvZjbYq8qdRMr8 
 
 ## *TODO: ...*
-- Add identifier and to _number_expression and _concatenation_expression
-- Ensure compound binary expressions are parsed correctly
 
 - Figure out lexicographic order for character and string comparisons
-- Convert keyword literals to regex unicode 
-
-- Hide after all is done
-    - operator names
-    - statement
 
 - Add Tests for a combination of comparison and arithmetic expressions (both for arit expressions or string expressions)
-
-- Implement the below expressions
-    - NOT
-    - AND
-    - OR 
-    - Parenthesised
-    - Fix identifiers in expressions
-
-## Syntax checks
-- Figure out how to process syntax and semantic errors from Treesitter (possibly using Treesitter queries)
 
 ## Semantic checks
 - Variable declaration done once in a block which Rust like shadowing occuring
