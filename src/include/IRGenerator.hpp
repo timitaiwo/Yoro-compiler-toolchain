@@ -10,13 +10,21 @@ sdsf
 #include <set>
 #include <vector>
 #include <map>
-#include <functional>
+#include <tuple>
 #include "AST.hpp"
 
 // Include LLVM stuffs
 #include "llvm/IR/IRBuilder.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/Module.h"
+#include "llvm/IR/Verifier.h"
+
+#include "llvm/IR/Function.h"
+#include "llvm/IR/Value.h"
+#include "llvm/IR/Type.h"
+
+using VariableInfo = std::tuple<std::string, llvm::Value*>;
+using variableList = std::map<std::string, VariableInfo >;
 
 
 enum Integer {
@@ -48,13 +56,36 @@ class IRGenerator
     std::set<std::string> functionsCannotDefine = {};
     std::set<std::string> functionsCannotCall = {};
 
-    void recursiveGeneration(TSNode& startNode);
-
-    // std::map<std::string, std::function<>> IRGenMap;
     std::set<std::string> functionNames {};
-    std::vector<TSNode> missingNodes {};
+    variableList functionVariables {};
+    variableList globalVariables {};
+    bool inFunction = false;
 
-    std::string getStringValue(TSNode& node);
+    std::vector<TSNode> missingNodes {};
+    int numEmptyCodeblocks = 0;
+
+
+    std::string getNodeStringValue(TSNode& node);
+
+    // IRGen
+    llvm::Value* recursiveGeneration(TSNode& startNode, AST& tree, bool isRoot=false);
+    llvm::Value* createPrimitive(TSNode primitiveNode);
+    llvm::Value* doAssignment(TSNode assignmentNode, AST& tree);
+    void createFunction(TSNode& functionNode, AST& tree);
+    // llvm::Function* createPrintFunction();
+    // llvm::Function* createCodeblock(TSNode& blockNode, std::string blockName, llvm::Function* function);
+    // llvm::Value* createFunctionCall(TSNode& callNode);
+
+    // Node cross-checks
+
+    std::set<std::string> data_types = {
+                                "int_primitive_keyword",
+                                "f32_primitive_keyword",
+                                "f64_primitive_keyword",
+                                "bool_primitive_keyword", 
+                                "char_primitive_keyword",
+                                "str_primitive_keyword" 
+                            };
 
     std::set<std::string> primitiveNodes = {
                                             "boolean_true",
