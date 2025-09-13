@@ -1,9 +1,9 @@
 # This CMake file controls the bulid of
 # the yoro project
 
-# Add Treesitter library
-add_subdirectory(libs)
-
+#########################################################
+###################  Project Setup  #####################
+#########################################################
 
 # Setup LLVM - https://releases.llvm.org/18.1.8/docs/CMake.html#embedding-llvm-in-your-project
 find_package(LLVM REQUIRED CONFIG COMPONENTS)
@@ -29,6 +29,14 @@ llvm_map_components_to_libnames(llvm_libs support core irreader)
 message(STATUS "${llvm_libs}")
 
 
+#########################################################
+###################  Project Build  #####################
+#########################################################
+
+
+# Add Treesitter library
+add_subdirectory(libs)
+
 # Build the yọrọ compiler
 set(SOURCES 
     main.cpp
@@ -50,7 +58,7 @@ add_executable(${PROJECT_NAME}
 target_include_directories(${PROJECT_NAME}
                             PRIVATE
                             "include"
-                            "${CMAKE_SOURCE_DIR}/tree-sitter-yoro/src"
+                            "tree-sitter-yoro/src"
                             "libs/treesitter/lib/include"
                             # "${LLVM_INCLUDES}/"
                             )
