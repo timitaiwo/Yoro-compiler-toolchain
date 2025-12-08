@@ -20,7 +20,7 @@ if(CMAKE_SIZEOF_VOID_P EQUAL 8)
 endif()
 
 # Define Output directories
-set(FullOutputDir "${CMAKE_SOURCE_DIR}/bin/${CMAKE_SYSTEM_NAME}${OSBitness}/${CMAKE_BUILD_TYPE}")
+set(FullOutputDir "${CMAKE_SOURCE_DIR}/bin/")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static libs")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
