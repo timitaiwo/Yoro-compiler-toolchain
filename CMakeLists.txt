@@ -6,22 +6,17 @@ project(yoro)
 # Integrate CMake and Google Test
 # https://matgomes.com/integrate-google-test-into-cmake/
 
-set(CXX_STANDARD 17)
-set(CXX_STANDARD_REQUIRED ON)
-set(CXX_STANDARD_EXTENSIONS ON)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(C_STANDARD 11)
-set(C_STANDARD_REQUIRED ON)
-set(C_STANDARD_EXTENSIONS ON)
-
-set(OSBitness 32)
-if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(OSBitness 64)
-endif()
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS ON)
 
 # Define Output directories
 set(FullOutputDir "${CMAKE_SOURCE_DIR}/bin/")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static libs")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${FullOutputDir}/static_libs")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${FullOutputDir}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${FullOutputDir}")
 
