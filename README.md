@@ -1,28 +1,43 @@
-# Birkbeck Yọrọ repo
+# Yọrọ compiler toolchain
 
-To clone this repo use 
->```git clone --recurse-submodule https://github.com/timitaiwo/Yoro-compiler-toolchain.git```
+Yọrọ is a metaprogramming language that allows users to create their programming language.
 
-Alternatively, clone the repo then instanciate the submodules i.e 
+Users define keywords with a config file and run the toolchain to generate a compiler. Programs generated using such compilers can call functions from other programs compiler using Yọrọ compilers.
+
+It takes syntax inspiration from Go, Rust and other modern programming languages and is planned to be a systems level programming language with an optional garbage collection mode. 
+
+### Roadmap
+
+1. ✅ Frontend: Parser, AST is done using tree-sitter
+2. Midlayer: IR generation and optimization
+3. Backend: assembly generation
+3. Memory management: garbage collection, arena allocators, etc. 
+4. Language Server Protocol: 
+
+## Setup 
+This project integrates tree-sitter as a submodule so to clone this repo use the command `git clone --recurse-submodule https://github.com/timitaiwo/Yoro-compiler-toolchain.git`
+
+Alternatively, the steps can be separated i.e. clone the repo then instanciate the submodules using the below commands 
 - ```git clone https://github.com/timitaiwo/Yoro-compiler-toolchain.git```
 - ```git submodule update --init --recursive```
 
 
-Build verified for Linux systems only
+**Note:** Building has been verified for Linux systems only
+
+**WIP:** use nix flakes to creating a reproducable development environment with the `nix develop` command.
+
 
 ## Prerequisites
+
 - CMake
 - Build system e.g Ninja
 - NodeJS
-- Visual Studio IDE (Windows only)
-- LLVM installed on the system -> libedit, libzstd, libcurl ```sudo apt install libzstd-dev libcurl4-openssl-dev libedit-dev``` is the command to run in a linux system
+- LLVM installed on the system with libedit, libzstd, libcurl 
 
-Visual Studio IDE is required on windows so that the compiler executable gets to be built
+    use the command ```sudo apt install libzstd-dev libcurl4-openssl-dev libedit-dev``` to add this
 
-To test the generated ll file
-``` bash
-lli test_lli.ll; echo $?
-```
+
+Test the generated ll file with the `lli` command e.g. `lli test_lli.ll; echo $?`
 
 ## Build instructions
 
