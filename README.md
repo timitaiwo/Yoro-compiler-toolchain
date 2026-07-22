@@ -1,8 +1,8 @@
 # Yọrọ compiler toolchain
 
-Yọrọ is a metaprogramming language that allows users to create their programming language.
+Yọrọ is a metaprogramming language that allows users to create their programming language. It uses LLVM for Intermediate Representation generation and assembly creation.
 
-Users define keywords with a config file and run the toolchain to generate a compiler. Programs generated using such compilers can call functions from other programs compiler using Yọrọ compilers.
+Users define keywords with a config file and run the toolchain to generate a compiler. Programs generated using such compilers can call functions from other programs compiled using Yọrọ compilers due to name mangling.
 
 It takes syntax inspiration from Go, Rust and other modern programming languages and is planned to be a systems level programming language with an optional garbage collection mode. 
 
