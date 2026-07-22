@@ -4,7 +4,7 @@ To clone this repo use
 >```git clone --recurse-submodule https://github.com/timitaiwo/Yoro-compiler-toolchain.git```
 
 Alternatively, clone the repo then instanciate the submodules i.e 
-- ```git clone https://github.com/Birkbeck/msc-projects-2023-4-timitaiwo.git```
+- ```git clone https://github.com/timitaiwo/Yoro-compiler-toolchain.git```
 - ```git submodule update --init --recursive```
 
 
