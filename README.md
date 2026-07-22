@@ -24,11 +24,12 @@ Alternatively, the steps can be separated i.e. clone the repo then instanciate t
 
 **Note:** Building has been verified for Linux systems only
 
-**WIP:** use nix flakes to creating a reproducable development environment with the `nix develop` command.
-
 
 ## Prerequisites
 
+Use nix flakes to create a development environment with the `nix develop` command.
+
+Requirements for the projects are
 - CMake
 - Build system e.g Ninja
 - NodeJS
